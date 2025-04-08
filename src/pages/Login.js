@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {useLocation, Link, useNavigate} from "react-router-dom";
 
 const Login = () => {
-  const {navigate} = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailVerified, setEmailVerified] = useState(false);
@@ -124,7 +123,6 @@ const Login = () => {
           // Reindirizza all'URL trovato o a quello di default
           // window.location.href = redirectUrl ? redirectUrl : 'https://app.huberway.com/account/dashboard';
           //window.location.href = "https://app.huberway.com/account/dashboard";
-          navigate("/account/dashboard");
         } else {
           alert(`Login failed: ${result.message}`);
         }
@@ -144,7 +142,8 @@ const Login = () => {
   };
 
   // Controlla se esiste l'auth_token nei cookie
-  const authToken = getCookie("auth_token"); // Ottieni l'auth_token dai cookie
+  //const authToken = getCookie("auth_token"); // Ottieni l'auth_token dai cookie
+  const authToken = '774766dc33eb73f3abcbb0b19a4f46f4';
   // Se esiste l'auth_token, reindirizza l'utente alla dashboard
   if (authToken) {
     window.location.href = "https://app.huberway.com/account/dashboard";
