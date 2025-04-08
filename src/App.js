@@ -35,7 +35,7 @@ function App() {
                 <Route path="/account/register-huberway" element={<RegisterForm />} />
                 <Route path="/account/recovery" element={<Recovery />} />
                 <Route path="/account/dashboard" element={<Dashboard />} />
-                <Route path="/account/Pricing" element={<Pricing />} />
+                <Route path="/account/pricing" element={<Pricing />} />
                 <Route path="*" element={<Error />} />
                 {/* Rotta di fallback per gestire le pagine non trovate */}
             </Routes>

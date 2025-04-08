@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import {useLocation, Link, useNavigate} from "react-router-dom";
 
 const Login = () => {
+  const {navigate} = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailVerified, setEmailVerified] = useState(false);
@@ -122,7 +123,8 @@ const Login = () => {
 
           // Reindirizza all'URL trovato o a quello di default
           // window.location.href = redirectUrl ? redirectUrl : 'https://app.huberway.com/account/dashboard';
-          window.location.href = "https://app.huberway.com/account/dashboard";
+          //window.location.href = "https://app.huberway.com/account/dashboard";
+          navigate("/account/dashboard");
         } else {
           alert(`Login failed: ${result.message}`);
         }
