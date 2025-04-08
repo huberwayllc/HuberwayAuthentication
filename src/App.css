@@ -376,6 +376,10 @@ hr {
   min-height: 100vh;
 }
 
+.user-popup-menu p{
+  font-size: 15px;
+}
+
 .header {
   position: relative !important;
   width: 100%;
