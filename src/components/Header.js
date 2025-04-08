@@ -56,7 +56,7 @@ function Header() {
               <Link to="/account/pricing">Pricing</Link>
             </li>
             <li>
-              <Link to="/account/became-a-partner">Become a partner</Link>
+              <Link to="/account/became-a-partner" className={"disabled"} onClick={(e) => e.preventDefault()}>Become a partner</Link>
             </li>
           </ul>
         </div>
