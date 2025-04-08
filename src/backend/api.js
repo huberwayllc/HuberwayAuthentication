@@ -5,10 +5,10 @@ const API_URL = 'https://api.huberway.com';
 
 // Funzione per ottenere i dettagli dell'account
 export const getAccountDetails = async () => {
-    const authToken = Cookies.get('auth_token');
+    // const authToken = Cookies.get('auth_token');
 
 
-    // const authToken = '774766dc33eb73f3abcbb0b19a4f46f4';
+     const authToken = '774766dc33eb73f3abcbb0b19a4f46f4';
 
     if (!authToken) {
         throw new Error('No auth token found');

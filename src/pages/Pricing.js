@@ -5,12 +5,12 @@ import Header from "../components/Header";
 import PricingCard from "../components/PricingCard";
 
 const Pricing = () => {
-    const [user, setUser] = useState({email: "danielecarpini@gmail.com", name: "prova", id: 5});
+    const [user, setUser] = useState({email: "", name: ""});
     const [selectedApp, setSelectedApp] = useState(null);
     const [selectedTab, setSelectedTab] = useState("Individuals");
     const navigate = useNavigate();
 
-    /*
+
     useEffect(() => {
       getAccountDetails()
         .then((data) => {
@@ -25,7 +25,7 @@ const Pricing = () => {
           navigate("/account/login");
         });
     }, [navigate]);
-  */
+
 
     const huberwayLinks = [
         {
