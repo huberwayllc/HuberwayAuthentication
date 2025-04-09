@@ -66,6 +66,15 @@ label {
   color: #182433;
 }
 
+.checkoutInp {
+  background-color: transparent;
+  border: 1px solid #cbd6e2;
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+  padding-left: 13px;
+}
+
 .mb-20 {
   margin-bottom: 20px;
 }

@@ -4,6 +4,7 @@ import { getAccountDetails } from "../backend/api";
 import Avatar from '@mui/material/Avatar';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import SearchIcon from '@mui/icons-material/Search';
+import UserMenu from "./UserMenu";
 
 function Header() {
   const [user, setUser] = useState({ email: "", name: "", id: null });
@@ -110,54 +111,7 @@ function Header() {
           </div>
 
           {menuVisible && (
-            <div
-              className="user-popup-menu"
-              style={{
-                position: "absolute",
-                top: "60px",
-                right: "0",
-                backgroundColor: "#ffffff",
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                borderRadius: "10px",
-                padding: "20px",
-                zIndex: 1000,
-                width: "300px",
-              }}
-            >
-              <div className="d-flex gap-2 align-items-center">
-                <div>
-                  <Avatar sx={{ bgcolor: "orange" }}>OP</Avatar>
-                </div>
-                <div className="d-flex flex-column gap-1">
-                  <p className="mb-0"><strong>{user.name || "Gennaro Ereditata"}</strong> </p>
-                  <p style={{ margin: 0, color: "#64748B" }}>{user.email || "g.ereditata@huberway.com"}</p>
-                  <p style={{color: "#0039A9", cursor: "pointer"}} className="mb-0"><b>Profilo e preferenze</b> </p>
-                </div>
-              </div>
-              <hr className="my-3" />
-              <ul style={{ listStyle: "none", padding: 0, margin: "10px 0" }}>
-                <li>Condividi feedback di navigazione</li>
-                <li>Account</li>
-                <li>Huberway</li>
-                <li>ID: 145998190</li>
-                <li style={{ color: "#f59e0b" }}>
-                  Termina la configurazione del tuo account (30%)
-                </li>
-                <li>Invita il team</li>
-                <li>Account e fatturazione</li>
-                <li>HubSpot Academy</li>
-                <li>Prezzi e funzionalità</li>
-                <li>Aggiornamenti sui prodotti</li>
-                <li>Formazione e servizi</li>
-              </ul>
-              <hr />
-              <ul style={{ listStyle: "none", padding: 0 }}>
-                <li onClick={handleLogout} style={{ cursor: "pointer", color: "#ef4444" }}>
-                  Esci
-                </li>
-                <li>Privacy policy</li>
-              </ul>
-            </div>
+            <UserMenu user={user} onLogout={handleLogout} />
           )}
         </div>
       </header>

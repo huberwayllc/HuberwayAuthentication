@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
-
 const PricingCard = ({ plan, index,price, features }) => {
     const [pricingMode, setPricingMode] = useState("monthly");
+    
 
     function getPrice(){
         if(pricingMode === "monthly"){
