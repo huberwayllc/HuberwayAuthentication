@@ -167,11 +167,21 @@ const Checkout = () => {
               <div className="mt-4">
                 <label className="p-0" style={{ display: "block" }}>Country or region</label>
                 <input
+                style={{
+                    borderBottomLeftRadius: "0px",
+                    borderBottomRightRadius: "0px",
+                    paddingRight: "40px",
+                    }}
                   className="checkoutInp"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                 />
                 <input
+                style={{
+                    borderTopLeftRadius: "0px",
+                    borderTopRightRadius: "0px",
+                    paddingRight: "40px",
+                    }}
                   className="checkoutInp"
                   placeholder="ZIP"
                   value={zip}
