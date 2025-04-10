@@ -1,16 +1,25 @@
 import React, {useState} from "react";
 
-const PricingCard = ({ plan, index,price, features }) => {
+const PricingCard = ({ plan, index,price, features, handleSubmit}) => {
     const [pricingMode, setPricingMode] = useState("monthly");
     
 
     function getPrice(){
         if(pricingMode === "monthly"){
-            return price.monthly + "$/month";
+            return price.month.amount + "€/month";
         } else {
-            return price.yearly + "$/year";
+            return price.year.amount + "€/year";
         }
     }
+
+    function getPriceID(){
+        if(pricingMode === "monthly"){
+            return price.month.stripe_price_id;
+        } else {
+            return price.year.stripe_price_id;
+        }
+    }
+
 
     return (
         <div className="pricing-card" key={index}>
@@ -35,7 +44,7 @@ const PricingCard = ({ plan, index,price, features }) => {
                 <span className={`toggle-label ${pricingMode === "yearly" ? "active" : ""}`}>Yearly</span>
             </div>
 
-            <button className="select-plan-btn">
+            <button className="select-plan-btn" onClick={() => handleSubmit(getPriceID())}>
                 Select Plan
             </button>
         </div>
