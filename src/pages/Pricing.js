@@ -7,126 +7,82 @@ import PricingCard from "../components/PricingCard";
 const Pricing = () => {
     const [user, setUser] = useState({email: "", name: ""});
     const [selectedApp, setSelectedApp] = useState(null);
+    const [products, setProducts] = useState([]);
     const [selectedTab, setSelectedTab] = useState("Individuals");
     const navigate = useNavigate();
 
 
     useEffect(() => {
-      getAccountDetails()
-        .then((data) => {
-          setUser({
-            email: data.data.email,
-            name: data.data.username,
-            id: data.data.id,
-          });
-        })
-        .catch((error) => {
-          console.error("Errore nel recupero dei dettagli dell'account:", error);
-          navigate("/account/login");
-        });
+        getAccountDetails()
+            .then((data) => {
+                setUser({
+                    email: data.data.email,
+                    name: data.data.username,
+                    id: data.data.id,
+                });
+            })
+            .catch((error) => {
+                console.error("Errore nel recupero dei dettagli dell'account:", error);
+                navigate("/account/login");
+            });
     }, [navigate]);
 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/subscription/get-plans");
+                const data = await response.json();
 
-    const huberwayLinks = [
-        {
-            name: "HubConnect",
-            description: "Centralized management of Sales and marketing",
-            component: "HubConnect",
-            icons: [
-                "https://dev.huberway.com/icon/sales.svg",
-            ],
-            pricing: [
-                {
-                    plan: "Basic",
+                data.forEach((item) => {
+                    item.plans = groupPlans(item.plans);
+                })
+
+                console.log(data);
+
+                setProducts(data);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    function groupPlans(plans) {
+        const groupedPlans = {};
+
+
+        plans.forEach(plan => {
+            const baseName = plan.plan_name;
+            const recurring = plan.recurring.toLowerCase();
+
+            if (!groupedPlans[baseName]) {
+                groupedPlans[baseName] = {
+                    id: plan.id,
+                    product_name: plan.product_name,
+                    plan_name: baseName,
+                    features: plan.features,
+                    target: plan.target,
+                    software: plan.software,
+                    created_at: plan.created_at,
+                    updated_at: plan.updated_at,
                     price: {
-                        monthly: 19,
-                        yearly: 200,
-                    },
-                    target: "Individuals",
-                },
-                {
-                    plan: "Pro",
-                    price: {
-                        monthly: 49,
-                        yearly: 490,
-                    },
-                    target: "ALL"
-                },
-                {
-                    plan: "Enterprise",
-                    price: {
-                        monthly: 99,
-                        yearly: 990,
-                    },
-                    target: "Buisness"
-                },
-            ],
-        },
-        {
-            name: "SmartChat AI",
-            description: "Support your customers with AI-powered chatbots",
-            component: "SmartChat",
-            icons: ["https://dev.huberway.com/icon/smartchat.svg"],
-            pricing: [
-                {
-                    plan: "Basic",
-                    price: {
-                        monthly: 19,
-                        yearly: 200,
-                    },
-                    target: "Individuals",
-                },
-                {
-                    plan: "Pro",
-                    price: {
-                        monthly: 49,
-                        yearly: 490,
-                    },
-                    target: "ALL"
-                },
-                {
-                    plan: "Enterprise",
-                    price: {
-                        monthly: 99,
-                        yearly: 990,
-                    },
-                    target: "Buisness"
-                },
-            ],
-        },
-        {
-            name: "ContentFlow",
-            description: "Content management, E-Commerce and Web App Development",
-            component: "#",
-            icons: ["https://dev.huberway.com/icon/content.svg"],
-            pricing: [
-                {
-                    plan: "Basic",
-                    price: {
-                        monthly: 19,
-                        yearly: 200,
-                    },
-                    target: "Individuals",
-                },
-                {
-                    plan: "Pro",
-                    price: {
-                        monthly: 49,
-                        yearly: 490,
-                    },
-                    target: "ALL"
-                },
-                {
-                    plan: "Enterprise",
-                    price: {
-                        monthly: 99,
-                        yearly: 990,
-                    },
-                    target: "Buisness"
-                },
-            ],
-        },
-    ];
+                        month: null,
+                        year: null
+                    }
+                };
+            }
+
+            groupedPlans[baseName].price[recurring] = {
+                stripe_price_id: plan.stripe_price_id,
+                amount: plan.amount,
+                currency: plan.currency
+            };
+        });
+
+        return Object.values(groupedPlans);
+    }
+
 
     const tabs = [
         {
@@ -139,6 +95,15 @@ const Pricing = () => {
         }
     ]
 
+    const handleSubmit = (priceId) => {
+        navigate("/account/checkout", {
+            state: {
+                priceID: priceId,
+                user: user,
+            }
+        });
+    }
+
     return (
         <div className="dashboard-container">
             <Header/>
@@ -147,25 +112,21 @@ const Pricing = () => {
                 {/* Sidebar */}
                 <aside className="sidebar">
                     <ul>
-                        {huberwayLinks.map((link, index) => (
+                        {products.map((link, index) => (
                             <li
                                 key={index}
                                 className={selectedApp?.name === link.name ? "active" : ""}
                                 onClick={() => setSelectedApp(link)}
                             >
                 <span className="icon-container">
-                  {link.icons &&
-                      link.icons.map((icon, i) => (
-                          <img
-                              key={i}
-                              src={icon}
-                              alt={link.name}
-                              className={`icon ${
-                                  link.icons.length > 1 ? "stacked" : ""
-                              }`}
-                              style={{left: `${i * 12}px`}} // Sposta leggermente le icone per l'effetto affiancato
-                          />
-                      ))}
+                  {link.icon &&
+                      <img
+                          key={link.name}
+                          src={link.icon}
+                          alt={link.name}
+                          className={`icon`}
+                      />
+                  }
                 </span>
                                 <span>{link.name}</span>
                             </li>
@@ -191,18 +152,18 @@ const Pricing = () => {
 
                                 <div className={"app-title"}>
                                     <div className={"app-logo"}>
-                                        {selectedApp.icons.map((icon, i) => (
-                                            <img src={icon} alt={"App Icon"}/>
-                                        ))
-                                        }
+                                        <img src={selectedApp.icon} alt={"App Icon"}/>
+
                                     </div>
                                     <h4 className={"app-name"}>{selectedApp.name}</h4>
                                 </div>
 
                                 <h6 className={"app-description"}>{selectedApp.description}</h6>
                                 <div className="pricing-cards">
-                                    {selectedApp.pricing.filter(option => option.target === "ALL" || selectedTab === option.target).map((pricingOption, index) => (
-                                        <PricingCard plan={pricingOption.plan} price={pricingOption.price} features={["Feature 1","Feature 2","Feature 3"]} index={index} />
+                                    {selectedApp.plans.filter(option => option.target === "ALL" || selectedTab === option.target).map((pricingOption, index) => (
+                                        <PricingCard plan={pricingOption.plan_name} price={pricingOption.price}
+                                                     features={["Feature 1", "Feature 2", "Feature 3"]} index={index}
+                                                    handleSubmit={handleSubmit}/>
                                     ))}
                                 </div>
                             </div>
