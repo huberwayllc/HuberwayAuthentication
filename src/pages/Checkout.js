@@ -136,6 +136,7 @@ const Checkout = () => {
                       borderTopRightRadius: "0px",
                       borderBottomRightRadius: "0px",
                       borderTopLeftRadius: "0px",
+                      borderTop: "0px",
                     }}
                     className="checkoutInp"
                     value={expiryDate}
@@ -147,6 +148,8 @@ const Checkout = () => {
                       borderTopLeftRadius: "0px",
                       borderBottomLeftRadius: "0px",
                       borderTopRightRadius: "0px",
+                      borderTop: "0px",
+                      borderLeft: "0px",
                     }}
                     className="checkoutInp"
                     value={cvc}
@@ -179,6 +182,7 @@ const Checkout = () => {
                 <input
                 style={{
                     borderTopLeftRadius: "0px",
+                    borderTop:"0px",
                     borderTopRightRadius: "0px",
                     paddingRight: "40px",
                     }}
