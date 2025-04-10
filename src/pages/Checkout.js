@@ -111,25 +111,36 @@ const Checkout = () => {
                     style={{
                       borderBottomLeftRadius: "0px",
                       borderBottomRightRadius: "0px",
-                      paddingRight: "40px",
+                      paddingRight: "80px", // spazio extra per le icone
                     }}
                     className="checkoutInp"
                     value={cardNumber}
                     onChange={(e) => setCardNumber(e.target.value)}
                   />
-                  <CreditCardIcon
+                  
+                  {/* Icon Container */}
+                  <div className="d-flex align-items-center"
                     style={{
                       position: "absolute",
                       right: "10px",
                       top: "50%",
                       transform: "translateY(-50%)",
-                      color: "#9e9e9e",
-                      fontSize: "24px",
+                      display: "flex",
+                      gap: "8px", // spazio tra le icone
                     }}
-                  />
+                  >
+                    <i className="fa-brands fa-cc-visa" style={{ color: "#1B3ACD", fontSize: "30px" }}></i>
+                    <img
+                        src="/images/mastercard.png"
+                        alt="Mastercard"
+                        style={{ width: "42px", height: "auto" }}
+                      />
+                    <i className="fa-brands fa-cc-amex" style={{ color: "#0974D1", fontSize: "30px" }}></i>
+                  </div>
                 </div>
 
-                <div className="d-flex">
+
+                <div className="d-flex" style={{ position: "relative" }}>
                   <input
                     placeholder="MM/YY"
                     style={{
@@ -142,20 +153,35 @@ const Checkout = () => {
                     value={expiryDate}
                     onChange={(e) => setExpiryDate(e.target.value)}
                   />
-                  <input
-                    placeholder="CVC"
-                    style={{
-                      borderTopLeftRadius: "0px",
-                      borderBottomLeftRadius: "0px",
-                      borderTopRightRadius: "0px",
-                      borderTop: "0px",
-                      borderLeft: "0px",
-                    }}
-                    className="checkoutInp"
-                    value={cvc}
-                    onChange={(e) => setCvc(e.target.value)}
-                  />
+                  <div style={{ position: "relative" }}>
+                    <input
+                      placeholder="CVC"
+                      style={{
+                        borderTopLeftRadius: "0px",
+                        borderBottomLeftRadius: "0px",
+                        borderTopRightRadius: "0px",
+                        borderTop: "0px",
+                        borderLeft: "0px",
+                        paddingRight: "40px",
+                      }}
+                      className="checkoutInp"
+                      value={cvc}
+                      onChange={(e) => setCvc(e.target.value)}
+                    />
+                    <i
+                      className="fa-solid fa-lock"
+                      style={{
+                        position: "absolute",
+                        right: "10px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        fontSize: "20px",
+                        color: "black", 
+                      }}
+                    ></i>
+                  </div>
                 </div>
+
               </div>
 
               <div className="mt-4">
