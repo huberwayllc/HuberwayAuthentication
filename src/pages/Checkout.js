@@ -86,28 +86,29 @@ const CheckoutForm = ({user, priceID}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Email</label>
+            <label className="pb-0">Email</label>
             <input className="checkoutInp" value={email} onChange={(e) => setEmail(e.target.value)}/>
 
-            <div className="mt-4">
-                <label>Card information</label>
-                <div style={{border: "1px solid #ccc", padding: "10px", borderRadius: "8px"}}>
-                    <CardElement options={{hidePostalCode: true}}/>
+            <div className="mt-2">
+                <label className="pb-0">Card information</label>
+                <div  style={{border: "1px solid #ccc", padding: "10px", paddingTop:"15px", borderRadius: "8px", height: "48px"}}>
+                    <CardElement  options={{hidePostalCode: true}}/>
                 </div>
             </div>
 
-            <div className="mt-4">
-                <label>Name on card</label>
+            <div className="mt-2">
+                <label className="pb-0">Name on card</label>
                 <input className="checkoutInp" value={nameOnCard} onChange={(e) => setNameOnCard(e.target.value)}/>
             </div>
 
-            <div className="mt-4">
-                <label>Country</label>
-                <input className="checkoutInp" value={country} onChange={(e) => setCountry(e.target.value)}/>
-                <input placeholder="ZIP" className="checkoutInp" value={zip} onChange={(e) => setZip(e.target.value)}/>
+            <div className="mt-2">
+                <label className="pb-0">Country</label>
+                <input style={{borderBottomRightRadius: "0px", borderBottomLeftRadius: "0px"}} className="checkoutInp" value={country} onChange={(e) => setCountry(e.target.value)}/>
+                <input style={{borderTop: "0px", borderTopRightRadius: "0px", borderTopLeftRadius: "0px"}}
+                 placeholder="ZIP" className="checkoutInp" value={zip} onChange={(e) => setZip(e.target.value)}/>
             </div>
 
-            {errorMsg && <div className="mt-3 text-danger">{errorMsg}</div>}
+            {errorMsg && <div className="mt-2 text-danger">{errorMsg}</div>}
 
             <div className="mt-5 d-flex justify-content-center">
                 <button
@@ -156,8 +157,8 @@ const Checkout = () => {
                     {/* Colonna sinistra */}
                     <div style={{backgroundColor: "#009688", padding: "60px"}}
                          className="flex-1 h-100 w-100 text-white d-flex flex-column justify-content-center">
-                        <div className="position-relative" style={{minHeight: "624px"}}>
-                            <div className="d-flex align-items-center gap-2 mt-1">
+                        <div className="position-relative" style={{height: "632px"}}>
+                            <div className="d-flex align-items-center gap-2 mt-2">
                                 <IconButton className="p-0" onClick={goBack}>
                                     <ArrowBackIcon style={{color: "#8FD0C9"}}/>
                                 </IconButton>
@@ -177,10 +178,10 @@ const Checkout = () => {
                                 left: "0",
                                 width: "100%"
                             }}>
-                                <h6>Powered by <span className="fw-bold">stripe</span></h6>
-                                <h6>|</h6>
-                                <h6>Terms</h6>
-                                <h6>Privacy</h6>
+                                <h6 className="mb-0">Powered by <span className="fw-bold">stripe</span></h6>
+                                <h6 className="mb-0">|</h6>
+                                <h6 className="mb-0">Terms</h6>
+                                <h6 className="mb-0">Privacy</h6>
                             </div>
                         </div>
                     </div>
@@ -188,8 +189,8 @@ const Checkout = () => {
                     {/* Colonna destra - checkout */}
                     <div style={{backgroundColor: "white", padding: "60px", color: "#474747"}}
                          className="flex-1 h-100 w-100 d-flex flex-column justify-content-center">
-                        <div className="position-relative" style={{maxHeight: "624px"}}>
-                            <h1 className="mt-0" style={{fontSize: "22px", fontWeight: "600"}}>Pay with Card</h1>
+                        <div className="position-relative" style={{maxHeight: "632px"}}>
+                            <h1 className="mt-0 mb-0" style={{fontSize: "22px", fontWeight: "600"}}>Pay with Card</h1>
                             <Elements stripe={stripePromise}>
                                 <CheckoutForm user={user}/>
                             </Elements>
