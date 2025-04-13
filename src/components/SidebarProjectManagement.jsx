@@ -1,19 +1,20 @@
 import React from "react";
 
 const SidebarProjectManagement = ({
-    workspaces = [],
-    currentWorkspace,
-    onWorkspaceChange,
-    myProjects = [],
-    sharedProjects = [],
-    onSelectProject,
-    onCreateProject,
-}) => {
+                                      workspaces = [],
+                                      currentWorkspace,
+                                      onWorkspaceChange,
+                                      myProjects = [],
+                                      sharedProjects = [],
+                                      onSelectProject,
+                                      onCreateProject,
+                                  }) => {
     return (
-        <aside className="sidebar">
+        <aside className="sidebar-project">
             <div className="workspace-selector">
-                <label>Workspace</label>
+                <label htmlFor="workspace">Workspace</label>
                 <select
+                    id="workspace"
                     value={currentWorkspace?.id}
                     onChange={(e) => {
                         const selected = workspaces.find(ws => ws.id === e.target.value);
@@ -27,25 +28,29 @@ const SidebarProjectManagement = ({
             </div>
 
             <div className="project-section">
-                <h4>I miei progetti</h4>
+                <h5>I miei progetti</h5>
                 <ul>
                     {myProjects.map(proj => (
                         <li key={proj.id} onClick={() => onSelectProject(proj)}>
+                            <i className="fas fa-folder-open"></i>
                             {proj.name}
                         </li>
                     ))}
                 </ul>
 
-                <h4>Condivisi con me</h4>
+                <h5>Condivisi con me</h5>
                 <ul>
                     {sharedProjects.map(proj => (
                         <li key={proj.id} onClick={() => onSelectProject(proj)}>
+                            <i className="fas fa-users"></i>
                             {proj.name}
                         </li>
                     ))}
                 </ul>
 
-                <button onClick={onCreateProject}>+ Nuovo progetto</button>
+                <button className="create-btn" onClick={onCreateProject}>
+                    <i className="fas fa-plus"></i> Nuovo progetto
+                </button>
             </div>
         </aside>
     );

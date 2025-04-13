@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Pricing from './pages/Pricing';
 import Checkout from './pages/Checkout';
 import AboutUs from './pages/AboutUs';
+import ProjectManagament from "./pages/ProjectManagament";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/account/dashboard" element={<Dashboard />} />
                 <Route path="/account/pricing" element={<Pricing />} />
                 <Route path="/account/checkout" element={<Checkout />} />
+                <Route path="/account/projects" element={<ProjectManagament />} />
                 <Route path="*" element={<Error />} />
                 {/* Rotta di fallback per gestire le pagine non trovate */}
             </Routes>

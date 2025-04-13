@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from "react";
 import SidebarProjectManagement from "../components/SidebarProjectManagement";
+import "../css/project-managament.css";
+import Header from "../components/Header";
+import ProjectBoard from "../components/ProjectBoard";
+
 
 const ProjectManagement = () => {
     const [workspaces, setWorkspaces] = useState([]);
@@ -36,25 +40,23 @@ const ProjectManagement = () => {
     };
 
     return (
-        <div className="dashboard-container">
-            <SidebarProjectManagement
-                workspaces={workspaces}
-                currentWorkspace={currentWorkspace}
-                onWorkspaceChange={setCurrentWorkspace}
-                myProjects={myProjects}
-                sharedProjects={sharedProjects}
-                onSelectProject={handleSelectProject}
-                onCreateProject={handleCreateProject}
-            />
+        <>
+            <Header></Header>
+            <div className="dashboard-container-project-management">
+                <SidebarProjectManagement
+                    workspaces={workspaces}
+                    currentWorkspace={currentWorkspace}
+                    onWorkspaceChange={setCurrentWorkspace}
+                    myProjects={myProjects}
+                    sharedProjects={sharedProjects}
+                    onSelectProject={handleSelectProject}
+                    onCreateProject={handleCreateProject}
+                />
 
-            <main className="project-content">
-                {selectedProject ? (
-                    <h2>{selectedProject.name}</h2>
-                ) : (
-                    <p>Seleziona un progetto per iniziare</p>
-                )}
-            </main>
-        </div>
+                <ProjectBoard selectedProject={selectedProject}/>
+
+            </div>
+        </>
     );
 };
 
