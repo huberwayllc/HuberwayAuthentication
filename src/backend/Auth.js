@@ -11,7 +11,7 @@ const Auth = ({ children }) => {
         
         if (!authToken) {
             // Se non c'è il token, reindirizza alla pagina di login
-            window.location.href = 'http://localhost:3000/account/login';
+            window.location.href = 'https://app.huberway.com/account/login';
         } else {
             // Qui puoi fare un'ulteriore verifica del token se necessario
             // oppure continuare a mostrare il contenuto dell'applicazione
