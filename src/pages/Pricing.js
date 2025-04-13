@@ -30,7 +30,7 @@ const Pricing = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch("http://localhost:8080/subscription/get-plans");
+                const response = await fetch("https://api.huberway.com/subscription/get-plans");
                 const data = await response.json();
 
                 data.forEach((item) => {

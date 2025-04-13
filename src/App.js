@@ -9,6 +9,7 @@ import './App.css';
 import Dashboard from './pages/Dashboard';
 import Pricing from './pages/Pricing';
 import Checkout from './pages/Checkout';
+import AboutUs from './pages/AboutUs';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Routes>
                 <Route path="/account" element={<Login />} />
                 <Route path="/account/login" element={<Login />} />
+                <Route path="/account/aboutUs" element={<AboutUs />} />
                 <Route path="/account/register-huberway" element={<RegisterForm />} />
                 <Route path="/account/recovery" element={<Recovery />} />
                 <Route path="/account/dashboard" element={<Dashboard />} />

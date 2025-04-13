@@ -51,7 +51,7 @@ const CheckoutForm = ({user, priceID}) => {
 
         // Chiamata al backend per creare la subscription
         try {
-            const response = await fetch("http://localhost:8080/subscription/create-subscription", {
+            const response = await fetch("https://api.huberway.com/subscription/create-subscription", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
