@@ -90,7 +90,7 @@ const Pricing = () => {
             label: "Small teams or Individuals",
         },
         {
-            key: "Buisness",
+            key: "Business",
             label: "Enterprises",
         }
     ]
