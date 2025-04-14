@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import DynamicTitle from './components/DynamicTitle';
 import Error from './pages/Error';
 import RegisterForm from './pages/RegisterForm';
@@ -11,24 +11,14 @@ import Pricing from './pages/Pricing';
 import Checkout from './pages/Checkout';
 import AboutUs from './pages/AboutUs';
 import ProjectManagament from "./pages/ProjectManagament";
+import SettingsLayout from './pages/settings/SettingsLayout';  // Il layout per le impostazioni
+import SettingsProfile from './pages/settings/SettingsProfile'; // Profilo delle impostazioni
 
 function App() {
-
     useEffect(() => {
-        // // Funzione per ottenere il valore di un cookie
-        // const getCookie = (name) => {
-        //     const value = `; ${document.cookie}`;  // Preleva tutti i cookie
-        //     const parts = value.split(`; ${name}=`);  // Cerca il cookie con il nome specificato
-        //     if (parts.length === 2) return parts.pop().split(';').shift();  // Restituisce il valore del cookie
-        // };
-
-        // // Controlla se esiste l'auth_token nei cookie
-        // const authToken = getCookie('auth_token');  // Ottieni l'auth_token dai cookie
-        // // Se esiste l'auth_token, reindirizza l'utente alla dashboard
-        // if (authToken) {
-        //     window.location.href = 'https://app.huberway.com';
-        // }
+        // Puoi mettere logiche qui, per esempio il controllo dell'auth_token
     }, []);
+
     return (
         <>
             <DynamicTitle />
@@ -42,8 +32,15 @@ function App() {
                 <Route path="/account/pricing" element={<Pricing />} />
                 <Route path="/account/checkout" element={<Checkout />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
+
+                {/* Rotte per le impostazioni con la Sidebar */}
+                <Route path="/settings" element={<SettingsLayout />}>
+                    <Route path="profile" element={<SettingsProfile />} />
+
+                </Route>
+
+                {/* Fallback per le pagine non trovate */}
                 <Route path="*" element={<Error />} />
-                {/* Rotta di fallback per gestire le pagine non trovate */}
             </Routes>
         </>
     );

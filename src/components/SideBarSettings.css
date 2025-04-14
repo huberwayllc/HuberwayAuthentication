@@ -1,0 +1,24 @@
+h2 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.navi {
+    margin-top: 50px;
+}
+
+.marginLink {
+    margin-top: 24px;
+}
+
+.navi a,
+.textToggle  {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+}
+
