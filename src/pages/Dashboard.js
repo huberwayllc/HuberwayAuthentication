@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getAccountDetails, getClientApps } from "../backend/api";
 import Header from "../components/Header";
+import ImportWizardModal from "../components/ImportWizardModal";
+
 
 const Dashboard = () => {
   const [user, setUser] = useState({ email: "", name: "", id: null });
@@ -9,6 +11,8 @@ const Dashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef(null);
+  const [wizardOpen, setWizardOpen] = useState(false);
+
 
   useEffect(() => {
     getAccountDetails()
@@ -80,6 +84,23 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
      <Header></Header>
+      <div style={{ textAlign: "right", padding: "1rem", position: "absolute", marginLeft: "auto", right: "20px", top: "10%" }}>
+        <button
+            onClick={() => setWizardOpen(true)}
+            style={{
+              backgroundColor: "transparent",
+              color: "rgb(110 110 110)",
+              border: "2px solid rgb(110 110 110)",
+              padding: "10px 18px",
+              borderRadius: "8px",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+        >
+          <i className="fas fa-download"></i> Import data
+        </button>
+      </div>
+      <ImportWizardModal isOpen={wizardOpen} onClose={() => setWizardOpen(false)} />
       <main className="software-list dynamic">
         <section>
           <h2>Apps</h2>

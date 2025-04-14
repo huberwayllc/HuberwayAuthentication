@@ -1,0 +1,176 @@
+.trello-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 999;
+    padding: 2rem;
+}
+
+.trello-modal {
+    display: flex;
+    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 960px;
+    padding: 2rem;
+    gap: 2rem;
+    position: relative;
+}
+
+.modal-main {
+    flex: 1;
+}
+
+.modal-sidebar {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.modal-sidebar h4 {
+    margin-bottom: 0.5rem;
+}
+
+.modal-sidebar button {
+    background: #e2e8f0;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.task-list-label {
+    font-size: 14px;
+    color: #475569;
+}
+
+.section {
+    margin-top: 2rem;
+}
+
+.section h4 {
+    margin-bottom: 0.5rem;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.6rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    resize: vertical;
+}
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.checklist-item .completed {
+    text-decoration: line-through;
+    color: #6b7280;
+}
+
+.checklist-item .delete-icon {
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.comment {
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+}
+
+.comment-header .fa-user-circle {
+    font-size: 1.2rem;
+    color: #3b82f6;
+}
+
+.comment-date {
+    margin-left: auto;
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+/* 🔧 Input generici */
+input[type="text"],
+textarea {
+    font-family: inherit;
+    font-size: 14px;
+    color: #1e293b;
+    background-color: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Focus visivo */
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Commento input */
+.comments input[type="text"] {
+    margin-bottom: 1rem;
+}
+
+/* Checklist */
+.checklist-add input {
+    border-radius: 6px;
+    padding: 0.5rem 0.7rem;
+}
+
+/* Bottoni dentro checklist o form */
+.checklist-add button,
+.comments button {
+    padding: 0.45rem 0.8rem;
+    border-radius: 6px;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.checklist-add button:hover,
+.comments button:hover {
+    background-color: #2563eb;
+}

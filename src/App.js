@@ -9,6 +9,8 @@ import './App.css';
 import Dashboard from './pages/Dashboard';
 import Pricing from './pages/Pricing';
 import Checkout from './pages/Checkout';
+import AboutUs from './pages/AboutUs';
+import ProjectManagament from "./pages/ProjectManagament";
 
 function App() {
 
@@ -33,11 +35,13 @@ function App() {
             <Routes>
                 <Route path="/account" element={<Login />} />
                 <Route path="/account/login" element={<Login />} />
+                <Route path="/account/aboutUs" element={<AboutUs />} />
                 <Route path="/account/register-huberway" element={<RegisterForm />} />
                 <Route path="/account/recovery" element={<Recovery />} />
                 <Route path="/account/dashboard" element={<Dashboard />} />
                 <Route path="/account/pricing" element={<Pricing />} />
                 <Route path="/account/checkout" element={<Checkout />} />
+                <Route path="/account/projects" element={<ProjectManagament />} />
                 <Route path="*" element={<Error />} />
                 {/* Rotta di fallback per gestire le pagine non trovate */}
             </Routes>

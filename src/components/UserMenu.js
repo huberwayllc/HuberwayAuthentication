@@ -1,6 +1,9 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
 import MessageIcon from '@mui/icons-material/Message';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+
 
 function UserMenu({ user, onLogout }) {
   return (
@@ -31,36 +34,74 @@ function UserMenu({ user, onLogout }) {
 
       <div className="d-flex gap-2 align-items-center">
         <MessageIcon className="position-relative" style={{fontSize: "15px", top: "3px"}}/>
-        <p className="mb-0">Condividi feedback di navigazione</p>
+        <p  style={{fontWeight: "600"}} className="mb-0 text-black">Condividi feedback di navigazione</p>
       </div>
 
       <hr className="my-3" />
 
       <div className="d-flex flex-column gap-0 align-items-start">
-        <p className="mb-0">Account</p>
-        <p className="mb-0">Huberway</p>
-        <p className="mb-0">ID: {user.id || "N/A"}</p>
+        <p style={{color: "#99acc2"}} className="mb-0 fw-bold">Account</p>
+        <p style={{fontWeight: "600"}} className="mb-0 text-black">Huberway</p>
+        <p className="mb-0">{user.id || "N/A"}</p>
       </div>
 
       <hr className="my-3" />
 
-      <ul style={{ listStyle: "none", padding: 0, margin: "10px 0" }}>
-        <li style={{ color: "#f59e0b" }}>Termina la configurazione del tuo account (30%)</li>
-        <li>Invita il team</li>
-        <li>Account e fatturazione</li>
-        <li>HubSpot Academy</li>
-        <li>Prezzi e funzionalità</li>
-        <li>Aggiornamenti sui prodotti</li>
-        <li>Formazione e servizi</li>
-      </ul>
+      
+      <div className="d-flex flex-column align-items-start w-100">
+        <p style={{fontWeight: "600"}} className="mb-0">Termina la configurazione del tuo account</p>
+        <div className=" text-end w-100 position-relative mt-2">
+          <p className="mb-0 text-black position-absolute" 
+              style={{ fontSize: "13px", fontWeight: "bold", color: "#64748B", bottom: "18px", right: "0px" }}>30%</p>
+          <div style={{ width: "100%", backgroundColor: "#e5e7eb", borderRadius: "5px", height: "18px", overflow: "hidden" }}>
+            <div style={{ width: "30%", backgroundColor: "#0039A9", height: "100%" }}></div>
+          </div>
+        </div>
+
+      </div>
 
       <hr className="my-3" />
 
+      <div className="d-flex  gap-2 align-items-center">
+        <Diversity3Icon/>
+        <p style={{fontWeight: "600"}} className="mb-0">Invita il Team</p>
+      </div>
 
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        <li onClick={onLogout} style={{ cursor: "pointer", color: "#ef4444" }}>Esci</li>
-        <li>Privacy policy</li>
-      </ul>
+      <hr className="my-3" />
+
+      <div className="d-flex flex-column gap-0 align-items-start">
+        <div style={{marginBottom: "15px"}} className="d-flex gap-2 align-items-center">
+          <p style={{fontWeight: "600"}} className="text-black mb-0">Account e Fatturazione</p>
+        </div>
+
+        <div style={{marginBottom: "15px"}} className="d-flex gap-2 align-items-center">
+          <p style={{fontWeight: "600"}} className="text-black mb-0">Huberway Academy</p>
+          <OpenInNewIcon style={{fontSize: "18px", position: "relative", top: "1px"}}/>
+        </div>
+
+        <div style={{marginBottom: "15px"}} className="d-flex gap-2 align-items-center">
+          <p style={{fontWeight: "600"}} className="text-black mb-0">Prezzi e funzionalità</p>
+          <OpenInNewIcon style={{fontSize: "18px", position: "relative", top: "1px"}}/>
+        </div>
+     
+        <div style={{marginBottom: "15px"}} className="d-flex gap-2 align-items-center">
+          <p style={{fontWeight: "600"}} className="text-black mb-0">Aggiornamenti sui prodotti</p>
+        </div>
+
+        <div className="d-flex gap-2 align-items-center">
+          <p style={{fontWeight: "600"}} className="text-black mb-0">Formazione e servizi</p>
+          <OpenInNewIcon style={{fontSize: "18px", position: "relative", top: "1px"}}/>
+        </div>
+      </div>
+
+      <hr className="my-3" />
+
+      <div className="d-flex justify-content-between gap-2 align-items-center">
+        <p style={{fontWeight: "600", color: "#0039A9", fontWeight: "700"}} className="mb-0">Esci</p>
+        <p style={{fontWeight: "600", color: "#0039A9", fontWeight: "700"}} className="mb-0">Privacy policy</p>
+      </div>
+
+
     </div>
   );
 }
