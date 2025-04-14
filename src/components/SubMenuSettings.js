@@ -14,7 +14,7 @@ const SubMenuSettings = ({ title, links }) => {
     <div>
       <div
         onClick={handleToggle}
-        className='marginLink p-0 textToggle'
+        className='p-0 textToggle'
         style={{
           cursor: 'pointer',
           display: 'flex',
@@ -22,12 +22,12 @@ const SubMenuSettings = ({ title, links }) => {
           justifyContent: 'space-between',
         }}
       >
-        <span>{title}</span>
+        <span style={{ padding: "10px 15px 10px 0px"}}>{title}</span>
         {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </div>
 
-      <Collapse className='mb-3' in={open} timeout="auto" unmountOnExit>
-        <div style={{ marginLeft: '15px', marginTop: '10px' }}>
+      <Collapse className='mb-0' in={open} timeout="auto" unmountOnExit>
+        <div style={{ marginLeft: '15px' }}>
           {links.map((link, index) => (
             <Link key={index} className='' to={link.path} style={link.style}>
               {link.label}
