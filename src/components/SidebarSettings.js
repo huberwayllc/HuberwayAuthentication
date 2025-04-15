@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './SideBarSettings.css';
 import SearchIcon from '@mui/icons-material/Search';
 import SubMenuSettings from './SubMenuSettings';
-import { BorderLeft } from '@mui/icons-material';
+import CheckIcon from '@mui/icons-material/Check';
 
 const SidebarSettings = () => {
   const location = useLocation();
@@ -37,7 +37,7 @@ const SidebarSettings = () => {
       {/* Sezione "Le tue preferenze" */}
       <div className='navi'>
         <h4>Le tue preferenze</h4>
-        <Link to="/settings/profile" style={navStyle('/settings/profile')}>Generale</Link>
+        <Link to="/settings/user-preferences/profile" style={navStyle('/settings/user-preferences/profile')}>Generale</Link>
         <Link to="/settings/security" style={navStyle('/settings/security')}>Notifiche</Link>
       </div>
 

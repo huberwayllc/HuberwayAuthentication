@@ -6,7 +6,6 @@ const Settings = () => {
   return (
     <>
     <SidebarSettings />
-    
     </>
 
   )
