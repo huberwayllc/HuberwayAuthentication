@@ -14,3 +14,14 @@ h1 {
     font-weight: bold;
     font-size: 14px;
 }
+
+.pClick {
+ font-size: 16px;
+ color: #1565C0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pClick:hover {
+    text-decoration: underline;
+}

@@ -50,6 +50,39 @@ const SettingsEmail = () => {
         <h6 style={{fontWeight: "bold"}} className=' mt-4'>Configura</h6>
     </div>
 
+    <div>
+      <p className='mb-0 pClick'>Aggiungi alias e-mail</p>
+      <p style={{fontSize: "12px" }}>Un alias e-mail ti consente di inviare al di fuori di HubSpot e-mail da associare al tuo utente. Scopri di più.</p>
+    </div>
+
+    <div className='mt-3'>
+      <p className='mb-0 pClick'>Gestisci firme e-mail</p>
+      <p>La firma sarà utilizzata negli scambi di e-mail diretti in HubSpot CRM e come token di personalizzazione per le e-mail di marketing.</p>
+    </div>
+
+    <div className='mt-3 d-flex align-items-start gap-2'>
+      <div className=''>
+        <input type="checkbox" checked readOnly />
+      </div>
+      <div>
+        <p style={{fontSize: "14px", fontWeight: "bold"}} className='mb-0'>Includi link di annullamento dell'abbonamento</p>
+        <p>
+          Includi un link in fondo alle e-mail che consenta ai destinatari di annullare l'iscrizione.
+          Ti aiuterà a rispettare le leggi locali sullo spam e a migliorare la capacità di consegna.
+        </p>
+        <Button
+          variant="contained"
+          style={{ textTransform: "none" }}
+        >
+          Visualizza in anteprima link di annullamento dell'abbonamento
+        </Button>
+      </div>
+    </div>
+
+    <div className='mt-5 text-start d-flex flex-column align-items-start'>
+      <h2 style={{lineHeight: "18px"}} className='fw-bold'>Non registrare mai</h2>
+      <p>Le e-mail inviate agli indirizzi su questo elenco non verranno salvate automaticamente nella CRM. In alcuni casi, le e-mail inviate a o da questi indirizzi verranno salvate nella CRM, ma non verranno associate ad alcun contatto su questo elenco. Scopri di più sull'elenco Non registrare mai. Per gestire l'elenco Non registrare mai per tutti gli utenti, vai alle impostazioni di registrazione e-mail.</p>
+    </div>
       
 
       

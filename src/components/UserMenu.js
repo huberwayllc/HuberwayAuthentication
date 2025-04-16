@@ -29,7 +29,7 @@ function UserMenu({ user, onLogout }) {
         <div className="d-flex flex-column gap-1">
           <p className="mb-0"><strong>{user.name || "Gennaro Ereditata"}</strong></p>
           <p style={{ margin: 0, color: "#64748B" }}>{user.email || "g.ereditata@huberway.com"}</p>
-          <p onClick={() => {navigate("/settings")}} style={{ color: "#0039A9", cursor: "pointer" }} className="mb-0"><b>Profilo e preferenze</b></p>
+          <p onClick={() => {navigate("settings/user-preferences/profile")}} style={{ color: "#0039A9", cursor: "pointer" }} className="mb-0"><b>Profilo e preferenze</b></p>
         </div>
       </div>
 
