@@ -8,7 +8,6 @@ import CheckIcon from '@mui/icons-material/Check';
 const SidebarSettings = () => {
   const location = useLocation();
 
-  // Funzione di stile per i link, che evidenzia quello attivo in base alla route
   const navStyle = (path) => ({
     padding: '10px 15px',
     backgroundColor: location.pathname === path ? '#E5F5F8' : 'transparent',
@@ -38,10 +37,11 @@ const SidebarSettings = () => {
       <div className='navi'>
         <h4>Le tue preferenze</h4>
         <Link to="/settings/user-preferences/profile" style={navStyle('/settings/user-preferences/profile')}>Generale</Link>
-        <Link to="/settings/security" style={navStyle('/settings/security')}>Notifiche</Link>
+        {/* <Link to="/settings/security" style={navStyle('/settings/security')}>Notifiche</Link> */} 
       </div>
 
-      {/* Sezione "Gestione account" */}
+    {/* 
+
       <div className='navi'>
         <h4>Gestione account</h4>
         <Link to="/settings/notifications" style={navStyle('/settings/notifications')}>
@@ -67,7 +67,7 @@ const SidebarSettings = () => {
         <Link to="/settings/preferences" style={navStyle('/settings/preferences')}>Commercio</Link>
       </div>
 
-      {/* Sezione "Gestione dati" */}
+
       <div className='navi'>
         <h4>Gestione dati</h4>
         <Link to="/settings/notifications" style={navStyle('/settings/notifications')}>
@@ -106,7 +106,8 @@ const SidebarSettings = () => {
         <Link to="/settings/preferences" style={navStyle('/settings/preferences')}>Importazione de esportazione</Link>
       </div>
 
-      {/* Sezione "Strumenti" */}
+
+
       <div className='navi'>
         <h4>Strumenti</h4>
         <Link to="/settings/notifications" style={navStyle('/settings/notifications')}>Riunioni</Link>
@@ -153,9 +154,10 @@ const SidebarSettings = () => {
             { path: '/settings/integrations/pages', label: 'Pagine', style: navStyle('/settings/integrations/pages') },
           ]}
         />
-
         <Link to="/settings/preferences" style={navStyle('/settings/preferences')}>Pagamenti</Link>
       </div>
+      */}
+
     </div>
   );
 };

@@ -14,6 +14,7 @@ import ProjectManagament from "./pages/ProjectManagament";
 import SettingsLayout from './pages/settings/SettingsLayout';
 import SettingsProfile from './pages/settings/SettingsProfile';
 import SettingsEmail from './pages/settings/SettingsEmail';
+import SettingsSecurity from './pages/settings/SettingsSecurity';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/settings" element={<SettingsLayout />}>
                     <Route path="user-preferences/profile" element={<SettingsProfile />} />
                     <Route path="user-preferences/email" element={<SettingsEmail />} />
+                    <Route path="user-preferences/security" element={<SettingsSecurity />} />
 
                 </Route>
 
