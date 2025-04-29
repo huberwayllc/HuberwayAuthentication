@@ -3,16 +3,11 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { name: "Profilo", path: "settings/user-preferences/profile" },
-  { name: "E-mail", path: "settings/user-preferences/email" },
-  //{ name: "Chiamate", path: "user-preferences/calls" },
-  //{ name: "Calendario", path: "user-preferences/calendar" },
-  //{ name: "Task", path: "user-preferences/tasks" },
-  { name: "Sicurezza", path: "settings/user-preferences/security" },
-  //{ name: "Automazione", path: "user-preferences/automation" },
+  { name: "Utenti", path: "/settings/account-managament/users-team/users" },
+  { name: "Team", path: "/settings/account-managament/users-team/team" },
 ];
 
-const SettingsMenu = () => {
+const UsersTeamMenu = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -41,4 +36,4 @@ const SettingsMenu = () => {
   );
 };
 
-export default SettingsMenu;
+export default UsersTeamMenu;

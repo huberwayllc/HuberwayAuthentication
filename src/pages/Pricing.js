@@ -9,8 +9,21 @@ const Pricing = () => {
     const [selectedApp, setSelectedApp] = useState(null);
     const [products, setProducts] = useState([]);
     const [selectedTab, setSelectedTab] = useState("Individuals");
+    const [userCount, setUserCount] = useState(1);
     const navigate = useNavigate();
 
+    const handleUserCountChange = (e) => {
+        const value = e.target.value;
+        if (value === "") {
+            setUserCount("");
+        } else {
+            const parsed = parseInt(value);
+            if (!isNaN(parsed) && parsed >= 1) {
+                setUserCount(parsed);
+            }
+        }
+    };
+    
 
     useEffect(() => {
         getAccountDetails()
@@ -30,7 +43,7 @@ const Pricing = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch("https://api.huberway.com/subscription/get-plans");
+                const response = await fetch("https://api.huberway.com/api/plans");
                 const data = await response.json();
 
                 data.forEach((item) => {
@@ -95,14 +108,34 @@ const Pricing = () => {
         }
     ]
 
-    const handleSubmit = (priceId) => {
-        navigate("/account/checkout", {
-            state: {
-                priceID: priceId,
-                user: user,
-            }
+
+const handleSubmit = async (priceId) => {
+    try {
+        const response = await fetch("/api/subscription/request", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                plan_id: priceId,
+                email: user.email,
+                user_count: userCount
+            })
         });
+
+        const data = await response.json();
+
+        if (data.session_url) {
+            window.location.href = data.session_url;
+        } else {
+            alert("Errore nella creazione della sottoscrizione. Riprova.");
+        }
+    } catch (error) {
+        console.error("Errore durante la richiesta di sottoscrizione:", error);
+        alert("Errore durante la richiesta. Contatta il supporto.");
     }
+};
+
 
     return (
         <div className="dashboard-container">
@@ -114,9 +147,9 @@ const Pricing = () => {
                     <ul>
                         {products.map((link, index) => (
                             <li
-                                key={index}
-                                className={selectedApp?.name === link.name ? "active" : ""}
-                                onClick={() => setSelectedApp(link)}
+                            key={index}
+                            className={selectedApp?.name === link.name ? "active" : ""}
+                            onClick={() => setSelectedApp(link)}
                             >
                 <span className="icon-container">
                   {link.icon &&
@@ -131,6 +164,20 @@ const Pricing = () => {
                                 <span>{link.name}</span>
                             </li>
                         ))}
+                <div style={{padding: "15px 20px"}}>
+                    <label className="pb-1 fw-bold">Numero utenti:</label>
+                    <input
+                    className='inp'
+                    style={{width: "100%"}}
+                    type="number"
+                    value={userCount === "" ? "" : userCount}
+                    min="1"
+                    onChange={handleUserCountChange}
+                    onBlur={() => {
+                        if (!userCount || userCount < 1) setUserCount(1);
+                    }}
+                    />
+                </div>
                     </ul>
                 </aside>
 
@@ -153,7 +200,6 @@ const Pricing = () => {
                                 <div className={"app-title"}>
                                     <div className={"app-logo"}>
                                         <img src={selectedApp.icon} alt={"App Icon"}/>
-
                                     </div>
                                     <h4 className={"app-name"}>{selectedApp.name}</h4>
                                 </div>
@@ -161,9 +207,22 @@ const Pricing = () => {
                                 <h6 className={"app-description"}>{selectedApp.description}</h6>
                                 <div className="pricing-cards">
                                     {selectedApp.plans.filter(option => option.target === "ALL" || selectedTab === option.target).map((pricingOption, index) => (
-                                        <PricingCard plan={pricingOption.plan_name} price={pricingOption.price}
-                                                     features={["Feature 1", "Feature 2", "Feature 3"]} index={index}
-                                                    handleSubmit={handleSubmit}/>
+                                        <PricingCard
+                                            plan={pricingOption.plan_name}
+                                            price={{
+                                                month: pricingOption.price.month && {
+                                                ...pricingOption.price.month,
+                                                amount: pricingOption.price.month.amount * userCount
+                                                },
+                                                year: pricingOption.price.year && {
+                                                ...pricingOption.price.year,
+                                                amount: pricingOption.price.year.amount * userCount
+                                                }
+                                            }}
+                                            features={["Feature 1", "Feature 2", "Feature 3"]}
+                                            index={index}
+                                            handleSubmit={handleSubmit}
+                                            />
                                     ))}
                                 </div>
                             </div>

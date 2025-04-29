@@ -308,6 +308,10 @@ hr {
   background-color: transparent;
 }
 
+.hoverUnderline:hover {
+  text-decoration: underline;
+}
+
 .checking_password {
   list-style: none;
   padding: 0;
@@ -364,6 +368,38 @@ hr {
   background-color: #e8f5f8;
   border: 2px solid #92cfdc;
   color: #374659;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  transition: background 0.3s, color 0.3s;
+}
+
+
+.sidebar li.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.icon-container {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back {
@@ -468,8 +504,17 @@ hr {
   border-left: 3px solid #014fc4;
 }
 
+.sidebar ul li.active:hover {
+  background-color: #036bdb;
+  color: white;
+}
+
+
 .sidebar ul li:hover > span {
   color: #182433;
+}
+.sidebar ul li.active:hover > span {
+  color: white;
 }
 .sidebar ul li::before {
   font-family: "FontAwesome";
@@ -534,11 +579,13 @@ hr {
   background: white;
   border-radius: 10px;
   padding: 25px;
+  padding-bottom: 60px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 280px;
   text-align: center;
   transition: transform 0.3s ease;
   margin: 10px;
+  position: relative;
 }
 
 .pricing-card:hover {
@@ -553,7 +600,7 @@ hr {
 
 .price {
   font-size: 30px;
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
   margin-bottom: 20px;
 }
@@ -578,7 +625,11 @@ hr {
   padding: 12px 20px;
   font-size: 16px;
   cursor: pointer;
-  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 80%;
+  transform: translateX(-50%);
   transition: background 0.3s ease;
 }
 

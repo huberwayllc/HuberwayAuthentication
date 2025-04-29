@@ -59,6 +59,14 @@ function DynamicTitle() {
             image: "https://app.huberway.com/assets/images/recovery-image.png",
             url: "https://app.huberway.com/account/dashboard",
           };
+      case "/settings/user-preferences/":
+        return {
+          title: "Settings - Huberway",
+          description: "Select your plane prefer",
+          keywords: "Pricing, Huberway, Apps",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
         default:
           return {
             title: "404 - Page Not Found - Huberway",

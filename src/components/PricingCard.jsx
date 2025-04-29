@@ -22,8 +22,8 @@ const PricingCard = ({ plan, index,price, features, handleSubmit}) => {
 
 
     return (
-        <div className="pricing-card" key={index}>
-            <h3>{plan}</h3>
+        <div className="pricing-card position-relative" key={index}>
+            <h3 style={{fontSize: "22px"}}>{plan}</h3>
             <div className="price">{getPrice()}</div>
             <hr className="hr-dash"/>
             <ul className="features">
@@ -44,7 +44,7 @@ const PricingCard = ({ plan, index,price, features, handleSubmit}) => {
                 <span className={`toggle-label ${pricingMode === "yearly" ? "active" : ""}`}>Yearly</span>
             </div>
 
-            <button className="select-plan-btn" onClick={() => handleSubmit(getPriceID())}>
+            <button className="select-plan-btn position-absolute" onClick={() => handleSubmit(getPriceID())}>
                 Select Plan
             </button>
         </div>

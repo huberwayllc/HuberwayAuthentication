@@ -15,6 +15,8 @@ import SettingsLayout from './pages/settings/SettingsLayout';
 import SettingsProfile from './pages/settings/SettingsProfile';
 import SettingsEmail from './pages/settings/SettingsEmail';
 import SettingsSecurity from './pages/settings/SettingsSecurity';
+import SubscriptionSuccess from './pages/SubscriptionSuccess';
+import SettingsUsersTeam from './pages/settings/UsersTeam';
 
 function App() {
 
@@ -31,11 +33,13 @@ function App() {
                 <Route path="/account/pricing" element={<Pricing />} />
                 <Route path="/account/checkout" element={<Checkout />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
+                <Route path="/subscription/success" element={<SubscriptionSuccess />} />
 
                 <Route path="/settings" element={<SettingsLayout />}>
                     <Route path="user-preferences/profile" element={<SettingsProfile />} />
                     <Route path="user-preferences/email" element={<SettingsEmail />} />
                     <Route path="user-preferences/security" element={<SettingsSecurity />} />
+                    <Route path="account-managament/users-team/users" element={<SettingsUsersTeam />} />
 
                 </Route>
 

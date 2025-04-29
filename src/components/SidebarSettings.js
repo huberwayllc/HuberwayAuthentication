@@ -40,6 +40,12 @@ const SidebarSettings = () => {
         {/* <Link to="/settings/security" style={navStyle('/settings/security')}>Notifiche</Link> */} 
       </div>
 
+      <div className='navi'>
+        <h4>Gestione Account</h4>
+        <Link to="/settings/account-managament/users-team/users" style={navStyle('/settings/account-managament/users-team/users')}>Utenti e Team</Link>
+        {/* <Link to="/settings/security" style={navStyle('/settings/security')}>Notifiche</Link> */} 
+      </div>
+
     {/* 
 
       <div className='navi'>
