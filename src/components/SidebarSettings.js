@@ -20,7 +20,7 @@ const SidebarSettings = () => {
 
   return (
     <div style={{
-      width: '250px',
+      minWidth: '250px',
       height: '100vh',
       background: '#f8f8f8',
       borderLeft: '2px solid #ddd',

@@ -575,6 +575,10 @@ hr {
   }
 }
 */
+.white-bg-cell {
+  background-color: white !important;
+}
+
 .pricing-card {
   background: white;
   border-radius: 10px;
