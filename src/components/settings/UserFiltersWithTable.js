@@ -39,6 +39,8 @@ const mockUserData = [
 ];
 
 const UserFiltersWithTable = () => {
+  const [selectedUsers, setSelectedUsers] = useState([]);
+
   const [anchorElStato, setAnchorElStato] = useState(null);
   const [selectedStatoFilter, setSelectedStatoFilter] = useState([]);
 
@@ -65,6 +67,23 @@ const UserFiltersWithTable = () => {
       return matchStatus && matchActivation;
     });
   }, [selectedStatoFilter, selectedAttivazioneFilter]);
+
+  const allUserNames = filteredUsers.map(u => u.name);
+  const isAllSelected = selectedUsers.length === filteredUsers.length && filteredUsers.length > 0;
+
+  const toggleSelectAll = () => {
+    if (isAllSelected) {
+      setSelectedUsers([]);
+    } else {
+      setSelectedUsers(allUserNames);
+    }
+  };
+
+  const toggleSelectUser = (name) => {
+    setSelectedUsers(prev =>
+      prev.includes(name) ? prev.filter(n => n !== name) : [...prev, name]
+    );
+  };
 
   const resetFilters = () => {
     setSelectedStatoFilter([]);
@@ -152,9 +171,16 @@ const UserFiltersWithTable = () => {
       {/* Tabella con scroll orizzontale */}
       <div className='w-100 mt-4' style={{ overflowX: 'auto' }}>
         <h5>Utenti filtrati</h5>
-        <table className='table table-bordered table-striped' style={{ minWidth: '900px', }}>
+        <table className='table table-bordered table-striped' style={{ minWidth: '900px' }}>
           <thead>
             <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  checked={isAllSelected}
+                  onChange={toggleSelectAll}
+                />
+              </th>
               <th>Nome</th>
               <th>Accedi</th>
               <th>Team principale</th>
@@ -168,23 +194,31 @@ const UserFiltersWithTable = () => {
               <th>Ultima modifica alla password</th>
             </tr>
           </thead>
+
           <tbody>
             {filteredUsers.length === 0 ? (
-              <tr><td colSpan="11">Nessun utente trovato con i filtri selezionati.</td></tr>
+              <tr><td colSpan="12">Nessun utente trovato con i filtri selezionati.</td></tr>
             ) : (
               filteredUsers.map((user, idx) => (
                 <tr key={idx}>
-                  <td style={{ backgroundColor: '#fff' }}>{user.name}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.access}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.team}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.inviteStatus}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.lastActive}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.emailStatus}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.calendarStatus}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.calendarSync}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.schedulingPages}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.createdAt}</td>
-                  <td style={{ backgroundColor: '#fff' }}>{user.passwordLastModified}</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedUsers.includes(user.name)}
+                      onChange={() => toggleSelectUser(user.name)}
+                    />
+                  </td>
+                  <td>{user.name}</td>
+                  <td>{user.access}</td>
+                  <td>{user.team}</td>
+                  <td>{user.inviteStatus}</td>
+                  <td>{user.lastActive}</td>
+                  <td>{user.emailStatus}</td>
+                  <td>{user.calendarStatus}</td>
+                  <td>{user.calendarSync}</td>
+                  <td>{user.schedulingPages}</td>
+                  <td>{user.createdAt}</td>
+                  <td>{user.passwordLastModified}</td>
                 </tr>
               ))
             )}

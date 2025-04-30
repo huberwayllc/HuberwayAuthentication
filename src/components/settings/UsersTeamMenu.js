@@ -19,7 +19,7 @@ const UsersTeamMenu = () => {
         return (
           <div
             key={item.name}
-            onClick={() => navigate(`/${item.path}`)}
+            onClick={() => navigate(`${item.path}`)}
             style={{
               cursor: "pointer",
               padding: "15px 22px",

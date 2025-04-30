@@ -43,7 +43,16 @@ const SidebarSettings = () => {
       <div className='navi'>
         <h4>Gestione Account</h4>
         <Link to="/settings/account-managament/users-team/users" style={navStyle('/settings/account-managament/users-team/users')}>Utenti e Team</Link>
-        {/* <Link to="/settings/security" style={navStyle('/settings/security')}>Notifiche</Link> */} 
+        <SubMenuSettings 
+          title="Integrazioni"
+          links={[
+            { path: '/settings/account-managament/integration/connected-apps', label: 'App connesse', style: navStyle('/settings/account-managament/integration/connected-apps') },
+            { path: '/settings/integrations/slack', label: 'App private', style: navStyle('/settings/integrations/slack') },
+            { path: '/settings/integrations/shopify', label: 'Provider di servizi e-mail', style: navStyle('/settings/integrations/shopify') },
+          ]}
+        />
+         <Link to="/settings/account-managament/users-team/users" style={navStyle('/settings/')}>Identità del brand</Link>
+         <Link to="/settings/account-managament/users-team/users" style={navStyle('/settings/')}>Codice di tracciamento</Link>
       </div>
 
     {/* 

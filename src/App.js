@@ -17,6 +17,9 @@ import SettingsEmail from './pages/settings/SettingsEmail';
 import SettingsSecurity from './pages/settings/SettingsSecurity';
 import SubscriptionSuccess from './pages/SubscriptionSuccess';
 import SettingsUsersTeam from './pages/settings/UsersTeam';
+import SettingsTeam from './pages/settings/SettingsTeam';
+import ConnectedApps from './pages/settings/ConnectedApps ';
+import ConnectedAppsAlerts from './pages/settings/ConnectedAppsAlerts';
 
 function App() {
 
@@ -40,6 +43,9 @@ function App() {
                     <Route path="user-preferences/email" element={<SettingsEmail />} />
                     <Route path="user-preferences/security" element={<SettingsSecurity />} />
                     <Route path="account-managament/users-team/users" element={<SettingsUsersTeam />} />
+                    <Route path="account-managament/users-team/team" element={<SettingsTeam />} />
+                    <Route path="account-managament/integration/connected-apps" element={<ConnectedApps />} />
+                    <Route path="account-managament/integration/connected-apps/alerts" element={<ConnectedAppsAlerts />} />
 
                 </Route>
 
