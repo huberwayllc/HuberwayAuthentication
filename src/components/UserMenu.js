@@ -100,8 +100,8 @@ function UserMenu({ user, onLogout }) {
       <hr className="my-3" />
 
       <div className="d-flex justify-content-between gap-2 align-items-center">
-        <p style={{fontWeight: "600", color: "#0039A9", fontWeight: "700"}} className="mb-0">Esci</p>
-        <p style={{fontWeight: "600", color: "#0039A9", fontWeight: "700"}} className="mb-0">Privacy policy</p>
+        <p onClick={onLogout} style={{fontWeight: "600", color: "#0039A9", fontWeight: "700",  cursor: "pointer"}} className="mb-0">Esci</p>
+        <p style={{fontWeight: "600", color: "#0039A9", fontWeight: "700", cursor: "pointer"}} className="mb-0">Privacy policy</p>
       </div>
 
 

@@ -28,6 +28,7 @@ function Header() {
   }, [navigate]);
 
   const handleLogout = () => {
+    console.log("uscito")
     const clearCookies = () => {
       const cookies = document.cookie.split(";");
       cookies.forEach((cookie) => {
