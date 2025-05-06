@@ -1,8 +1,8 @@
 // Profile.js
 import React from 'react';
-import SettingsMenu from "../../components/settings/SettingsMenu";
+import SettingsMenu from "../../../components/settings/SettingsMenu";
 import Avatar from '@mui/material/Avatar';
-import "./SettingsProfile.css"
+import "../SettingsProfile.css"
 import CheckIcon from '@mui/icons-material/Check';
 import { Button } from '@mui/material';
 
@@ -21,17 +21,17 @@ const SettingsEmail = () => {
 
       <div className='mt-3 mb-4 d-flex flex-column align-items-start'>
         <h2 style={{lineHeight: "18px"}} className='fw-bold'>Email</h2>
-        <p style={{width: "75%"}}>Connetti i tuoi account e-mail personali a HubSpot per registrare, tracciare, inviare e ricevere e-mail in HubSpot CRM. Per gestire qualsiasi e-mail del team, vai alle impostazioni della casella di posta in arrivo.</p>
+        <p style={{width: "75%"}}>Connetti i tuoi account e-mail personali a Huberway per registrare, tracciare, inviare e ricevere e-mail in Huberway CRM. Per gestire qualsiasi e-mail del team, vai alle impostazioni della casella di posta in arrivo.</p>
       </div>
 
         <div className='d-flex'>
             <CheckIcon />
-            <p>Invia e pianifica e-mail da HubSpot</p>
+            <p>Invia e pianifica e-mail da Huberway</p>
         </div>
     
       <div className='d-flex'>
         <CheckIcon />
-        <p>Registra automaticamente le risposte alle e-mail su HubSpot</p>
+        <p>Registra automaticamente le risposte alle e-mail su Huberway</p>
       </div>
       
       <div className='d-flex'>
@@ -52,12 +52,12 @@ const SettingsEmail = () => {
 
     <div>
       <p className='mb-0 pClick'>Aggiungi alias e-mail</p>
-      <p style={{fontSize: "12px" }}>Un alias e-mail ti consente di inviare al di fuori di HubSpot e-mail da associare al tuo utente. Scopri di più.</p>
+      <p style={{fontSize: "12px" }}>Un alias e-mail ti consente di inviare al di fuori di Huberway e-mail da associare al tuo utente. Scopri di più.</p>
     </div>
 
     <div className='mt-3'>
       <p className='mb-0 pClick'>Gestisci firme e-mail</p>
-      <p>La firma sarà utilizzata negli scambi di e-mail diretti in HubSpot CRM e come token di personalizzazione per le e-mail di marketing.</p>
+      <p>La firma sarà utilizzata negli scambi di e-mail diretti in Huberway CRM e come token di personalizzazione per le e-mail di marketing.</p>
     </div>
 
     <div className='mt-3 d-flex align-items-start gap-2'>

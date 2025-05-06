@@ -170,7 +170,6 @@ const UserFiltersWithTable = () => {
 
       {/* Tabella con scroll orizzontale */}
       <div className='w-100 mt-4' style={{ overflowX: 'auto' }}>
-        <h5>Utenti filtrati</h5>
         <table className='table table-bordered table-striped' style={{ minWidth: '900px' }}>
           <thead>
             <tr>

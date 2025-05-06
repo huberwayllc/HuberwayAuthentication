@@ -1,8 +1,8 @@
 // Profile.js
 import React from 'react';
-import SettingsMenu from "../../components/settings/SettingsMenu";
 import Avatar from '@mui/material/Avatar';
-import "./SettingsProfile.css"
+import "../SettingsProfile.css"
+import SettingsMenu from '../../../components/settings/SettingsMenu';
 
 
 const SettingsProfile = () => {
@@ -19,7 +19,7 @@ const SettingsProfile = () => {
 
       <div className='mt-3 mb-4 d-flex flex-column align-items-start'>
         <h2 style={{lineHeight: "18px"}} className='fw-bold'>Globale</h2>
-        <p>Ciò riguarda qualsiasi account HubSpot che possiedi.</p>
+        <p>Ciò riguarda qualsiasi account Huberway che possiedi.</p>
       </div>
 
       <div className='mt-3'>

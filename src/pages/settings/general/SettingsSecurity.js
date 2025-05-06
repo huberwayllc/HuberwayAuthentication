@@ -1,8 +1,8 @@
 // Profile.js
 import React, { useState } from 'react';
-import SettingsMenu from "../../components/settings/SettingsMenu";
+import SettingsMenu from "../../../components/settings/SettingsMenu";
 import Avatar from '@mui/material/Avatar';
-import "./SettingsProfile.css";
+import "../SettingsProfile.css";
 import CheckIcon from '@mui/icons-material/Check';
 import { Button, Modal, Box, TextField, Typography } from '@mui/material';
 
@@ -95,7 +95,7 @@ const SettingsSecurity = () => {
         <div>
           <p className='mb-0 pClick'>Configura l'autenticazione a due fattori (2FA)</p>
           <p style={{ fontSize: "12px" }}>
-            L'autenticazione a due fattori è una misura di sicurezza avanzata. Una volta abilitata, ti verrà richiesto di fornire due tipi di identificazione quando accedi a HubSpot. Le app di sicurezza come Google Authenticator e gli SMS sono supportati.
+            L'autenticazione a due fattori è una misura di sicurezza avanzata. Una volta abilitata, ti verrà richiesto di fornire due tipi di identificazione quando accedi a Huberway. Le app di sicurezza come Google Authenticator e gli SMS sono supportati.
           </p>
         </div>
 

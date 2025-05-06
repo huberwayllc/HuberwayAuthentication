@@ -47,12 +47,12 @@ const SidebarSettings = () => {
           title="Integrazioni"
           links={[
             { path: '/settings/account-managament/integration/connected-apps', label: 'App connesse', style: navStyle('/settings/account-managament/integration/connected-apps') },
-            { path: '/settings/integrations/slack', label: 'App private', style: navStyle('/settings/integrations/slack') },
-            { path: '/settings/integrations/shopify', label: 'Provider di servizi e-mail', style: navStyle('/settings/integrations/shopify') },
+            { path: '/settings/account-managament/integration/private-apps', label: 'App private', style: navStyle('/settings/account-managament/integration/private-apps') },
+            { path: '/settings/account-managament/integration/email-service-provider', label: 'Provider di servizi e-mail', style: navStyle('/settings/account-managament/integration/email-service-provider') },
           ]}
         />
-         <Link to="/settings/account-managament/users-team/users" style={navStyle('/settings/')}>Identità del brand</Link>
-         <Link to="/settings/account-managament/users-team/users" style={navStyle('/settings/')}>Codice di tracciamento</Link>
+         <Link to="/settings/account-managament/brand-identity" style={navStyle('/settings/account-managament/brand-identity')}>Identità del brand</Link>
+         <Link to="/settings/account-managament/tracking" style={navStyle('/settings/account-managament/tracking')}>Codice di tracciamento</Link>
       </div>
 
     {/* 

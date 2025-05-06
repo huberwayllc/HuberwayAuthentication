@@ -12,14 +12,19 @@ import Checkout from './pages/Checkout';
 import AboutUs from './pages/AboutUs';
 import ProjectManagament from "./pages/ProjectManagament";
 import SettingsLayout from './pages/settings/SettingsLayout';
-import SettingsProfile from './pages/settings/SettingsProfile';
-import SettingsEmail from './pages/settings/SettingsEmail';
-import SettingsSecurity from './pages/settings/SettingsSecurity';
+import SettingsProfile from './pages/settings/general/SettingsProfile';
+import SettingsEmail from './pages/settings/general/SettingsEmail';
+import SettingsSecurity from './pages/settings/general/SettingsSecurity';
 import SubscriptionSuccess from './pages/SubscriptionSuccess';
 import SettingsUsersTeam from './pages/settings/UsersTeam';
 import SettingsTeam from './pages/settings/SettingsTeam';
-import ConnectedApps from './pages/settings/ConnectedApps ';
-import ConnectedAppsAlerts from './pages/settings/ConnectedAppsAlerts';
+import ConnectedApps from './pages/settings/integration/ConnectedApps ';
+import ConnectedAppsAlerts from './pages/settings/integration/ConnectedAppsAlerts';
+import PrivateApps from './pages/settings/integration/PrivateApps';
+import EmailServiceProvide from './pages/settings/integration/EmailServiceProvider';
+import BrandIdentity from './pages/settings/BrandIdentity';
+import Tracking from './pages/settings/Tracking';
+import AdvancedTracking from './pages/settings/AdvancedTracking';
 
 function App() {
 
@@ -46,6 +51,11 @@ function App() {
                     <Route path="account-managament/users-team/team" element={<SettingsTeam />} />
                     <Route path="account-managament/integration/connected-apps" element={<ConnectedApps />} />
                     <Route path="account-managament/integration/connected-apps/alerts" element={<ConnectedAppsAlerts />} />
+                    <Route path="account-managament/integration/private-apps" element={<PrivateApps />} />
+                    <Route path="account-managament/integration/email-service-provider" element={<EmailServiceProvide />} />
+                    <Route path="account-managament/brand-identity" element={<BrandIdentity />} />
+                    <Route path="account-managament/tracking" element={<Tracking />} />
+                    <Route path="account-managament/advanced-tracking" element={<AdvancedTracking />} />
 
                 </Route>
 

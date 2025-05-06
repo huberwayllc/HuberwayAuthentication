@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import "./SettingsProfile.css";
-import ConnectedAppsMenu from '../../components/settings/ConnectedAppMenu';
+import "../SettingsProfile.css";
+import ConnectedAppsMenu from '../../../components/settings/ConnectedAppMenu';
 
-const ConnectedAppsAlerts = () => {
+const ConnectedApps = () => {
 
 
   return (
@@ -17,7 +17,7 @@ const ConnectedAppsAlerts = () => {
 
     <div className='text-start d-felx justify-content-start mt-5 ms-4'>
         <h2 className='text-start'>Connetti la tua prima app</h2>
-        <p>Visita l'App Marketplace per connettere HubSpot agli strumenti che utilizzi per potenziare la tua azienda.</p>
+        <p>Visita l'App Marketplace per connettere Huberway agli strumenti che utilizzi per potenziare la tua azienda.</p>
         <button className='btn btn-primary mt-3 p-3 px-4'>Visita App Marketplace</button>
     </div>
 
@@ -25,4 +25,4 @@ const ConnectedAppsAlerts = () => {
   );
 };
 
-export default ConnectedAppsAlerts;
+export default ConnectedApps;
