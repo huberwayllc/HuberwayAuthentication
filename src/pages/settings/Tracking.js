@@ -12,7 +12,7 @@ const Tracking = () => {
 
         <div className='mt-4'>
             <h3 className='mb-0' style={{fontSize: "22px", fontWeight: "600"}}>Installazione codice di tracciamento</h3>
-            <p className='mt-0'>
+            <p className='mt-0 textDarkGray'>
             Copia e incolla questo codice di tracciamento in ogni pagina del sito, subito prima del tag body
             </p>
         </div>
@@ -22,7 +22,7 @@ const Tracking = () => {
             <p className='mt-0 fw-bold'>
                 Codice di incorporamento
             </p>
-            <div className='p-2' style={{ borderRadius: "5px", backgroundColor: "#EAF0F6", border: "1px solid black"}}>
+            <div className='p-2 colorBorder' style={{ borderRadius: "5px", backgroundColor: "white"}}>
                 <p style={{fontSize: "16px", lineHeight: "1.4"}}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidu</p>
             </div>
             <div className='d-flex gap-3'>
@@ -34,7 +34,7 @@ const Tracking = () => {
                 <p className='mt-0 fw-bold mb-0'>
                     Serve aiuto?
                 </p>
-                <p style={{fontSize: "12px"}}>
+                <p className='textDarkGray' style={{fontSize: "12px"}}>
                 Istruzioni dettagliate sull'installazione del codice di tracciamento sono disponibili 
                 <span style={{fontSize: "12px"}} className='pClick'> qui</span>.Suggerimenti per la convalida dell'installazione del codice di tracciamento sono disponibili  
                 <span style={{fontSize: "12px"}} className='pClick'> qui</span>.

@@ -14,12 +14,12 @@ const SettingsProfile = () => {
       <SettingsMenu />
 
       <div style={{borderBottom: "1px solid gray"}} className='mt-2'>
-        <p className='mt-2'>Queste preferenze si applicano solo a te.</p>
+        <p className='mt-2 textDarkGray'>Queste preferenze si applicano solo a te.</p>
       </div>
 
       <div className='mt-3 mb-4 d-flex flex-column align-items-start'>
         <h2 style={{lineHeight: "18px"}} className='fw-bold'>Globale</h2>
-        <p>Ciò riguarda qualsiasi account Huberway che possiedi.</p>
+        <p className='textDarkGray'>Ciò riguarda qualsiasi account Huberway che possiedi.</p>
       </div>
 
       <div className='mt-3'>
@@ -42,13 +42,13 @@ const SettingsProfile = () => {
         <input className='inp' />
 
         <h6 style={{lineHeight: "10px"}} className='labInp mt-4 mb-1'>Numero di telefono</h6>
-        <p className='mb-1 w-50' style={{lineHeight: "18px"}}>Potremmo usare questo numero di telefono per contattarti in merito a eventi di sicurezza. Fai riferimento alla nostra Privacy policy per altre informazioni</p>
+        <p className='mb-1 w-50 textDarkGray' style={{lineHeight: "18px"}}>Potremmo usare questo numero di telefono per contattarti in merito a eventi di sicurezza. Fai riferimento alla nostra Privacy policy per altre informazioni</p>
         <input className='inp' />
      </div>
 
      <div className='mt-5 d-flex flex-column align-items-start'>
       <h2 style={{lineHeight: "18px"}} className='fw-bold'>Impostazioni predefinite</h2>
-      <p>Ciò riguarda solo questo account Huberway.</p>
+      <p className='textDarkGray'>Ciò riguarda solo questo account Huberway.</p>
      </div>
 
      <h6 className=' mt-4 labInp'>Homepage predefinita</h6>

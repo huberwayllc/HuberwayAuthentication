@@ -10,7 +10,7 @@ const SettingsLayout = () => {
         <Header/>
         <div style={{ display: 'flex' }}>
             <SidebarSettings />
-            <div style={{ flex: 1, padding: '20px' }}>
+            <div style={{ flex: 1, padding: '20px', marginLeft: "250px" }}>
                 <Outlet />
             </div>
         </div>

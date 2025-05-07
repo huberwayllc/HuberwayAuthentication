@@ -8,26 +8,36 @@ import CheckIcon from '@mui/icons-material/Check';
 const SidebarSettings = () => {
   const location = useLocation();
 
-  const navStyle = (path) => ({
-    padding: '10px 15px',
-    backgroundColor: location.pathname === path ? '#E5F5F8' : 'transparent',
-    borderLeft: location.pathname === path ? '4px solid #00A4BD' : 'none',
-    fontWeight: location.pathname === path ? '700' : '500',
-    textDecoration: 'none',
-    color: '#333',
-    display: 'block',
-  });
+  const navStyle = (paths) => {
+    const isActive = Array.isArray(paths)
+      ? paths.includes(location.pathname)
+      : location.pathname === paths;
+  
+    return {
+      padding: '10px 15px',
+      backgroundColor: isActive ? '#E5F5F8' : 'transparent',
+      borderLeft: isActive ? '4px solid #00A4BD' : 'none',
+      fontWeight: isActive ? '700' : '500',
+      textDecoration: 'none',
+      color: '#333',
+      display: 'block',
+    };
+  };
 
   return (
-    <div style={{
-      minWidth: '250px',
-      height: '100vh',
-      background: '#f8f8f8',
-      borderLeft: '2px solid #ddd',
-      padding: '20px',
-      boxSizing: 'border-box',
-      overflowY: 'auto'
-    }}>
+<div style={{
+  position: 'fixed', // Rende il sidebar fisso
+  top: 0,
+  left: 0,
+  width: '250px',
+  height: '100vh',
+  background: '#f8f8f8',
+  borderLeft: '2px solid #ddd',
+  padding: '20px',
+  boxSizing: 'border-box',
+  overflowY: 'auto',
+  zIndex: 1000 // Assicura che sia sopra altri elementi se necessario
+}}>
       <div className='d-flex align-items-center gap-2 mb-4'>
         <h2 className='m-1'>Impostazioni</h2>
         <SearchIcon />
@@ -36,23 +46,31 @@ const SidebarSettings = () => {
       {/* Sezione "Le tue preferenze" */}
       <div className='navi'>
         <h4>Le tue preferenze</h4>
-        <Link to="/settings/user-preferences/profile" style={navStyle('/settings/user-preferences/profile')}>Generale</Link>
-        {/* <Link to="/settings/security" style={navStyle('/settings/security')}>Notifiche</Link> */} 
+        <Link to="/settings/user-preferences/profile" style={navStyle(['/settings/user-preferences/profile', '/settings/user-preferences/email', '/settings/user-preferences/security'])} >Generale</Link>
       </div>
 
       <div className='navi'>
         <h4>Gestione Account</h4>
-        <Link to="/settings/account-managament/users-team/users" style={navStyle('/settings/account-managament/users-team/users')}>Utenti e Team</Link>
+        <Link to="/settings/account-managament/users-team/users" style={navStyle(['/settings/account-managament/users-team/users', '/settings/account-managament/users-team/team'])}
+        >Utenti e Team</Link>
         <SubMenuSettings 
           title="Integrazioni"
           links={[
-            { path: '/settings/account-managament/integration/connected-apps', label: 'App connesse', style: navStyle('/settings/account-managament/integration/connected-apps') },
+            { 
+              path: '/settings/account-managament/integration/connected-apps',
+              label: 'App connesse',
+              style: navStyle([
+                '/settings/account-managament/integration/connected-apps',
+                '/settings/account-managament/integration/connected-apps/alerts'
+              ])
+            },
+
             { path: '/settings/account-managament/integration/private-apps', label: 'App private', style: navStyle('/settings/account-managament/integration/private-apps') },
             { path: '/settings/account-managament/integration/email-service-provider', label: 'Provider di servizi e-mail', style: navStyle('/settings/account-managament/integration/email-service-provider') },
           ]}
         />
          <Link to="/settings/account-managament/brand-identity" style={navStyle('/settings/account-managament/brand-identity')}>Identità del brand</Link>
-         <Link to="/settings/account-managament/tracking" style={navStyle('/settings/account-managament/tracking')}>Codice di tracciamento</Link>
+         <Link to="/settings/account-managament/tracking"style={navStyle(['/settings/account-managament/tracking', '/settings/account-managament/advanced-tracking'])}>Codice di tracciamento</Link>
       </div>
 
     {/* 
