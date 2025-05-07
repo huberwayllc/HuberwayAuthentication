@@ -13,16 +13,16 @@ const SettingsProfile = () => {
 
       <SettingsMenu />
 
-      <div style={{borderBottom: "1px solid gray"}} className='mt-2'>
+      <div className='mt-2'>
         <p className='mt-2 textDarkGray'>Queste preferenze si applicano solo a te.</p>
       </div>
 
-      <div className='mt-3 mb-4 d-flex flex-column '>
-        <h2 style={{lineHeight: "18px"}} className='h2Style'>Globale</h2>
-        <p className='textDarkGray'>Ciò riguarda qualsiasi account Huberway che possiedi.</p>
-      </div>
 
-      <div className='bg-white p-3 rounded-2 boxShadow1 w-auto' style={{display:"inline-block", maxWidth: "450px"}}>
+      <div className='bg-white p-3 rounded-2 boxShadow1 w-auto mt-4' style={{display:"inline-block", maxWidth: "432px"}}>
+        <div className='mt-0 mb-4 d-flex flex-column '>
+          <h2 style={{lineHeight: "18px"}} className='h2Style m-0'>Globale</h2>
+          <p className='textDarkGray'>Ciò riguarda qualsiasi account Huberway che possiedi.</p>
+        </div>
         <div className='mt-0'>
           <h6 style={{lineHeight: "18px", fontSize: "14px"}} className='fw-bold text-black mt-0'>Immagine profilo</h6>
           <Avatar  sx={{ width: 70, height: 70 }} alt="Remy Sharp" src="/static/images/avatar/1.jpg" />

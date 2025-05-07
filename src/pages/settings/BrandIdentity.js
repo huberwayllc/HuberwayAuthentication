@@ -16,14 +16,14 @@ const BrandIdentity = () => {
     </div>
 
     <div className='w-100 d-flex flex-column mt-4'>
-        <div style={{backgroundColor: "white"}} className='p-3 boxShadow1 rounded-1'>
+        <div style={{backgroundColor: "white"}} className='p-3 boxShadow1 rounded-2'>
             <h3 className='h2Style'>Identità del brand <span className='textPrimary'>Beta</span> </h3>
             <p className='textDarkGray'>L'aggiornamento del brand qui fornirà più input ai contenuti creati da te e dal tuo team su HubSpot, a garanzia di una comunicazione del brand coerente ed efficace a ogni interazione.</p>
         </div>
     </div>
 
     <div className='w-100 d-flex flex-column mt-4'>
-        <div style={{backgroundColor: "white"}} className='p-3 pb-4 boxShadow1 rounded-1'>
+        <div style={{backgroundColor: "white"}} className='p-3 pb-4 boxShadow1 rounded-2'>
             <h3 className='mt-0 h2Style'>Kit del brand</h3>
             <p className='textDarkGray'>Imposta il logo e i colori per gli strumenti in cui puoi mostrare il tuo branding. Queste impostazioni ti consentiranno di scegliere rapidamente le opzioni del brand quando crei contenuti rivolti al pubblico.</p>
             
