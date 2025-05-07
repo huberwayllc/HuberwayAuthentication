@@ -16,8 +16,8 @@ const ConnectedApps = () => {
     </div>
 
     <div className='text-start d-felx justify-content-start mt-5 ms-4'>
-        <h2 className='text-start'>Connetti la tua prima app</h2>
-        <p>Visita l'App Marketplace per connettere Huberway agli strumenti che utilizzi per potenziare la tua azienda.</p>
+        <h2 className='h2Style'>Connetti la tua prima app</h2>
+        <p className='textDarkGray'>Visita l'App Marketplace per connettere Huberway agli strumenti che utilizzi per potenziare la tua azienda.</p>
         <button className='btn btn-primary mt-3 p-3 px-4'>Visita App Marketplace</button>
     </div>
 

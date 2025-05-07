@@ -26,7 +26,7 @@ const AdvancedTracking = () => {
       <TrackingMenu />
 
       <div className='mt-4'>
-        <h3 className='mb-0 fw-bold'>Domini sito aggiuntivi</h3>
+        <h2 className='mb-0 h2Style'>Domini sito aggiuntivi</h2>
         <p className='mt-0 textDarkGray'>
           Crea nuovi utenti, personalizza le autorizzazioni utente e rimuovi utenti dal tuo account.
           Scopri di più sulle autorizzazioni utente
@@ -137,7 +137,7 @@ const AdvancedTracking = () => {
       </div>
 
       <div className='mt-4'>
-        <h3 className='fw-bold m-0'>Esclude traffico</h3>
+        <h3 className='fw-bold m-0 h2Style'>Esclude traffico</h3>
         <p style={{fontSize: "12px"}} className='m-0'>L'indirizzo IP</p>
         <p>95.248.218.172</p>
 

@@ -56,7 +56,7 @@ const UserStatsBox = () => {
   const id = open ? 'info-popover' : undefined;
 
   return (
-    <div style={{ border: "1px solid #B1C2D5", backgroundColor: "white" }} className='mt-4 p-4 rounded-1'>
+    <div style={{backgroundColor: "white" }} className='mt-4 p-4 rounded-1 boxShadow1'>
       <div className='d-flex flex-wrap align-items-start gap-4'>
         {statsData.map((stat, index) => (
           <div

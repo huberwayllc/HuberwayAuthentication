@@ -11,7 +11,7 @@ const Tracking = () => {
         <TrackingMenu />
 
         <div className='mt-4'>
-            <h3 className='mb-0' style={{fontSize: "22px", fontWeight: "600"}}>Installazione codice di tracciamento</h3>
+            <h2 className='mb-0 h2Style'>Installazione codice di tracciamento</h2>
             <p className='mt-0 textDarkGray'>
             Copia e incolla questo codice di tracciamento in ogni pagina del sito, subito prima del tag body
             </p>

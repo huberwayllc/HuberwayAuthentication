@@ -21,24 +21,25 @@ const SidebarSettings = () => {
       textDecoration: 'none',
       color: '#333',
       display: 'block',
+      zIndex: 1,
     };
   };
 
   return (
-<div style={{
-  position: 'fixed', // Rende il sidebar fisso
+<div className='boxShadow1' style={{
+  position: 'fixed',
   top: 0,
   left: 0,
   width: '250px',
   height: '100vh',
-  background: '#f8f8f8',
+  background: 'white',
   borderLeft: '2px solid #ddd',
   padding: '20px',
   boxSizing: 'border-box',
   overflowY: 'auto',
-  zIndex: 1000 // Assicura che sia sopra altri elementi se necessario
+  zIndex: 1000
 }}>
-      <div className='d-flex align-items-center gap-2 mb-4'>
+      <div style={{marginTop: "60px"}} className='d-flex align-items-center gap-2 mb-4'>
         <h2 className='m-1'>Impostazioni</h2>
         <SearchIcon />
       </div>

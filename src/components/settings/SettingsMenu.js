@@ -1,4 +1,3 @@
-// components/settings/SettingsMenu.js
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -18,7 +17,7 @@ const SettingsMenu = () => {
 
   return (
     <div className="d-flex align-items-center flex-wrap gap-0">
-      {menuItems.map((item) => {
+      {menuItems.map((item, index) => {
         const isSelected = location.pathname.includes(item.path);
 
         return (
@@ -27,10 +26,16 @@ const SettingsMenu = () => {
             onClick={() => navigate(`/${item.path}`)}
             style={{
               cursor: "pointer",
-              padding: "15px 22px",
+              padding: "10px 22px",
               border: "1px solid #ccc",
-              backgroundColor: isSelected ? "#fff" : "transparent",
+              borderColor: isSelected ? "#0d6efd" : "#ccc",
+              backgroundColor: isSelected ? "#0d6efd" : "transparent",
+              color: isSelected ? "white" : "black",
               fontWeight: isSelected ? "bold" : "normal",
+              borderTopLeftRadius: index === 0 ? "10px" : "0",
+              borderBottomLeftRadius: index === 0 ? "10px" : "0",
+              borderTopRightRadius: index === menuItems.length - 1 ? "10px" : "0",
+              borderBottomRightRadius: index === menuItems.length - 1 ? "10px" : "0",
             }}
           >
             <p style={{fontSize: "14px"}} className="mb-0">{item.name}</p>

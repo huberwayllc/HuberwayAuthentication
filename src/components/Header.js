@@ -60,7 +60,7 @@ function Header() {
 
   return (
     <>
-      <header className="header">
+      <header style={{zIndex: "9999"}} className="header">
         <img
           src="https://cdn.huberway.com/site/logo-dark.svg"
           style={{ cursor: "pointer" }}
@@ -116,6 +116,8 @@ function Header() {
           )}
         </div>
       </header>
+
+      <div style={{marginTop: "60px"}}></div>
     </>
   );
 }

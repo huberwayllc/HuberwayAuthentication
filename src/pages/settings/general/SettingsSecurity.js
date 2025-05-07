@@ -32,14 +32,14 @@ const SettingsSecurity = () => {
         <SettingsMenu />
 
         <div style={{ borderBottom: "1px solid gray" }} className='mt-2'>
-          <p className='mt-2'>
+          <p className='mt-2 textDarkGray'>
           Queste preferenze verranno applicate solo a te. Per le impostazioni di sicurezza dell'account, vai alle impostazioni dell'account.
           </p>
         </div>
 
-        <div className='mt-3 d-flex flex-column align-items-start'>
-          <h2 style={{ lineHeight: "18px" }} className='fw-bold'>Sicurezza</h2>
-          <p style={{ width: "75%" }}>
+        <div className='mt-3 d-flex flex-column'>
+          <h2 style={{ lineHeight: "18px" }} className='h2Style'>Sicurezza</h2>
+          <p className='textDarkGray' style={{ width: "75%" }}>
             Imposta le preferenze relative all'accesso e alla sicurezza del tuo account personale.
           </p>
         </div>
@@ -73,7 +73,7 @@ const SettingsSecurity = () => {
         </div>
         <div>
           <p className='mb-0 pClick'>Aggiungi un numero di telefono affidabile</p>
-          <p style={{ fontSize: "12px" }}>
+          <p className='textDarkGray' style={{ fontSize: "12px" }}>
             Aggiungi un numero di telefono utilizzato per verificare occasionalmente la tua identità e ricevere altri avvisi relativi alla sicurezza. Questo numero di telefono non verrà mai utilizzato per scopi di vendita o marketing.
           </p>
         </div>
@@ -83,7 +83,7 @@ const SettingsSecurity = () => {
         </div>
         <div>
           <p className='mb-0 pClick'>Configura passkey</p>
-          <p style={{ fontSize: "12px" }}>
+          <p className='textDarkGray' style={{ fontSize: "12px" }}>
             Le passkey sostituiscono tutte le password e forniscono un accesso più sicuro, semplice e veloce in tutti i tuoi dispositivi.
           </p>
           <p className='mb-0 mt-3 pClick'>Maggiori informazioni</p>
@@ -94,7 +94,7 @@ const SettingsSecurity = () => {
         </div>
         <div>
           <p className='mb-0 pClick'>Configura l'autenticazione a due fattori (2FA)</p>
-          <p style={{ fontSize: "12px" }}>
+          <p className='textDarkGray' style={{ fontSize: "12px" }}>
             L'autenticazione a due fattori è una misura di sicurezza avanzata. Una volta abilitata, ti verrà richiesto di fornire due tipi di identificazione quando accedi a Huberway. Le app di sicurezza come Google Authenticator e gli SMS sono supportati.
           </p>
         </div>
@@ -104,7 +104,7 @@ const SettingsSecurity = () => {
         </div>
         <div>
           <p onClick={handleOpenExitSession} className='mb-0 pClick'>Esci da tutte le sessioni</p>
-          <p style={{ fontSize: "12px" }}>
+          <p className='textDarkGray' style={{ fontSize: "12px" }}>
             Questa azione ti disconnetterà da tutti i dispositivi e tutte le sessioni, inclusa quella attiva.
           </p>
         </div>
@@ -113,7 +113,7 @@ const SettingsSecurity = () => {
           <h6 style={{ fontWeight: "bold" }} className='mt-4'>Rimuovi da questo account</h6>
         </div>
         <div>
-          <p style={{ fontSize: "14px" }}>
+          <p className='textDarkGray' style={{ fontSize: "14px" }}>
             Questa azione rimuoverà il tuo utente da questo account. Se fai parte di altri account, potrai ancora accedervi.
           </p>
           <Button

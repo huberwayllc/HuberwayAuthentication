@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import "./styleTab.css";
 
 // Mock dati utenti
 const mockUserData = [
@@ -91,7 +92,7 @@ const UserFiltersWithTable = () => {
   };
 
   return (
-    <div className='d-flex flex-column mt-4'>
+    <div className='d-flex flex-column mt-5'>
       <div className='d-flex justify-content-between align-items-center flex-wrap'>
         <ul className='d-flex list-unstyled gap-4 align-items-center flex-wrap' style={{ padding: 0, margin: 0 }}>
           {/* Stato */}
@@ -169,8 +170,8 @@ const UserFiltersWithTable = () => {
       </div>
 
       {/* Tabella con scroll orizzontale */}
-      <div className='w-100 mt-4' style={{ overflowX: 'auto' }}>
-        <table className='table table-bordered table-striped' style={{ minWidth: '900px' }}>
+      <div className='w-100 mt-0 boxShadow1 mt-1' style={{ overflowX: 'auto' }}>
+        <table className='table table-bordered mt-0 '   style={{ minWidth: '900px', backgroundColor: 'white' }}>
           <thead>
             <tr>
               <th>
@@ -180,21 +181,21 @@ const UserFiltersWithTable = () => {
                   onChange={toggleSelectAll}
                 />
               </th>
-              <th>Nome</th>
-              <th>Accedi</th>
-              <th>Team principale</th>
-              <th>Stato invito</th>
-              <th>Ultima attivazione</th>
-              <th>Stato email</th>
-              <th>Stato calendario</th>
-              <th>Sincronizzazione calendario</th>
-              <th>Pagine di pianificazione</th>
-              <th>Data di creazione</th>
-              <th>Ultima modifica alla password</th>
+              <th className='fw-bold'>Nome</th>
+              <th className='fw-bold'>Accedi</th>
+              <th className='fw-bold'>Team principale</th>
+              <th className='fw-bold'>Stato invito</th>
+              <th className='fw-bold'>Ultima attivazione</th>
+              <th className='fw-bold'>Stato email</th>
+              <th className='fw-bold'>Stato calendario</th>
+              <th className='fw-bold'>Sincronizzazione calendario</th>
+              <th className='fw-bold'>Pagine di pianificazione</th>
+              <th className='fw-bold'>Data di creazione</th>
+              <th className='fw-bold'>Ultima modifica alla password</th>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody style={{ backgroundColor: 'white' }}>
             {filteredUsers.length === 0 ? (
               <tr><td colSpan="12">Nessun utente trovato con i filtri selezionati.</td></tr>
             ) : (

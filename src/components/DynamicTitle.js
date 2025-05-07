@@ -67,6 +67,102 @@ function DynamicTitle() {
           image: "https://app.huberway.com/assets/images/recovery-image.png",
           url: "https://app.huberway.com/account/dashboard",
         };
+      case "/settings/user-preferences/profile":
+        return {
+          title: "Settings Profile - Huberway",
+          description: "Settings Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/user-preferences/email":
+        return {
+          title: "Settings Email - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/user-preferences/security":
+        return {
+          title: "Settings Security - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/users-team/users":
+        return {
+          title: "Users and Team - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/users-team/team":
+        return {
+          title: "Settings Team - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/integration/connected-apps":
+        return {
+          title: "Connected Apps - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/integration/connected-apps/alerts":
+        return {
+          title: "Connected Apps Alerts - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/integration/private-apps":
+        return {
+          title: "Private Apps - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/integration/email-service-provider":
+        return {
+          title: "Email Service Provider - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/brand-identity":
+        return {
+          title: "Brand Identity - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/tracking":
+        return {
+          title: "Settings Tracking - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
+      case "/settings/account-managament/advanced-tracking":
+        return {
+          title: "Advanced Tracking - Huberway",
+          description: "Profile",
+          keywords: "Profiles",
+          image: "https://app.huberway.com/assets/images/recovery-image.png",
+          url: "https://app.huberway.com/account/dashboard",
+        };
         default:
           return {
             title: "404 - Page Not Found - Huberway",

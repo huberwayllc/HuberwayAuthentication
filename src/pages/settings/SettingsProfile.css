@@ -4,16 +4,25 @@
     border-radius: 5px;
     border: 1px solid gray;
     padding: 0px 10px;
+    background-color: #F1F5F9;
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 24px;
+}
+
+.h2Style {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-align: left;
 }
 
 .labInp {
     line-height: 10px;
     font-weight: bold;
     font-size: 14px;
+    color: black;
 }
 
 .pClick {
@@ -21,6 +30,22 @@ h1 {
  color: #1565C0;
   font-weight: bold;
   cursor: pointer;
+}
+
+.p12 {
+    font-size: 12px;
+}
+
+.p13 {
+    font-size: 13px;
+}
+
+.p14 {
+    font-size: 13px;
+}
+
+.p12, .p13, .p14 {
+    color: #3f454b;
 }
 
 .textPrimary {
@@ -55,4 +80,8 @@ h1 {
 
 .textGray {
     color: #7a848f;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
 }

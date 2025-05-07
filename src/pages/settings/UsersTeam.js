@@ -39,7 +39,7 @@ const SettingsUsersTeam = () => {
       <UsersTeamMenu />
 
       <div className='mt-2'>
-        <p className='mt-4'>
+        <p className='mt-4 textDarkGray'>
           Crea nuovi utenti, personalizza le autorizzazioni utente e rimuovi utenti dal tuo account.
           Scopri di più sulle autorizzazioni utente
         </p>

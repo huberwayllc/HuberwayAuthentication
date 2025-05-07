@@ -10,7 +10,7 @@ const PrivateApps = () => {
     <div style={{borderBottom: "1px black solid"}} className='text-start d-flex justify-content-between align-items-start pb-3'>
       <div>
         <h1>App private</h1>
-        <p>Le app private offrono un modo potente e sicuro per effettuare chiamate API al tuo account Huberay.</p>
+        <p className='textDarkGray'>Le app private offrono un modo potente e sicuro per effettuare chiamate API al tuo account Huberay.</p>
         
       </div>
       <div>
@@ -19,8 +19,8 @@ const PrivateApps = () => {
     </div>
 
     <div className='w-100 d-flex flex-column align-items-center mt-4'>
-      <h2>Nessun app privata</h2>
-      <p>Creane una ora per iniziare.</p>
+      <h2 className='h2Style'>Nessun app privata</h2>
+      <p className='textDarkGray'>Creane una ora per iniziare.</p>
     </div>
 
     </div>
