@@ -29,7 +29,7 @@ const SettingsSecurity = () => {
       <div className='p-2'>
         <h1>Generale</h1>
 
-        <SettingsMenu />
+             {/* <SettingsMenu /> */} 
 
         <div style={{ borderBottom: "1px solid gray" }} className='mt-2'>
           <p className='mt-2 textDarkGray'>
@@ -50,14 +50,10 @@ const SettingsSecurity = () => {
 
         <div className='d-flex flex-column mb-2'>
           <input disabled={true} className='inp' placeholder='e‑mail' />
-          <Button
-            onClick={handleOpen}
-            className='mt-2'
-            style={{ textTransform: "none", width: "200px" }}
-            variant='contained'
-          >
+
+          <button style={{width: "250px"}}  onClick={handleOpen} className='btn btn-primary fs-6 p-2 mt-2'>
             Modifica indirizzo e‑mail
-          </Button>
+          </button>
         </div>
 
         <div className='mt-5'>

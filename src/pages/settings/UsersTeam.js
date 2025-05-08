@@ -36,7 +36,7 @@ const SettingsUsersTeam = () => {
     <div className='p-2'>
       <h1>Utenti e Team</h1>
 
-      <UsersTeamMenu />
+      {/* <UsersTeamMenu /> */}
 
       <div className='mt-2'>
         <p className='mt-4 textDarkGray'>

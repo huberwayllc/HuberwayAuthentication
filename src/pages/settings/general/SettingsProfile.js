@@ -11,7 +11,7 @@ const SettingsProfile = () => {
     <div className='p-2'>
       <h1>Generale</h1>
 
-      <SettingsMenu />
+     {/* <SettingsMenu /> */} 
 
       <div className='mt-2'>
         <p className='mt-2 textDarkGray'>Queste preferenze si applicano solo a te.</p>
@@ -20,7 +20,7 @@ const SettingsProfile = () => {
 
       <div className='bg-white p-3 rounded-2 boxShadow1 w-auto mt-4' style={{display:"inline-block", maxWidth: "432px"}}>
         <div className='mt-0 mb-4 d-flex flex-column '>
-          <h2 style={{lineHeight: "18px"}} className='h2Style m-0'>Globale</h2>
+          <h2 style={{lineHeight: "18px"}} className='h2Style m-0'>Profilo</h2>
           <p className='textDarkGray'>Ciò riguarda qualsiasi account Huberway che possiedi.</p>
         </div>
         <div className='mt-0'>

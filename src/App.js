@@ -25,6 +25,7 @@ import EmailServiceProvide from './pages/settings/integration/EmailServiceProvid
 import BrandIdentity from './pages/settings/BrandIdentity';
 import Tracking from './pages/settings/Tracking';
 import AdvancedTracking from './pages/settings/AdvancedTracking';
+import SettingsRoles from './pages/settings/SettingsRoles';
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
                     <Route path="user-preferences/security" element={<SettingsSecurity />} />
                     <Route path="account-managament/users-team/users" element={<SettingsUsersTeam />} />
                     <Route path="account-managament/users-team/team" element={<SettingsTeam />} />
+                    <Route path="account-managament/users-team/roles" element={<SettingsRoles />} />
                     <Route path="account-managament/integration/connected-apps" element={<ConnectedApps />} />
                     <Route path="account-managament/integration/connected-apps/alerts" element={<ConnectedAppsAlerts />} />
                     <Route path="account-managament/integration/private-apps" element={<PrivateApps />} />

@@ -60,7 +60,7 @@ function Header() {
 
   return (
     <>
-      <header style={{zIndex: "9999"}} className="header">
+      <header style={{zIndex: "999"}} className="header">
         <img
           src="https://cdn.huberway.com/site/logo-dark.svg"
           style={{ cursor: "pointer" }}

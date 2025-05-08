@@ -13,7 +13,7 @@ const SettingsEmail = () => {
     <div className='p-2'>
       <h1>Generale</h1>
 
-      <SettingsMenu />
+      {/* <SettingsMenu /> */} 
 
       <div style={{borderBottom: "1px solid gray"}} className='mt-2'>
         <p className='mt-2 textDarkGray'>Queste preferenze si applicano solo a te. Per la gestione delle e-mail a livello di account, vai alle Impostazioni di registrazione delle e-mail.</p>
@@ -25,24 +25,24 @@ const SettingsEmail = () => {
       </div>
 
         <div className='d-flex'>
-            <CheckIcon />
+            <CheckIcon style={{color: "#115cc4"}}/>
             <p className='textDarkGray'>Invia e pianifica e-mail da Huberway</p>
         </div>
     
       <div className='d-flex'>
-        <CheckIcon />
+        <CheckIcon style={{color: "#115cc4"}}/>
         <p className='textDarkGray'>Registra automaticamente le risposte alle e-mail su Huberway</p>
       </div>
       
       <div className='d-flex'>
-        <CheckIcon />
+        <CheckIcon style={{color: "#115cc4"}}/>
         <p className='textDarkGray'>Suggerisci task di follow-up e raccogli i dettagli dei contatti dalla tua e-mail</p>
       </div>
 
     <div className='mt-4'>
-        <Button variant='contained'>
+        <button className='btn btn-primary fs-6 p-2'>
             Connetti e-mail personale
-        </Button>
+        </button>
     </div>
 
     
@@ -70,12 +70,9 @@ const SettingsEmail = () => {
           Includi un link in fondo alle e-mail che consenta ai destinatari di annullare l'iscrizione.
           Ti aiuterà a rispettare le leggi locali sullo spam e a migliorare la capacità di consegna.
         </p>
-        <Button
-          variant="contained"
-          style={{ textTransform: "none" }}
-        >
+        <button className='btn btn-primary fs-6 p-2 mt-2'>
           Visualizza in anteprima link di annullamento dell'abbonamento
-        </Button>
+        </button>
       </div>
     </div>
 

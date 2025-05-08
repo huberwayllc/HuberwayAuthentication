@@ -15,11 +15,11 @@ const SidebarSettings = () => {
   
     return {
       padding: '10px 15px',
-      backgroundColor: isActive ? '#E5F5F8' : 'transparent',
-      borderLeft: isActive ? '4px solid #00A4BD' : 'none',
+      backgroundColor: isActive ? '#1e7afc' : 'transparent',
+      borderLeft: isActive ? '4px solid #014FC4' : 'none',
       fontWeight: isActive ? '700' : '500',
       textDecoration: 'none',
-      color: '#333',
+      color: isActive ? '#FFFFFF' : "#333",
       display: 'block',
       zIndex: 1,
     };
@@ -37,7 +37,7 @@ const SidebarSettings = () => {
   padding: '20px',
   boxSizing: 'border-box',
   overflowY: 'auto',
-  zIndex: 1000
+  zIndex: 1
 }}>
       <div style={{marginTop: "60px"}} className='d-flex align-items-center gap-2 mb-4'>
         <h2 className='m-1'>Impostazioni</h2>
@@ -47,11 +47,24 @@ const SidebarSettings = () => {
       {/* Sezione "Le tue preferenze" */}
       <div className='navi'>
         <h4>Le tue preferenze</h4>
+        {/* 
         <Link to="/settings/user-preferences/profile" style={navStyle(['/settings/user-preferences/profile', '/settings/user-preferences/email', '/settings/user-preferences/security'])} >Generale</Link>
-      </div>
+        */}
+
+        <Link to="/settings/user-preferences/profile" style={navStyle(['/settings/user-preferences/profile'])} >Profilo</Link>
+        <Link to="/settings/user-preferences/email" style={navStyle(['/settings/user-preferences/email'])} >E-mail</Link>
+        <Link to="/settings/user-preferences/security" style={navStyle(['/settings/user-preferences/security'])} >Sicurezza</Link>
+        </div>
 
       <div className='navi'>
         <h4>Gestione Account</h4>
+        <Link to="/settings/account-managament/users-team/users" style={navStyle(['/settings/account-managament/users-team/users'])}
+        >Utenti</Link>
+        <Link to="/settings/account-managament/users-team/roles" style={navStyle(['/settings/account-managament/users-team/roles'])}
+        >Ruoli</Link>
+        <Link to="/settings/account-managament/users-team/team" style={navStyle(['/settings/account-managament/users-team/team'])}
+        >Team</Link>
+        {/* 
         <Link to="/settings/account-managament/users-team/users" style={navStyle(['/settings/account-managament/users-team/users', '/settings/account-managament/users-team/team'])}
         >Utenti e Team</Link>
         <SubMenuSettings 
@@ -72,6 +85,7 @@ const SidebarSettings = () => {
         />
          <Link to="/settings/account-managament/brand-identity" style={navStyle('/settings/account-managament/brand-identity')}>Identità del brand</Link>
          <Link to="/settings/account-managament/tracking"style={navStyle(['/settings/account-managament/tracking', '/settings/account-managament/advanced-tracking'])}>Codice di tracciamento</Link>
+         */}
       </div>
 
     {/* 
