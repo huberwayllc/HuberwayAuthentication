@@ -58,10 +58,16 @@ const Dashboard = () => {
       url: "https://app.huberway.com",
       icons: [
         "https://dev.huberway.com/icon/sales.svg",
-        "https://dev.huberway.com/icon/marketing.svg",
-        // "https://dev.huberway.com/icon/smartchat.svg",
       ],
     },
+      {
+        name: "MailMaster",
+        description: "Centralized management of Email Marketing & Automation",
+        url: "https://campaign.huberway.com",
+        icons: [
+           "https://dev.huberway.com/icon/marketing.svg",
+        ],
+      },
     {
       name: "SmartChat AI",
       description: "Support your customers with AI-powered chatbots",
