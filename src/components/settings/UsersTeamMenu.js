@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const menuItems = [
   { name: "Utenti", path: "/settings/account-managament/users-team/users" },
+  { name: "Ruoli", path: "/settings/account-managament/users-team/roles" },
   { name: "Team", path: "/settings/account-managament/users-team/team" },
 ];
 

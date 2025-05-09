@@ -39,7 +39,8 @@ const mockUserData = [
   // Aggiungi altri utenti secondo necessità
 ];
 
-const UserFiltersWithTable = () => {
+// Corretto: destrutturiamo le props
+const UserFiltersWithTable = ({ onCreateUser }) => {
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   const [anchorElStato, setAnchorElStato] = useState(null);
@@ -51,7 +52,7 @@ const UserFiltersWithTable = () => {
   const statoOptions = [
     'Disattivato',
     'Invito in sospeso',
-    'Mancato recapito dell\'invito',
+    "Mancato recapito dell'invito",
     'Invito accettato'
   ];
 
@@ -165,13 +166,14 @@ const UserFiltersWithTable = () => {
 
         <div className='d-flex gap-2 mt-2 mt-md-0'>
           <button className='btn btn-outline-secondary fs-6 p-3 bg-transparent'>Azioni</button>
-          <button className='btn btn-primary fs-6 p-3'>Crea Utente</button>
+          {/* Corretto: chiama la prop onCreateUser */}
+          <button onClick={onCreateUser} className='btn btn-primary fs-6 p-3'>Crea Utente</button>
         </div>
       </div>
 
       {/* Tabella con scroll orizzontale */}
       <div className='w-100 mt-0 boxShadow1 mt-1' style={{ overflowX: 'auto' }}>
-        <table className='table table-bordered mt-0 '   style={{ minWidth: '900px', backgroundColor: 'white' }}>
+        <table className='table table-bordered mt-0' style={{ minWidth: '900px', backgroundColor: 'white' }}>
           <thead>
             <tr>
               <th>

@@ -20,7 +20,8 @@ h1 {
 
 .labInp {
     line-height: 10px;
-    font-weight: bold;
+    padding: 0px;
+    font-weight: 500;
     font-size: 14px;
     color: black;
 }

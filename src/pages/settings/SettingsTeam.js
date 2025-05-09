@@ -10,46 +10,108 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import UsersTeamMenu from '../../components/settings/UsersTeamMenu';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+// Stili per il modal
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  borderRadius: 2,
+  p: 4,
+};
 
 const SettingsTeam = () => {
-  // Stato per il menu "Stato"
-  const [anchorElStato, setAnchorElStato] = useState(null);
-  const [selectedStatoFilter, setSelectedStatoFilter] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
-  // Stato per il menu "Ultima attivazione"
-  const [anchorElAttivazione, setAnchorElAttivazione] = useState(null);
-  const [selectedAttivazioneFilter, setSelectedAttivazioneFilter] = useState(null);
+  // Campi del form
+  const [teamName, setTeamName] = useState('');
+  const [manager, setManager] = useState('');
+  const [members, setMembers] = useState('');
+  const [description, setDescription] = useState('');
 
-  const statoOptions = [
-    'Disattivato',
-    'Invito in sospeso',
-    'Mancato recapito dell\'invito',
-    'Invito accettato'
-  ];
-
-  const attivazioneOptions = [
-    'Oggi', 'Ieri', 'Ultimi 7 giorni', 'Ultimi 14 giorni',
-    'Ultimi 30 giorni', 'Ultimi 60 giorni', 'Ultimi 90 giorni',
-    'Ultimi 180 giorni', 'Ultimi 365 giorni'
-  ];
+  const handleCreate = () => {
+    // Puoi aggiungere validazioni o invio qui
+    console.log({ teamName, manager, members, description });
+    setOpenModal(false);
+  };
 
   return (
     <div className='p-2'>
       <h1>Team</h1>
 
-     {/* <UsersTeamMenu /> */} 
+       <UsersTeamMenu />
 
-    <div className='d-flex justify-content-end gap-4'>
-        <input placeholder='Search..' style={{width: "250px"}} className='inp'/>
-        <button className='btn btn-primary'>Crea Team</button>
-    </div>
+      <div className='d-flex justify-content-end gap-4'>
+        <input placeholder='Search..' style={{ width: "250px" }} className='inp' />
+        <button className='btn btn-primary' onClick={() => setOpenModal(true)}>Crea Team</button>
+      </div>
 
-    <div className='text-start d-felx justify-content-start mt-4'>
+      <div className='text-start d-felx justify-content-start mt-4'>
         <h2 className='text-start'>Imposta le autorizzazioni del team</h2>
         <p>Mantieni il tuo team organizzato ed efficiente assicurandoti che ogni utente abbia accesso ai giusti asset</p>
         <p>Vuoi scoprire di più? Informazioni sui team</p>
-    </div>
+      </div>
 
+      {/* MODAL */}
+      <Modal open={openModal} onClose={() => setOpenModal(false)}>
+        <Box sx={modalStyle}>
+          <Typography variant="h6" component="h2" gutterBottom>
+            Crea un nuovo Team
+          </Typography>
+          <label className='mt-4 p-0'>Nome Team</label>
+          <input
+            fullWidth
+            required
+            placeholder="Nome Team"
+            className='inp w-100'
+            value={teamName}
+            onChange={(e) => setTeamName(e.target.value)}
+            margin="normal"
+          />
+          <label className='mt-4 p-0'>Manager</label>
+          <input
+            fullWidth
+            required
+            className='inp w-100'
+            placeholder="Manager"
+            value={manager}
+            onChange={(e) => setManager(e.target.value)}
+            margin="normal"
+          />
+          <label className='mt-4 p-0'>Membri</label>
+          <input
+            fullWidth
+            placeholder="Membri"
+            className='inp w-100'
+            value={members}
+            onChange={(e) => setMembers(e.target.value)}
+            margin="normal"
+          />
+          <label className='mt-4 p-0'>Descrizione</label>
+          <textarea
+            fullWidth
+            placeholder="Descrizione"
+            className='inp w-100'
+            multiline
+            rows={3}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            margin="normal"
+          />
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2, gap: 1 }}>
+            <button className='btn' onClick={() => setOpenModal(false)}>Annulla</button>
+            <button className='btn btn-primary' onClick={handleCreate} variant="contained">Crea</button>
+          </Box>
+        </Box>
+      </Modal>
     </div>
   );
 };
