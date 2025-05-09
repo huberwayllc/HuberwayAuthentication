@@ -29,8 +29,8 @@ const SettingsSecurity = () => {
       <div className='p-2'>
         <h1>Generale</h1>
 
-             {/* <SettingsMenu /> */} 
-
+        <SettingsMenu />
+        
         <div style={{ borderBottom: "1px solid gray" }} className='mt-2'>
           <p className='mt-2 textDarkGray'>
           Queste preferenze verranno applicate solo a te. Per le impostazioni di sicurezza dell'account, vai alle impostazioni dell'account.

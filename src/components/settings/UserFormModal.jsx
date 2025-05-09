@@ -15,7 +15,7 @@ const modalStyle = {
   position: 'absolute',
   top: '0',
   right: '0',
-  width: 600,
+  width: 670,
   height: '100vh',
   bgcolor: 'background.paper',
   boxShadow: 24,
