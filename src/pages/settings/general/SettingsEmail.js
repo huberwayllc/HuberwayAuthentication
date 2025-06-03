@@ -13,7 +13,7 @@ const SettingsEmail = () => {
     <div className='p-2'>
       <h1>Generale</h1>
 
-       <SettingsMenu /> 
+      {/*    <SettingsMenu /> */}
 
       <div style={{borderBottom: "1px solid gray"}} className='mt-2'>
         <p className='mt-2 textDarkGray'>Queste preferenze si applicano solo a te. Per la gestione delle e-mail a livello di account, vai alle Impostazioni di registrazione delle e-mail.</p>

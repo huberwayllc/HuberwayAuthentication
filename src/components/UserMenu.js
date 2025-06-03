@@ -25,15 +25,25 @@ function UserMenu({ user, onLogout }) {
       }}
     >
       <div className="d-flex gap-2 align-items-center">
-        <Avatar sx={{ bgcolor: "orange" }}>OP</Avatar>
+        <Avatar sx={{ bgcolor: "orange" }}>
+          {(user.name || "Gennaro Ereditata").charAt(0).toUpperCase()}
+        </Avatar>
         <div className="d-flex flex-column gap-1">
           <p className="mb-0"><strong>{user.name || "Gennaro Ereditata"}</strong></p>
           <p style={{ margin: 0, color: "#64748B" }}>{user.email || "g.ereditata@huberway.com"}</p>
-          <p onClick={() => {navigate("/settings/user-preferences/profile")}} style={{ color: "#0039A9", cursor: "pointer" }} className="mb-0 hoverUnderline"><b>Profilo e preferenze</b></p>
+          <p
+              onClick={() => navigate("/settings/user-preferences/profile")}
+              style={{ color: "#0039A9", cursor: "pointer" }}
+              className="mb-0 hoverUnderline"
+          >
+            <b>Profilo e preferenze</b>
+          </p>
         </div>
       </div>
 
-      <hr className="my-3" />
+
+      {/*
+        <hr className="my-3" />
 
       <div className="d-flex gap-2 align-items-center">
         <MessageIcon className="position-relative" style={{fontSize: "15px", top: "3px"}}/>
@@ -96,7 +106,7 @@ function UserMenu({ user, onLogout }) {
           <OpenInNewIcon style={{fontSize: "18px", position: "relative", top: "1px"}}/>
         </div>
       </div>
-
+*/}
       <hr className="my-3" />
 
       <div className="d-flex justify-content-between gap-2 align-items-center">

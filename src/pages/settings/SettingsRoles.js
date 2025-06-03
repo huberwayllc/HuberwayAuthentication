@@ -16,7 +16,7 @@ const SettingsRoles = () => {
   return (
     <div className='p-2'>
       <h1>Ruoli</h1>
-      <UsersTeamMenu />
+        {/*  <UsersTeamMenu /> */}
 
       <div className='d-flex justify-content-end gap-4'>
         <input placeholder='Search..' style={{ width: "250px" }} className='inp' />

@@ -29,7 +29,7 @@ const SettingsSecurity = () => {
       <div className='p-2'>
         <h1>Generale</h1>
 
-        <SettingsMenu />
+        {/*    <SettingsMenu /> */}
         
         <div style={{ borderBottom: "1px solid gray" }} className='mt-2'>
           <p className='mt-2 textDarkGray'>

@@ -1,54 +1,63 @@
-import React, {useState} from "react";
+import React from "react";
 
-const PricingCard = ({ plan, index,price, features, handleSubmit}) => {
-    const [pricingMode, setPricingMode] = useState("monthly");
-    
+const PricingCard = ({ plan, description, price, features, handleSubmit, pricingMode, userCount }) => {
+    const selectedPrice = price[pricingMode]; // "monthly" o "yearly"
+    const hasMonthly = price.monthly && price.monthly.amount;
+    const hasYearly = price.yearly && price.yearly.amount;
 
-    function getPrice(){
-        if(pricingMode === "monthly"){
-            return price.month.amount + "€/month";
-        } else {
-            return price.year.amount + "€/year";
-        }
+    const savings =
+        hasMonthly && hasYearly
+            ? Math.round(((price.monthly.amount * 12 - price.yearly.amount) / (price.monthly.amount * 12)) * 100)
+            : null;
+
+    function getPrice() {
+        if (!selectedPrice) return "N/A";
+        const total = selectedPrice.amount * userCount;
+        return (
+            <>
+                {total.toFixed(2)}€<br></br>
+                <span style={{ fontSize: "14px", marginLeft: "0px" }}>
+                {pricingMode} for {userCount} user{userCount > 1 ? "s" : ""}
+            </span>
+            </>
+        );
     }
 
-    function getPriceID(){
-        if(pricingMode === "monthly"){
-            return price.month.stripe_price_id;
-        } else {
-            return price.year.stripe_price_id;
-        }
-    }
 
+    function getPriceID() {
+        return selectedPrice?.stripe_price_id || null;
+    }
 
     return (
-        <div className="pricing-card position-relative" key={index}>
-            <h3 style={{fontSize: "22px"}}>{plan}</h3>
+        <div className="pricing-card position-relative">
+            <h3 style={{ fontSize: "22px" }}>{plan}</h3>
+            {description && <p style={{ fontSize: "14px", minHeight: "48px" }}>{description}</p>}
+
             <div className="price">{getPrice()}</div>
-            <hr className="hr-dash"/>
+
+            {pricingMode === "yearly" && savings !== null && savings > 0 && (
+                <div style={{ color: "#28a745", fontSize: "14px", marginBottom: "10px" }}>
+                    Save {savings}% with annual billing
+                </div>
+            )}
+
+            <hr className="hr-dash" />
+
             <ul className="features">
                 {features.map((feature, index) => (
                     <li key={index}>✓ {feature}</li>
                 ))}
             </ul>
 
-            <div className="pricing-toggle">
-                <span className={`toggle-label ${pricingMode === "monthly" ? "active" : ""}`}>Monthly</span>
-                <button
-                    className={`toggle-switch ${pricingMode === "yearly" ? "active" : ""}`}
-                    onClick={() => setPricingMode(pricingMode === "monthly" ? "yearly" : "monthly")}
-                    aria-label={`Switch to ${pricingMode === "monthly" ? "yearly" : "monthly"} billing`}
-                >
-                    <span className="toggle-handle"></span>
-                </button>
-                <span className={`toggle-label ${pricingMode === "yearly" ? "active" : ""}`}>Yearly</span>
-            </div>
-
-            <button className="select-plan-btn position-absolute" onClick={() => handleSubmit(getPriceID())}>
+            <button
+                className="select-plan-btn position-absolute"
+                onClick={() => handleSubmit(getPriceID())}
+                disabled={!getPriceID()}
+            >
                 Select Plan
             </button>
         </div>
     );
-}
+};
 
 export default PricingCard;

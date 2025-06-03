@@ -11,7 +11,7 @@ const SettingsProfile = () => {
     <div className='p-2'>
       <h1>Generale</h1>
 
-    <SettingsMenu />
+        {/*    <SettingsMenu /> */}
 
       <div className='mt-2'>
         <p className='mt-2 textDarkGray'>Queste preferenze si applicano solo a te.</p>

@@ -5,14 +5,18 @@ import Avatar from '@mui/material/Avatar';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import SearchIcon from '@mui/icons-material/Search';
 import UserMenu from "./UserMenu";
+import VoiceAssistantModal from "./IA/VoiceAssistantModal";
+
 
 function Header() {
   const [user, setUser] = useState({ email: "", name: "", id: null });
   const [menuVisible, setMenuVisible] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef(null);
+  const [iaOpen, setIaOpen] = useState(false);
 
-  useEffect(() => {
+
+    useEffect(() => {
     getAccountDetails()
       .then((data) => {
         setUser({
@@ -40,7 +44,7 @@ function Header() {
     navigate("/account/login");
   };
 
-  const toggleMenu = () => {
+    const toggleMenu = () => {
     setMenuVisible((prev) => !prev);
   };
 
@@ -60,6 +64,7 @@ function Header() {
 
   return (
     <>
+
       <header style={{zIndex: "999"}} className="header">
         <img
           src="https://cdn.huberway.com/site/logo-dark.svg"
@@ -97,6 +102,7 @@ function Header() {
                 color: "#00A3DD",
                 cursor: "pointer",
               }}
+              onClick={() => setIaOpen(true)}
             />
           </div>
         </div>
@@ -108,7 +114,9 @@ function Header() {
             </li>
           </ul>
           <div onClick={toggleMenu} style={{ cursor: "pointer" }}>
-            <Avatar sx={{ bgcolor: "orange" }}>OP</Avatar>
+            <Avatar sx={{ bgcolor: "orange" }}>
+                {(user.name || "Gennaro Ereditata").charAt(0).toUpperCase()}
+            </Avatar>
           </div>
 
           {menuVisible && (
@@ -116,6 +124,9 @@ function Header() {
           )}
         </div>
       </header>
+
+
+        {iaOpen && <VoiceAssistantModal onClose={() => setIaOpen(false)} />}
 
       <div style={{marginTop: "60px"}}></div>
     </>

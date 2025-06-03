@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {getAccountDetails} from "../backend/api";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getAccountDetails } from "../backend/api";
 import Header from "../components/Header";
 import PricingCard from "../components/PricingCard";
 
 const Pricing = () => {
-    const [user, setUser] = useState({email: "", name: ""});
+    const [user, setUser] = useState({ email: "", name: "" });
     const [selectedApp, setSelectedApp] = useState(null);
     const [products, setProducts] = useState([]);
-    const [selectedTab, setSelectedTab] = useState("Individuals");
     const [userCount, setUserCount] = useState(1);
+    const [pricingMode, setPricingMode] = useState("monthly");
     const navigate = useNavigate();
 
     const handleUserCountChange = (e) => {
@@ -23,7 +23,6 @@ const Pricing = () => {
             }
         }
     };
-    
 
     useEffect(() => {
         getAccountDetails()
@@ -35,7 +34,7 @@ const Pricing = () => {
                 });
             })
             .catch((error) => {
-                console.error("Errore nel recupero dei dettagli dell'account:", error);
+                console.error("Error fetching account details:", error);
                 navigate("/account/login");
             });
     }, [navigate]);
@@ -48,9 +47,7 @@ const Pricing = () => {
 
                 data.forEach((item) => {
                     item.plans = groupPlans(item.plans);
-                })
-
-                console.log(data);
+                });
 
                 setProducts(data);
             } catch (error) {
@@ -62,169 +59,176 @@ const Pricing = () => {
     }, []);
 
     function groupPlans(plans) {
-        const groupedPlans = {};
-
+        const grouped = {};
 
         plans.forEach(plan => {
-            const baseName = plan.plan_name;
-            const recurring = plan.recurring.toLowerCase();
-
-            if (!groupedPlans[baseName]) {
-                groupedPlans[baseName] = {
-                    id: plan.id,
-                    product_name: plan.product_name,
-                    plan_name: baseName,
-                    features: plan.features,
-                    target: plan.target,
-                    software: plan.software,
-                    created_at: plan.created_at,
-                    updated_at: plan.updated_at,
+            const name = plan.name.trim();
+            const period = plan.billing_period.toLowerCase();
+            if (!grouped[name]) {
+                grouped[name] = {
+                    plan_name: name,
+                    description: plan.description,
+                    software: plan.software_module,
+                    target: "ALL",
                     price: {
                         month: null,
                         year: null
-                    }
+                    },
+                    id: plan.id
                 };
             }
 
-            groupedPlans[baseName].price[recurring] = {
-                stripe_price_id: plan.stripe_price_id,
-                amount: plan.amount,
-                currency: plan.currency
+            grouped[name].price[period] = {
+                amount: parseFloat(plan.price_per_user),
+                currency: "EUR",
+                stripe_price_id: null,
+                id: plan.id
             };
         });
 
-        return Object.values(groupedPlans);
+        return Object.values(grouped);
     }
 
+    const handleSubmit = async (priceId) => {
+        try {
+            const response = await fetch("https://api.huberway.com/api/subscription/request", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    plan_id: priceId,
+                    email: user.email,
+                    user_count: userCount
+                })
+            });
 
-    const tabs = [
-        {
-            key: "Individuals",
-            label: "Small teams or Individuals",
-        },
-        {
-            key: "Business",
-            label: "Enterprises",
+            const data = await response.json();
+
+            if (data.session_url) {
+                window.location.href = data.session_url;
+            } else {
+                alert("Subscription creation failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Subscription request error:", error);
+            alert("Error occurred. Please contact support.");
         }
-    ]
-
-
-const handleSubmit = async (priceId) => {
-    try {
-        const response = await fetch("/api/subscription/request", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                plan_id: priceId,
-                email: user.email,
-                user_count: userCount
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.session_url) {
-            window.location.href = data.session_url;
-        } else {
-            alert("Errore nella creazione della sottoscrizione. Riprova.");
-        }
-    } catch (error) {
-        console.error("Errore durante la richiesta di sottoscrizione:", error);
-        alert("Errore durante la richiesta. Contatta il supporto.");
-    }
-};
-
+    };
 
     return (
         <div className="dashboard-container">
-            <Header/>
+            <Header />
+            <div className="topbar">
+                <div className="topbar-scroll">
+                    {products.map((link, index) => (
+                        <div
+                            key={index}
+                            className={`topbar-item ${selectedApp?.name === link.name ? "active" : ""}`}
+                            onClick={() => setSelectedApp(link)}
+                        >
+                            {link.icon && (
+                                <img src={link.icon} alt={link.name} className="topbar-icon" />
+                            )}
+                            <span>{link.name}</span>
+                        </div>
+                    ))}
+
+                    <div className="topbar-usercount enhanced-usercount">
+                        <label htmlFor="userCount" className="usercount-label">Users:
+                            <span className="info-icon" title="Number of users to include in the subscription">
+                                <i className="fal fa-info-circle"></i>
+                            </span>
+                        </label>
+                        <div className="usercount-control">
+                            <button
+                                className="usercount-btn"
+                                onClick={() => setUserCount(prev => Math.max(1, prev - 1))}
+                                type="button"
+                            >−</button>
+
+                            <input
+                                id="userCount"
+                                className="usercount-input"
+                                type="number"
+                                value={userCount === "" ? "" : userCount}
+                                min="1"
+                                onChange={handleUserCountChange}
+                                onBlur={() => {
+                                    if (!userCount || userCount < 1) setUserCount(1);
+                                }}
+                            />
+
+                            <button
+                                className="usercount-btn"
+                                onClick={() => setUserCount(prev => prev + 1)}
+                                type="button"
+                            >+</button>
+                        </div>
+                    </div>
+                    <div className="pricing-toggle" style={{ marginLeft: "20px" }}>
+                        <span className={`toggle-label ${pricingMode === "monthly" ? "active" : ""}`}>Monthly
+                        <span className="info-icon" title="Billed every month">
+                                <i className="fal fa-info-circle"></i>
+                            </span></span>
+
+
+                        <button
+                            className={`toggle-switch ${pricingMode === "yearly" ? "active" : ""}`}
+                            onClick={() => setPricingMode(pricingMode === "monthly" ? "yearly" : "monthly")}
+                            aria-label={`Switch to ${pricingMode === "monthly" ? "yearly" : "monthly"} billing`}
+                        >
+                            <span className="toggle-handle"></span>
+                        </button>
+                        <span className={`toggle-label ${pricingMode === "yearly" ? "active" : ""}`}>Yearly
+
+                            <span className="info-icon" title="Billed once per year with potential savings">
+                                <i className="fal fa-info-circle"></i>
+                            </span></span>
+                    </div>
+                </div>
+            </div>
 
             <main className="pricing dynamic">
-                {/* Sidebar */}
-                <aside className="sidebar">
-                    <ul>
-                        {products.map((link, index) => (
-                            <li
-                            key={index}
-                            className={selectedApp?.name === link.name ? "active" : ""}
-                            onClick={() => setSelectedApp(link)}
-                            >
-                <span className="icon-container">
-                  {link.icon &&
-                      <img
-                          key={link.name}
-                          src={link.icon}
-                          alt={link.name}
-                          className={`icon`}
-                      />
-                  }
-                </span>
-                                <span>{link.name}</span>
-                            </li>
-                        ))}
-                <div style={{padding: "15px 20px"}}>
-                    <label className="pb-1 fw-bold">Numero utenti:</label>
-                    <input
-                    className='inp'
-                    style={{width: "100%"}}
-                    type="number"
-                    value={userCount === "" ? "" : userCount}
-                    min="1"
-                    onChange={handleUserCountChange}
-                    onBlur={() => {
-                        if (!userCount || userCount < 1) setUserCount(1);
-                    }}
-                    />
-                </div>
-                    </ul>
-                </aside>
-
                 <section className="pricing-details">
                     {selectedApp ? (
                         <div>
-                            <div className={"pricing-container"}>
-                                <div className="pricing-tabs">
-                                    {tabs.map((tab, index) => (
-                                        <div
-                                            key={index}
-                                            className={`tab-button ${selectedTab === tab.key ? "active" : ""}`}
-                                            onClick={() => setSelectedTab(tab.key)}
-                                        >
-                                            {tab.label}
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div className={"app-title"}>
-                                    <div className={"app-logo"}>
-                                        <img src={selectedApp.icon} alt={"App Icon"}/>
+                            <div className="pricing-container">
+                                <div className="app-title">
+                                    <div className="app-logo">
+                                        <img src={selectedApp.icon} alt="App Icon" />
                                     </div>
-                                    <h4 className={"app-name"}>{selectedApp.name}</h4>
+                                    <h4 className="app-name">{selectedApp.name}</h4>
                                 </div>
 
-                                <h6 className={"app-description"}>{selectedApp.description}</h6>
-                                <div className="pricing-cards">
-                                    {selectedApp.plans.filter(option => option.target === "ALL" || selectedTab === option.target).map((pricingOption, index) => (
-                                        <PricingCard
-                                            plan={pricingOption.plan_name}
-                                            price={{
-                                                month: pricingOption.price.month && {
-                                                ...pricingOption.price.month,
-                                                amount: pricingOption.price.month.amount * userCount
-                                                },
-                                                year: pricingOption.price.year && {
-                                                ...pricingOption.price.year,
-                                                amount: pricingOption.price.year.amount * userCount
-                                                }
-                                            }}
-                                            features={["Feature 1", "Feature 2", "Feature 3"]}
-                                            index={index}
-                                            handleSubmit={handleSubmit}
-                                            />
-                                    ))}
-                                </div>
+                                <h6 className="app-description">{selectedApp.description}</h6>
+
+                                {selectedApp.plans.length > 0 ? (
+                                    <div className="pricing-cards">
+                                        {selectedApp.plans.map((pricingOption, index) => {
+                                            const { month, year } = pricingOption.price;
+                                            const activePrice = pricingMode === "yearly" && year ? year : month;
+                                            const savings = month && year
+                                                ? ((month.amount * 12 - year.amount) / (month.amount * 12)) * 100
+                                                : 0;
+                                            return (
+                                                <PricingCard
+                                                    key={index}
+                                                    plan={pricingOption.plan_name}
+                                                    description={pricingOption.description}
+                                                    price={{ ...pricingOption.price }}
+                                                    features={["Feature 1", "Feature 2", "Feature 3"]}
+                                                    index={index}
+                                                    handleSubmit={() => handleSubmit(activePrice?.id)}
+                                                    pricingMode={pricingMode}
+                                                    userCount={userCount}
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                ) : (
+                                    <p style={{ marginTop: 20 }}>No available plans for this module yet.</p>
+                                )}
                             </div>
                         </div>
                     ) : (
@@ -236,25 +240,13 @@ const handleSubmit = async (priceId) => {
                                     alt="Huberway"
                                 />
                                 <div className="software-logos">
-                                    <img
-                                        alt="Sales"
-                                        src="https://dev.huberway.com/icon/sales.svg"
-                                    ></img>
-                                    <img
-                                        alt="Marketing"
-                                        src="https://dev.huberway.com/icon/marketing.svg"
-                                    ></img>
-                                    <img
-                                        alt="SmartChat"
-                                        src="https://dev.huberway.com/icon/smartchat.svg"
-                                    ></img>
-                                    <img
-                                        alt="CMS"
-                                        src="https://dev.huberway.com/icon/content.svg"
-                                    ></img>
+                                    <img alt="Sales" src="https://dev.huberway.com/icon/sales.svg" />
+                                    <img alt="Marketing" src="https://dev.huberway.com/icon/marketing.svg" />
+                                    <img alt="SmartChat" src="https://dev.huberway.com/icon/smartchat.svg" />
+                                    <img alt="CMS" src="https://dev.huberway.com/icon/content.svg" />
                                 </div>
                             </div>
-                            <h2>Select a software for showing the plane</h2>
+                            <h2>Select a software to view available plans</h2>
                         </div>
                     )}
                 </section>

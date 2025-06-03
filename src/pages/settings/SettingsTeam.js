@@ -18,7 +18,7 @@ const SettingsTeam = () => {
   return (
     <div className='p-2'>
       <h1>Team</h1>
-      <UsersTeamMenu />
+        {/*  <UsersTeamMenu /> */}
 
       <div className='d-flex justify-content-end gap-4'>
         <input placeholder='Search..' style={{ width: "250px" }} className='inp' />
