@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { getAccountDetails, getClientApps } from "../backend/api";
 import Header from "../components/Header";
 import ImportWizardModal from "../components/ImportWizardModal";
+import { huberwayLinks } from "../data/platforms";
+import ProgressBar from "./ProgressBar";
 
 
 const Dashboard = () => {
@@ -51,41 +53,6 @@ const Dashboard = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const huberwayLinks = [
-    {
-      name: "HubConnect",
-      description: "Centralized management of Sales and marketing",
-      url: "https://app.huberway.com",
-      icons: [
-        "https://dev.huberway.com/icon/sales.svg",
-      ],
-    },
-      {
-        name: "MailMaster",
-        description: "Centralized management of Email Marketing & Automation",
-        url: "https://campaign.huberway.com",
-        icons: [
-           "https://dev.huberway.com/icon/marketing.svg",
-        ],
-      },
-    {
-      name: "SmartChat AI",
-      description: "Support your customers with AI-powered chatbots",
-      url: "#",
-      icons: ["https://dev.huberway.com/icon/smartchat.svg"],
-    },
-    {
-      name: "ContentFlow",
-      description: "Content management, E-Commerce and Web App Development",
-      url: "#",
-      icons: ["https://dev.huberway.com/icon/content.svg"],
-    },
-    {
-      name: "Web Analytics",
-      description: "Detailed analysis of traffic and conversions",
-      url: "https://analytics.huberway.com",
-    },
-  ];
 
   return (
     <div className="dashboard-container">
@@ -160,6 +127,37 @@ const Dashboard = () => {
               </a>
             ))}
           </div>
+        </section>
+
+        <section>
+          <h2>Reporting</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {huberwayLinks.map((app) => (
+                <tr key={app.name}>
+                  <td>{app.name}</td>
+                  <td>{app.url === "#" ? "Coming Soon" : "Active"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Info & Academy</h2>
+          <p>Stay updated with Huberway news and marketing resources.</p>
+        </section>
+
+        <section>
+          <h2>Onboarding Progress</h2>
+          <ProgressBar progress={30} />
+          <p className="text-information">Complete the tasks to reach the next level.</p>
         </section>
       </main>
     </div>

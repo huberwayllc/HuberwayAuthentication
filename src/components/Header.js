@@ -5,12 +5,15 @@ import Avatar from '@mui/material/Avatar';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import SearchIcon from '@mui/icons-material/Search';
 import UserMenu from "./UserMenu";
+import PlatformMenu from "./PlatformMenu";
 
 function Header() {
   const [user, setUser] = useState({ email: "", name: "", id: null });
   const [menuVisible, setMenuVisible] = useState(false);
+  const [appsVisible, setAppsVisible] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef(null);
+  const appsRef = useRef(null);
 
   useEffect(() => {
     getAccountDetails()
@@ -44,10 +47,17 @@ function Header() {
     setMenuVisible((prev) => !prev);
   };
 
+  const toggleApps = () => {
+    setAppsVisible((prev) => !prev);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuVisible(false);
+      }
+      if (appsRef.current && !appsRef.current.contains(event.target)) {
+        setAppsVisible(false);
       }
     };
   
@@ -102,7 +112,8 @@ function Header() {
         </div>
 
         <div className="user-menu d-flex align-items-center" ref={menuRef} style={{ position: "relative" }}>
-          <ul className="nav-list">
+          <ul className="nav-list" style={{ marginRight: "20px" }}>
+            <li onClick={toggleApps} style={{ cursor: "pointer" }}>Apps</li>
             <li>
               <Link to="/account/pricing">Pricing</Link>
             </li>
@@ -113,6 +124,11 @@ function Header() {
 
           {menuVisible && (
             <UserMenu user={user} onLogout={handleLogout} />
+          )}
+          {appsVisible && (
+            <div ref={appsRef}>
+              <PlatformMenu />
+            </div>
           )}
         </div>
       </header>
