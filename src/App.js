@@ -26,6 +26,9 @@ import BrandIdentity from './pages/settings/BrandIdentity';
 import Tracking from './pages/settings/Tracking';
 import AdvancedTracking from './pages/settings/AdvancedTracking';
 import SettingsRoles from './pages/settings/SettingsRoles';
+import HuberwayAssistant from "./components/HuberwayAssistant";
+import ThankYou from "./pages/ThankYou";
+import CancelSubscription from "./pages/CancelSubscription";
 
 function App() {
 
@@ -40,11 +43,11 @@ function App() {
                 <Route path="/account/recovery" element={<Recovery />} />
                 <Route path="/account/dashboard" element={<Dashboard />} />
                 <Route path="/account/pricing" element={<Pricing />} />
+                <Route path="/account/pricing/thank-you" element={<ThankYou />} />
+                <Route path="/account/pricing/canceled" element={<CancelSubscription />} />
                 <Route path="/account/checkout" element={<Checkout />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
-                <Route path="/subscription/success" element={<SubscriptionSuccess />} />
-
-                <Route path="/settings" element={<SettingsLayout />}>
+                <Route path="/account/settings" element={<SettingsLayout />}>
                     <Route path="user-preferences/profile" element={<SettingsProfile />} />
                     <Route path="user-preferences/email" element={<SettingsEmail />} />
                     <Route path="user-preferences/security" element={<SettingsSecurity />} />

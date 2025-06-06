@@ -1,151 +1,70 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { getAccountDetails, getClientApps } from "../backend/api";
-import Header from "../components/Header";
-import ImportWizardModal from "../components/ImportWizardModal";
 
+import React, { useState, useEffect } from "react";
+import Header from "../components/Header";
+import BlogSection from "../components/dashboard/BlogSection";
+import ReportsSection from "../components/dashboard/ReportsSection";
+import CrmInsights from "../components/dashboard/CrmInsights";
+import SoftwareSwitcher from "../components/dashboard/SoftwareSwitcher";
+import HuberwayTour from "../components/HuberwayTour";
+import DashboardSkeleton from "../components/dashboard/DashboardSkeleton";
+import '../styles/dashboard.css';
 
 const Dashboard = () => {
-  const [user, setUser] = useState({ email: "", name: "", id: null });
-  const [clientApps, setClientApps] = useState([]);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const menuRef = useRef(null);
-  const [wizardOpen, setWizardOpen] = useState(false);
+  const [selectedApp, setSelectedApp] = useState("all");const [showTour, setShowTour] = useState(false);
+
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
-    getAccountDetails()
-      .then((data) => {
-        setUser({
-          email: data.data.email,
-          name: data.data.username,
-          id: data.data.id,
-        });
-      })
-      .catch((error) => {
-        console.error("Errore nel recupero dei dettagli dell'account:", error);
-        navigate("/account/login");
-      });
-  }, [navigate]);
-
-  useEffect(() => {
-    if (user.id) {
-      getClientApps()
-        .then((apps) => {
-          setClientApps(apps.filter((app) => app.user_id === user.id));
-        })
-        .catch((err) => console.error("Errore nel recupero delle app:", err));
+    const seenTour = localStorage.getItem("huberway_dashboard_tour_done");
+    if (!seenTour) {
+      setShowTour(true);
     }
-  }, [user.id]);
+  }, []);
 
-
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setMenuOpen(false);
-    }
+  const handleTourFinish = () => {
+    localStorage.setItem("huberway_dashboard_tour_done", "true");
+    setShowTour(false);
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Simula caricamento
+    return () => clearTimeout(timeout);
   }, []);
 
-  const huberwayLinks = [
-    {
-      name: "HubConnect",
-      description: "Centralized management of Sales and marketing",
-      url: "https://app.huberway.com",
-      icons: [
-        "https://dev.huberway.com/icon/sales.svg",
-      ],
-    },
-      {
-        name: "MailMaster",
-        description: "Centralized management of Email Marketing & Automation",
-        url: "https://campaign.huberway.com",
-        icons: [
-           "https://dev.huberway.com/icon/marketing.svg",
-        ],
-      },
-    {
-      name: "SmartChat AI",
-      description: "Support your customers with AI-powered chatbots",
-      url: "#",
-      icons: ["https://dev.huberway.com/icon/smartchat.svg"],
-    },
-    {
-      name: "ContentFlow",
-      description: "Content management, E-Commerce and Web App Development",
-      url: "#",
-      icons: ["https://dev.huberway.com/icon/content.svg"],
-    },
-    {
-      name: "Web Analytics",
-      description: "Detailed analysis of traffic and conversions",
-      url: "https://analytics.huberway.com",
-    },
-  ];
+  if (loading) return <DashboardSkeleton />;
+
 
   return (
-    <div className="dashboard-container">
-     <Header></Header>
-      <main className="software-list dynamic">
-        <section>
-          <h2>Apps</h2>
-          <div class="grid-container">
-            {huberwayLinks.map((software) => (
-              <a
-                key={software.name}
-                href={software.url}
-                className={`software-card dynamic-card ${
-                  software.url === "#" ? "coming-soon" : ""
-                }`}
-                onClick={(e) => software.url === "#" && e.preventDefault()} // Previene il click se in Coming Soon
-              >
-                <div className="card-content">
-                  <h3>
-                    {software.icons &&
-                      software.icons.map((icon, index) => (
-                        <img
-                          key={index}
-                          src={icon}
-                          alt=""
-                          style={{ height: "30px", marginRight: "5px" }}
-                        />
-                      ))}
-                    {software.name}
-                  </h3>
-                  <p>{software.description}</p>
+      <div className="dashboard-container">
+        <Header />
+        <main className="main-dashboard">
+          {/* <SoftwareSwitcher selected={selectedApp} onChange={setSelectedApp} /> */}
+
+          <div className="grid-section">
+            <div className="one-col-layout">
+              <div className="highlight-box" data-tour="cose-da-fare">
+                <h3>Things to do</h3>
+                <div className="tip-card">
+                  <strong>Follow the best marketing practices to increase sales</strong>
+                  <p>Every product needs customers. Find out how.</p>
+                  <a href="/account/pricing" className="btn btn-warning">View pricing</a>
                 </div>
-                {software.url === "#" && (
-                  <span className="coming-soon-badge">Coming Soon</span>
-                )}
-                <div className="card-hover-effect"></div>
-              </a>
-            ))}
+              </div>
+
+            </div>
+            <div className="two-col-layout">
+              <BlogSection />
+              <div className="reports-wrapper" data-tour="resoconti">
+                <ReportsSection selectedApp={selectedApp} />
+              </div>
+            </div>
           </div>
-        </section>
-        <section>
-          <h2>My Apps</h2>
-          <div class="grid-container">
-            {clientApps.map((software) => (
-              <a
-                key={software.name}
-                href={software.url}
-                className="software-card dynamic-card"
-              >
-                <div className="card-content">
-                  <h3>{software.name}</h3>
-                  <p>Access {software.name} tools and services</p>
-                </div>
-                <div className="card-hover-effect"></div>
-              </a>
-            ))}
-          </div>
-        </section>
-      </main>
-    </div>
+        </main>
+        {showTour && <HuberwayTour onFinish={handleTourFinish} />}
+      </div>
   );
 };
 

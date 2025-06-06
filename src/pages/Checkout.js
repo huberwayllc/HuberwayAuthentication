@@ -151,7 +151,6 @@ const Checkout = () => {
     const goBack = () => navigate(-1);
 
     return (
-        <Elements stripe={stripePromise}>
             <div className="dashboard-container" style={{height: "0vh"}}>
                 <main className="d-flex w-100 h-100">
                     {/* Colonna sinistra */}
@@ -204,7 +203,6 @@ const Checkout = () => {
                     </div>
                 </main>
             </div>
-        </Elements>
     );
 };
 

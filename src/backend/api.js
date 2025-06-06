@@ -5,10 +5,8 @@ const API_URL = 'https://api.huberway.com';
 
 // Funzione per ottenere i dettagli dell'account
 export const getAccountDetails = async () => {
-     const authToken = Cookies.get('auth_token');
-
-
-     //const authToken = '774766dc33eb73f3abcbb0b19a4f46f4';
+    // const authToken = Cookies.get('auth_token');
+    const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
 
     if (!authToken) {
         throw new Error('No auth token found');
@@ -31,7 +29,8 @@ export const getAccountDetails = async () => {
 
 // Funzione per ottenere i dettagli del sito web
 export const getWebsiteDetails = async (website_id) => {
-     const authToken = Cookies.get('auth_token');
+    // const authToken = Cookies.get('auth_token');
+    const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
 
 
    // const authToken = '774766dc33eb73f3abcbb0b19a4f46f4';
@@ -58,10 +57,8 @@ export const getWebsiteDetails = async (website_id) => {
 
 // Funzione per ottenere le app dei clienti in base all'utente
 export const getClientApps = async (userId) => {
-    const authToken = Cookies.get('auth_token');
-
-
-     //const authToken = '774766dc33eb73f3abcbb0b19a4f46f4';
+    // const authToken = Cookies.get('auth_token');
+    const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
     if (!authToken) {
         throw new Error('No auth token found');
     }

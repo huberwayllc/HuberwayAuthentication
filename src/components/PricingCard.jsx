@@ -1,6 +1,6 @@
 import React from "react";
 
-const PricingCard = ({ plan, description, price, features, handleSubmit, pricingMode, userCount }) => {
+const PricingCard = ({ plan, description, price, user, features, pricingMode, userCount }) => {
     const selectedPrice = price[pricingMode]; // "monthly" o "yearly"
     const hasMonthly = price.monthly && price.monthly.amount;
     const hasYearly = price.yearly && price.yearly.amount;
@@ -24,8 +24,40 @@ const PricingCard = ({ plan, description, price, features, handleSubmit, pricing
     }
 
 
+
+    const handleSubmit = async (priceId) => {
+        console.log(priceId);
+        try {
+            const response = await fetch("https://api.huberway.com/api/subscription/request", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    plan_id: priceId,
+                    email: user.email,
+                    user_count: userCount
+                })
+            });
+
+            console.log("response", response);
+            const data = await response.json();
+
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                alert("Subscription creation failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Subscription request error:", error);
+            alert("Error occurred. Please contact support.");
+        }
+    };
+
+
+
     function getPriceID() {
-        return selectedPrice?.stripe_price_id || null;
+        return selectedPrice?.id || null;
     }
 
     return (

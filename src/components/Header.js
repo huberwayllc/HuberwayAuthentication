@@ -6,6 +6,9 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import SearchIcon from '@mui/icons-material/Search';
 import UserMenu from "./UserMenu";
 import VoiceAssistantModal from "./IA/VoiceAssistantModal";
+import AppsMenu from "./AppsMenu";
+import { SquaresPlusIcon } from '@heroicons/react/24/outline';
+
 
 
 function Header() {
@@ -14,6 +17,7 @@ function Header() {
   const navigate = useNavigate();
   const menuRef = useRef(null);
   const [iaOpen, setIaOpen] = useState(false);
+  const [appsOpen, setAppsOpen] = useState(false);
 
 
     useEffect(() => {
@@ -107,8 +111,22 @@ function Header() {
           </div>
         </div>
 
-        <div className="user-menu d-flex align-items-center" ref={menuRef} style={{ position: "relative" }}>
-          <ul className="nav-list">
+
+          <div className="user-menu d-flex align-items-center" ref={menuRef} style={{ position: "relative" }}>
+
+
+              <div className="apps-menu-wrapper" data-tour="apps" style={{ position: "relative", marginRight: "20px" }}>
+                  <button
+                      onClick={() => setAppsOpen(!appsOpen)}
+                      className="btn btn-light d-flex align-items-center justify-content-center"
+                      style={{ width: "40px", height: "40px", padding: 4, borderRadius: "8px" }}
+                  >
+                      <SquaresPlusIcon className="h-5 w-5" />
+                  </button>
+                  <AppsMenu open={appsOpen} setOpen={setAppsOpen} />
+              </div>
+
+              <ul className="nav-list">
             <li>
               <Link to="/account/pricing">Pricing</Link>
             </li>

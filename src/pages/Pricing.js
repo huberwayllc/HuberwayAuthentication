@@ -64,6 +64,8 @@ const Pricing = () => {
         plans.forEach(plan => {
             const name = plan.name.trim();
             const period = plan.billing_period.toLowerCase();
+
+            const parsedFeatures = JSON.parse(plan.features);
             if (!grouped[name]) {
                 grouped[name] = {
                     plan_name: name,
@@ -74,7 +76,8 @@ const Pricing = () => {
                         month: null,
                         year: null
                     },
-                    id: plan.id
+                    id: plan.id,
+                    features: parsedFeatures
                 };
             }
 
@@ -88,36 +91,9 @@ const Pricing = () => {
 
         return Object.values(grouped);
     }
-
-    const handleSubmit = async (priceId) => {
-        try {
-            const response = await fetch("https://api.huberway.com/api/subscription/request", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    plan_id: priceId,
-                    email: user.email,
-                    user_count: userCount
-                })
-            });
-
-            const data = await response.json();
-
-            if (data.session_url) {
-                window.location.href = data.session_url;
-            } else {
-                alert("Subscription creation failed. Please try again.");
-            }
-        } catch (error) {
-            console.error("Subscription request error:", error);
-            alert("Error occurred. Please contact support.");
-        }
-    };
-
     return (
-        <div className="dashboard-container">
+        <>
+
             <Header />
             <div className="topbar">
                 <div className="topbar-scroll">
@@ -189,69 +165,84 @@ const Pricing = () => {
                 </div>
             </div>
 
-            <main className="pricing dynamic">
-                <section className="pricing-details">
-                    {selectedApp ? (
-                        <div>
-                            <div className="pricing-container">
-                                <div className="app-title">
-                                    <div className="app-logo">
-                                        <img src={selectedApp.icon} alt="App Icon" />
+            <div className="">
+                <main className="pricing dynamic">
+                    <section className="pricing-details">
+                        {selectedApp ? (
+                            <div>
+                                <div className="pricing-container">
+                                    <div className="app-title">
+                                        <div className="app-logo">
+                                            <img src={selectedApp.icon} alt="App Icon" />
+                                        </div>
+                                        <h4 className="app-name">{selectedApp.name}</h4>
                                     </div>
-                                    <h4 className="app-name">{selectedApp.name}</h4>
-                                </div>
 
-                                <h6 className="app-description">{selectedApp.description}</h6>
+                                    <h6 className="app-description">{selectedApp.description}</h6>
 
-                                {selectedApp.plans.length > 0 ? (
-                                    <div className="pricing-cards">
-                                        {selectedApp.plans.map((pricingOption, index) => {
-                                            const { month, year } = pricingOption.price;
-                                            const activePrice = pricingMode === "yearly" && year ? year : month;
-                                            const savings = month && year
-                                                ? ((month.amount * 12 - year.amount) / (month.amount * 12)) * 100
-                                                : 0;
-                                            return (
-                                                <PricingCard
-                                                    key={index}
-                                                    plan={pricingOption.plan_name}
-                                                    description={pricingOption.description}
-                                                    price={{ ...pricingOption.price }}
-                                                    features={["Feature 1", "Feature 2", "Feature 3"]}
-                                                    index={index}
-                                                    handleSubmit={() => handleSubmit(activePrice?.id)}
-                                                    pricingMode={pricingMode}
-                                                    userCount={userCount}
-                                                />
-                                            );
-                                        })}
-                                    </div>
-                                ) : (
-                                    <p style={{ marginTop: 20 }}>No available plans for this module yet.</p>
-                                )}
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="no-app-selected">
-                            <div className="images">
-                                <img
-                                    className="huberway-logo"
-                                    src="https://cdn.huberway.com/site/logo-dark.svg"
-                                    alt="Huberway"
-                                />
-                                <div className="software-logos">
-                                    <img alt="Sales" src="https://dev.huberway.com/icon/sales.svg" />
-                                    <img alt="Marketing" src="https://dev.huberway.com/icon/marketing.svg" />
-                                    <img alt="SmartChat" src="https://dev.huberway.com/icon/smartchat.svg" />
-                                    <img alt="CMS" src="https://dev.huberway.com/icon/content.svg" />
+                                    {selectedApp.plans.length > 0 ? (
+                                        <div className="pricing-cards">
+                                            {selectedApp.plans.map((pricingOption, index) => {
+                                                const { month, year } = pricingOption.price;
+                                                const activePrice = pricingMode === "yearly" && year ? year : month;
+                                                const savings = month && year
+                                                    ? ((month.amount * 12 - year.amount) / (month.amount * 12)) * 100
+                                                    : 0;
+                                                return (
+                                                    <PricingCard
+                                                        key={index}
+                                                        plan={pricingOption.plan_name}
+                                                        description={pricingOption.description}
+                                                        price={{ ...pricingOption.price }}
+                                                        features={pricingOption.features}
+                                                        index={index}
+                                                        user={user}
+                                                        pricingMode={pricingMode}
+                                                        userCount={userCount}
+                                                    />
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <p style={{ marginTop: 20 }}>No available plans for this module yet.</p>
+                                    )}
                                 </div>
                             </div>
-                            <h2>Select a software to view available plans</h2>
-                        </div>
-                    )}
-                </section>
-            </main>
-        </div>
+                        ) : (
+                            <div className="no-app-selected animated-entry">
+                                <div className="orbit">
+                                    <div className="planet"></div>
+                                    <img src="https://cdn.huberway.com/site/logo-icon.svg" alt="Huberway" className="orbit-logo" />
+                                    <div className="satellites">
+                                        <img alt="Sales" src="https://dev.huberway.com/icon/sales.svg" />
+                                        <img alt="Marketing" src="https://dev.huberway.com/icon/marketing.svg" />
+                                        <img alt="SmartChat" src="https://dev.huberway.com/icon/smartchat.svg" />
+                                        <img alt="CMS" src="https://dev.huberway.com/icon/content.svg" />
+                                    </div>
+                                </div>
+
+                                <h2 className="impact-text">Let Huberway elevate your business</h2>
+                                <p className="impact-subtext">Select one of our intelligent modules to unlock its power.</p>
+                                <button
+                                    className="btn btn-primary pulse-button"
+                                    onClick={() => {
+                                        if (products.length > 0) {
+                                            setSelectedApp(products[0]); // seleziona il primo prodotto
+                                            document
+                                                .querySelector(".topbar-item")
+                                                ?.scrollIntoView({ behavior: "smooth", block: "center" });
+                                        }
+                                    }}
+                                >
+                                    Explore Plans
+                                </button>
+
+                            </div>
+                        )}
+                    </section>
+                </main>
+            </div>
+        </>
     );
 };
 

@@ -1,0 +1,103 @@
+
+/* dashboard.css */
+
+.dashboard-container {
+    padding: 20px;
+    background: rgb(241 245 249);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.main-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.grid-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.two-col-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tip-card {
+    margin-top: 10px;
+}
+
+.tip-card .btn {
+    margin-top: 10px;
+    background: #facc15;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.reports-wrapper {
+    border-radius: 12px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.report-grid, .crm-insights, .grid-2col {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.report-card, .blog-card, .box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.software-switcher {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.software-switcher button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: #e5e7eb;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.software-switcher button.active {
+    background: #3b82f6;
+    color: white;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
