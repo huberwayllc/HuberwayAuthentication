@@ -43,13 +43,13 @@ const ThankYou = () => {
                 <div className="d-flex gap-3 flex-wrap justify-content-center">
                     <button
                         className="btn btn-primary"
-                        onClick={() => navigate("/dashboard")}
+                        onClick={() => navigate("/account/dashboard")}
                     >
                         Go to Dashboard
                     </button>
                     <button
                         className="btn btn-outline-secondary"
-                        onClick={() => navigate("/pricing")}
+                        onClick={() => navigate("/account/pricing")}
                     >
                         View More Modules
                     </button>

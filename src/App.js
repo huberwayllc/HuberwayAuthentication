@@ -43,7 +43,7 @@ function App() {
                 <Route path="/account/recovery" element={<Recovery />} />
                 <Route path="/account/dashboard" element={<Dashboard />} />
                 <Route path="/account/pricing" element={<Pricing />} />
-                <Route path="/account/pricing/thank-you" element={<ThankYou />} />
+                <Route path="/account/pricing/success" element={<ThankYou />} />
                 <Route path="/account/pricing/canceled" element={<CancelSubscription />} />
                 <Route path="/account/checkout" element={<Checkout />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
