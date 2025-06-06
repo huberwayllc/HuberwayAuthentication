@@ -12,9 +12,9 @@ const Error = () => {
     getAccountDetails()
       .then((data) => {
         setUser({
-          email: data.data.email,
-          name: data.data.username,
-          id: data.data.id,
+          email: data.data.user.email,
+          name: data.data.user.username,
+          id: data.data.user.id,
         });
       })
       .catch((error) => {

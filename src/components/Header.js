@@ -24,9 +24,12 @@ function Header() {
     getAccountDetails()
       .then((data) => {
         setUser({
-          email: data.data.email,
-          name: data.data.username,
-          id: data.data.id,
+          email: data.data.user.email,
+          name: data.data.user.username,
+          id: data.data.user.id,
+          company: data.data.company,
+          sub_accounts: data.data.sub_accounts,
+          subscription: data.data.subscription,
         });
       })
       .catch((error) => {

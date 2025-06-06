@@ -143,8 +143,8 @@ const Login = () => {
   };
 
   // Controlla se esiste l'auth_token nei cookie
-   const authToken = Cookies.get('auth_token');
-  //const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
+   //const authToken = Cookies.get('auth_token');
+  const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
   // Se esiste l'auth_token, reindirizza l'utente alla dashboard
   if (authToken) {
     window.location.href = "https://app.huberway.com/account/dashboard";
