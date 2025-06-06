@@ -80,7 +80,7 @@ const VoiceAssistantModal = ({ onClose }) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer "
+                    "Authorization": "Bearer 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"
                 },
                 body: JSON.stringify({
                     model: "gpt-4o",
