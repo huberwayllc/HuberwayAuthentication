@@ -74,7 +74,6 @@ const VoiceAssistantModal = ({ onClose }) => {
         };
     }, []);
 
-    {/* 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 */}
     const sendToChatGPT = async (chatMessages) => {
         try {
             const response = await fetch("https://api.openai.com/v1/chat/completions", {
