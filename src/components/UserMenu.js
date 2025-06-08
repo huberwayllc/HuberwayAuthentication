@@ -57,12 +57,12 @@ function UserMenu({ user, onLogout }) {
                     </p>
                     <p
                         onClick={() =>
-                            navigate("/account/settings/user-preferences/profile")
+                            navigate("/profile")
                         }
                         style={{ color: "#0039A9", cursor: "pointer" }}
                         className="mb-0 hoverUnderline"
                     >
-                        <b>Profilo e preferenze</b>
+                        <b>Profile and preference</b>
                     </p>
                 </div>
             </div>
@@ -145,7 +145,7 @@ function UserMenu({ user, onLogout }) {
                             Subscription
                         </p>
                         <p className="mb-0">
-                            Stato:{" "}
+                            Status:{" "}
                             <span
                                 style={{
                                     color: statusColor,
@@ -156,7 +156,7 @@ function UserMenu({ user, onLogout }) {
                     {subscriptionStatus}
                 </span>
                         </p>
-                        <p className="mb-0">Piano attivo: <strong>{planId}</strong></p>
+                        <p className="mb-0">Active Plan: <strong>{planId}</strong></p>
                     </div>
 
 
@@ -177,7 +177,7 @@ function UserMenu({ user, onLogout }) {
                     }}
                     className="mb-0"
                 >
-                    Esci
+                    Logout
                 </p>
                 <a
                     style={{

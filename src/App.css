@@ -1451,4 +1451,11 @@ section .grid-container {
   font-size: 1rem;
   color: #64748b;
 }
-
+.hw-version {
+  position: absolute;
+  bottom: 17px;
+  left: 17px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #686868;
+}

@@ -110,7 +110,7 @@ function Header({ onActionClick }) {
                         <input
                             ref={searchInputRef}
                             className="hw-search-input"
-                            placeholder="Cerca..."
+                            placeholder="Search..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onFocus={() => setShowSearch(true)}
@@ -164,6 +164,7 @@ function Header({ onActionClick }) {
 
             {iaOpen && <VoiceAssistantModal onClose={() => setIaOpen(false)}/>}
             <div style={{ marginTop: "65px" }}></div>
+            <div className="hw-version">Huberway Alpha 0.024 - Powered by Huberway LLC</div>
         </>
     );
 }
