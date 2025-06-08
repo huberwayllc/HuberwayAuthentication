@@ -38,33 +38,37 @@ const Dashboard = () => {
 
 
   return (
-      <div className="dashboard-container">
-        <Header />
-        <main className="main-dashboard">
-          {/* <SoftwareSwitcher selected={selectedApp} onChange={setSelectedApp} /> */}
+      <>
 
-          <div className="grid-section">
-            <div className="one-col-layout">
-              <div className="highlight-box" data-tour="cose-da-fare">
-                <h3>Things to do</h3>
-                <div className="tip-card">
-                  <strong>Follow the best marketing practices to increase sales</strong>
-                  <p>Every product needs customers. Find out how.</p>
-                  <a href="/account/pricing" className="btn btn-warning">View pricing</a>
+        <Header />
+
+        <div className="dashboard-container">
+          <main className="main-dashboard">
+            {/* <SoftwareSwitcher selected={selectedApp} onChange={setSelectedApp} /> */}
+
+            <div className="grid-section">
+              <div className="one-col-layout">
+                <div className="highlight-box" data-tour="cose-da-fare">
+                  <h3>Things to do</h3>
+                  <div className="tip-card">
+                    <strong>Follow the best marketing practices to increase sales</strong>
+                    <p>Every product needs customers. Find out how.</p>
+                    <a href="/account/pricing" className="btn btn-warning">View pricing</a>
+                  </div>
+                </div>
+
+              </div>
+              <div className="two-col-layout">
+                <BlogSection />
+                <div className="reports-wrapper" data-tour="resoconti">
+                  <ReportsSection selectedApp={selectedApp} />
                 </div>
               </div>
-
             </div>
-            <div className="two-col-layout">
-              <BlogSection />
-              <div className="reports-wrapper" data-tour="resoconti">
-                <ReportsSection selectedApp={selectedApp} />
-              </div>
-            </div>
-          </div>
-        </main>
-        {showTour && <HuberwayTour onFinish={handleTourFinish} />}
-      </div>
+          </main>
+          {showTour && <HuberwayTour onFinish={handleTourFinish} />}
+        </div>
+      </>
   );
 };
 
