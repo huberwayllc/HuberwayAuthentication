@@ -1,0 +1,142 @@
+/* Overlay */
+.hw-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+/* Slideover */
+.hw-slideover {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 420px;
+    background-color: #fff;
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Header */
+.hw-slideover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.hw-slideover-header h2 {
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.hw-close-btn {
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Body */
+.hw-slideover-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Form */
+.hw-form-group {
+    margin-bottom: 1.25rem;
+}
+
+.hw-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.hw-input {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.hw-footer {
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    border-top: 1px solid #eee;
+    right: 0;
+    width: 100%;
+}
+
+.hw-btn {
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s ease-in-out;
+}
+
+.hw-btn.primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.hw-btn.success {
+    background-color: #00b86b;
+    color: #fff;
+}
+
+.hw-btn.ghost {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #333;
+}
+
+.hw-error-box {
+    background: #ffe6e6;
+    border-left: 4px solid #d33;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    color: #a94442;
+    border-radius: 6px;
+}
+
+.hw-description {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.hw-dns-box {
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: monospace;
+    border-left: 4px solid #007bff;
+    margin-bottom: 1rem;
+}

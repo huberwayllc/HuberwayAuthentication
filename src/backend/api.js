@@ -1,16 +1,14 @@
 // src/backend/api.js
 import Cookies from 'js-cookie';
+import { getAuthData } from "./AuthData";
 
 const API_URL = 'https://api.huberway.com';
 
 // Funzione per ottenere i dettagli dell'account
 export const getAccountDetails = async () => {
-    // const authToken = Cookies.get('auth_token');
-     //const userEmail = Cookies.get('user_email');
-     const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
-    const userEmail = ['hello@huberway.com'];
+    const { auth_token, email } = getAuthData();
 
-    if (!authToken) {
+    if (!auth_token) {
         throw new Error('No auth token found');
     }
 
@@ -19,7 +17,7 @@ export const getAccountDetails = async () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ auth_token: authToken,  email: userEmail }),
+        body: JSON.stringify({ auth_token: auth_token,  email: email }),
     });
 
     if (!response.ok) {
@@ -31,13 +29,10 @@ export const getAccountDetails = async () => {
 
 // Funzione per ottenere i dettagli del sito web
 export const getWebsiteDetails = async (website_id) => {
-    // const authToken = Cookies.get('auth_token');
-    const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
 
+    const { auth_token } = getAuthData();
 
-   // const authToken = '774766dc33eb73f3abcbb0b19a4f46f4';
-
-    if (!authToken) {
+    if (!auth_token) {
         throw new Error('No auth token found');
     }
 
@@ -46,7 +41,7 @@ export const getWebsiteDetails = async (website_id) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ auth_token: authToken, website_id }),
+        body: JSON.stringify({ auth_token: auth_token, website_id }),
     });
 
     if (!response.ok) {
@@ -59,9 +54,9 @@ export const getWebsiteDetails = async (website_id) => {
 
 // Funzione per ottenere le app dei clienti in base all'utente
 export const getClientApps = async (userId) => {
-    // const authToken = Cookies.get('auth_token');
-    const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
-    if (!authToken) {
+    const { auth_token } = getAuthData();
+
+    if (!auth_token) {
         throw new Error('No auth token found');
     }
 
@@ -70,7 +65,7 @@ export const getClientApps = async (userId) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ auth_token: authToken, user_id: userId }),
+        body: JSON.stringify({ auth_token: auth_token, user_id: userId }),
     });
 
     if (!response.ok) {

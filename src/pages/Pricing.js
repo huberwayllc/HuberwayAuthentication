@@ -94,6 +94,45 @@ const Pricing = () => {
 
         return Object.values(grouped);
     }
+
+    let activePlanPrice = null;
+    const activePlanId = user?.subscription?.plan_id;
+
+    if (activePlanId && selectedApp?.plans?.length > 0) {
+        for (const pricingOption of selectedApp.plans) {
+            const { monthly, yearly } = pricingOption.price;
+            if (monthly?.id === activePlanId) {
+                activePlanPrice = monthly.amount;
+                break;
+            } else if (yearly?.id === activePlanId) {
+                activePlanPrice = yearly.amount;
+                break;
+            }
+        }
+    }
+
+    if (user && !user.company) {
+        return (
+            <>
+                <Header />
+                <div className="no-company-warning" style={{
+                    textAlign: 'center',
+                    marginTop: '80px',
+                    padding: '20px',
+                    fontSize: '18px',
+                    color: '#e53e3e'
+                }}>
+                    <i className="fas fa-exclamation-triangle" style={{ fontSize: '48px', color: '#e53e3e' }}></i>
+                    <p style={{ marginTop: '20px' }}>
+                        Il tuo account non è abilitato ad attivare piani. <br />
+                        Contatta l’amministratore per proseguire.
+                    </p>
+                </div>
+            </>
+        );
+    }
+
+
     return (
         <>
 
@@ -186,11 +225,7 @@ const Pricing = () => {
                                     {selectedApp.plans.length > 0 ? (
                                         <div className="pricing-cards">
                                             {selectedApp.plans.map((pricingOption, index) => {
-                                                const { month, year } = pricingOption.price;
-                                                const activePrice = pricingMode === "yearly" && year ? year : month;
-                                                const savings = month && year
-                                                    ? ((month.amount * 12 - year.amount) / (month.amount * 12)) * 100
-                                                    : 0;
+
                                                 return (
                                                     <PricingCard
                                                         key={index}
@@ -202,6 +237,7 @@ const Pricing = () => {
                                                         user={user}
                                                         pricingMode={pricingMode}
                                                         userCount={userCount}
+                                                        activePlanPrice={activePlanPrice}
                                                     />
                                                 );
                                             })}

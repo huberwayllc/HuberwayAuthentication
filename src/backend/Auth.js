@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { getAuthData } from "./AuthData";
 
 const Auth = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        //const authToken = Cookies.get('auth_token');
-         const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
-        
-        if (!authToken) {
-            // Se non c'è il token, reindirizza alla pagina di login
+        try {
+            const { auth_token } = getAuthData();
+
+            if (!auth_token) {
+                throw new Error('No token');
+            }
+
+            // Puoi fare altre verifiche sul token se necessario
+        } catch (err) {
+            // Reindirizza alla login se il token non è valido o mancante
             window.location.href = 'https://app.huberway.com/account/login';
-        } else {
-            // Qui puoi fare un'ulteriore verifica del token se necessario
-            // oppure continuare a mostrare il contenuto dell'applicazione
         }
     }, [navigate]);
 

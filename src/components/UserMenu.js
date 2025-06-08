@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import MessageIcon from "@mui/icons-material/Message";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { useNavigate } from "react-router-dom";
+import FeedbackModal from "./FeedbackModal";
 
 function UserMenu({ user, onLogout }) {
     const navigate = useNavigate();
+    const [showFeedback, setShowFeedback] = useState(false);
 
     const totalAccounts = (user?.sub_accounts?.length || 0) + 1;
 
@@ -27,6 +29,7 @@ function UserMenu({ user, onLogout }) {
     const statusColor = subscriptionStatus === "confirmed" ? "#22c55e" : "#facc15";
 
     return (
+        <>
         <div
             className="user-popup-menu"
             style={{
@@ -66,7 +69,9 @@ function UserMenu({ user, onLogout }) {
 
             <hr className="my-3" />
 
-            <div className="d-flex gap-2 align-items-center">
+            <div className="d-flex gap-2 align-items-center"
+                 style={{ cursor: "pointer" }}
+                 onClick={() => setShowFeedback(!showFeedback)}>
                 <MessageIcon
                     className="position-relative"
                     style={{ fontSize: "15px", top: "3px" }}
@@ -75,151 +80,91 @@ function UserMenu({ user, onLogout }) {
                     Share a feedback of platform
                 </p>
             </div>
+            {user?.company && (
+                <>
+                    <hr className="my-3" />
 
-            <hr className="my-3" />
-
-            <div className="d-flex flex-column gap-0 align-items-start">
-                <p style={{ color: "#99acc2" }} className="mb-0 fw-bold">
-                    Account
-                </p>
-                <p style={{ fontWeight: "600" }} className="mb-0 text-black">
-                    {user.company?.company_name || "Nessuna compagnia associata"}
-                </p>
-                <p className="mb-0">Account ID: HWS0203{user.id || "N/A"}</p>
-                <p className="mb-0">
-                    Active account: <strong>{totalAccounts}/{subscriptionAccounts}</strong>
-                </p>
-            </div>
-
-            <hr className="my-3" />
-
-            <div className="d-flex flex-column align-items-start w-100">
-                <p style={{ fontWeight: "600" }} className="mb-0">
-                    Account configuration status
-                </p>
-                <div className="text-end w-100 position-relative mt-2">
-                    <p
-                        className="mb-0 text-black position-absolute"
-                        style={{
-                            fontSize: "13px",
-                            fontWeight: "bold",
-                            color: "#64748B",
-                            bottom: "18px",
-                            right: "0px",
-                        }}
-                    >
-                        {completionPercentage}%
-                    </p>
-                    <div
-                        style={{
-                            width: "100%",
-                            backgroundColor: "#e5e7eb",
-                            borderRadius: "5px",
-                            height: "18px",
-                            overflow: "hidden",
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: `${completionPercentage}%`,
-                                backgroundColor:
-                                    completionPercentage >= 80 ? "#22c55e" : "#0039A9",
-                                height: "100%",
-                                transition: "width 0.3s",
-                            }}
-                        ></div>
+                    <div className="d-flex flex-column gap-0 align-items-start">
+                        <p style={{ color: "#99acc2" }} className="mb-0 fw-bold">
+                            Account
+                        </p>
+                        <p style={{ fontWeight: "600" }} className="mb-0 text-black">
+                            {user.company?.company_name || "Nessuna compagnia associata"}
+                        </p>
+                        <p className="mb-0">Account ID: HWS0203{user.id || "N/A"}</p>
+                        <p className="mb-0">
+                            Active account: <strong>{totalAccounts}/{subscriptionAccounts}</strong>
+                        </p>
                     </div>
-                </div>
-            </div>
 
-            <hr className="my-3" />
+                    <hr className="my-3" />
 
-            {/* Sezione Sottoscrizione */}
-            <div className="d-flex flex-column align-items-start w-100">
-                <p style={{ fontWeight: "600" }} className="mb-1">
-                    Subscription
-                </p>
-                <p className="mb-0">
-                    Stato:{" "}
-                    <span
-                        style={{
-                            color: statusColor,
-                            fontWeight: "600",
-                            textTransform: "capitalize",
-                        }}
-                    >
-                        {subscriptionStatus}
-                    </span>
-                </p>
-                <p className="mb-0">Piano attivo: <strong>{planId}</strong></p>
-            </div>
+                    <div className="d-flex flex-column align-items-start w-100">
+                        <p style={{ fontWeight: "600" }} className="mb-0">
+                            Account configuration status
+                        </p>
+                        <div className="text-end w-100 position-relative mt-2">
+                            <p
+                                className="mb-0 text-black position-absolute"
+                                style={{
+                                    fontSize: "13px",
+                                    fontWeight: "bold",
+                                    color: "#64748B",
+                                    bottom: "18px",
+                                    right: "0px",
+                                }}
+                            >
+                                {completionPercentage}%
+                            </p>
+                            <div
+                                style={{
+                                    width: "100%",
+                                    backgroundColor: "#e5e7eb",
+                                    borderRadius: "5px",
+                                    height: "18px",
+                                    overflow: "hidden",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        width: `${completionPercentage}%`,
+                                        backgroundColor:
+                                            completionPercentage >= 80 ? "#22c55e" : "#0039A9",
+                                        height: "100%",
+                                        transition: "width 0.3s",
+                                    }}
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
 
-            <hr className="my-3" />
+                    <hr className="my-3" />
 
-            <div className="d-flex gap-2 align-items-center">
-                <Diversity3Icon />
-                <p style={{ fontWeight: "600" }} className="mb-0">
-                    Invite Teams
-                </p>
-            </div>
+                    <div className="d-flex flex-column align-items-start w-100">
+                        <p style={{ fontWeight: "600" }} className="mb-1">
+                            Subscription
+                        </p>
+                        <p className="mb-0">
+                            Stato:{" "}
+                            <span
+                                style={{
+                                    color: statusColor,
+                                    fontWeight: "600",
+                                    textTransform: "capitalize",
+                                }}
+                            >
+                    {subscriptionStatus}
+                </span>
+                        </p>
+                        <p className="mb-0">Piano attivo: <strong>{planId}</strong></p>
+                    </div>
 
-            {/*
-            <hr className="my-3" />
 
-            <div className="d-flex flex-column gap-0 align-items-start">
-                <div
-                    style={{ marginBottom: "15px" }}
-                    className="d-flex gap-2 align-items-center"
-                >
-                    <p style={{ fontWeight: "600" }} className="text-black mb-0">
-                        Account e Fatturazione
-                    </p>
-                </div>
+                    <hr className="my-3" />
 
-                <div
-                    style={{ marginBottom: "15px" }}
-                    className="d-flex gap-2 align-items-center"
-                >
-                    <p style={{ fontWeight: "600" }} className="text-black mb-0">
-                        Huberway Academy
-                    </p>
-                    <OpenInNewIcon
-                        style={{ fontSize: "18px", position: "relative", top: "1px" }}
-                    />
-                </div>
+                </>
+            )}
 
-                <div
-                    style={{ marginBottom: "15px" }}
-                    className="d-flex gap-2 align-items-center"
-                >
-                    <p style={{ fontWeight: "600" }} className="text-black mb-0">
-                        Prezzi e funzionalità
-                    </p>
-                    <OpenInNewIcon
-                        style={{ fontSize: "18px", position: "relative", top: "1px" }}
-                    />
-                </div>
-
-                <div
-                    style={{ marginBottom: "15px" }}
-                    className="d-flex gap-2 align-items-center"
-                >
-                    <p style={{ fontWeight: "600" }} className="text-black mb-0">
-                        Aggiornamenti sui prodotti
-                    </p>
-                </div>
-
-                <div className="d-flex gap-2 align-items-center">
-                    <p style={{ fontWeight: "600" }} className="text-black mb-0">
-                        Formazione e servizi
-                    </p>
-                    <OpenInNewIcon
-                        style={{ fontSize: "18px", position: "relative", top: "1px" }}
-                    />
-                </div>
-            </div>
-*/}
-            <hr className="my-3" />
 
             <div className="d-flex justify-content-between gap-2 align-items-center">
                 <p
@@ -234,19 +179,23 @@ function UserMenu({ user, onLogout }) {
                 >
                     Esci
                 </p>
-                <p
+                <a
                     style={{
                         fontWeight: "600",
                         color: "#0039A9",
                         fontWeight: "700",
                         cursor: "pointer",
                     }}
+                    href="https://legal.huberway.com/privacy-policy"
                     className="mb-0"
                 >
                     Privacy policy
-                </p>
+                </a>
             </div>
         </div>
+
+            {showFeedback && <FeedbackModal onClose={() => setShowFeedback(false)} />}
+        </>
     );
 }
 

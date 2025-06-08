@@ -1,0 +1,95 @@
+.page-container {
+    padding: 2rem;
+    background: #f1f5f9;
+}
+
+.go-back-btn {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+    padding: 2rem;
+    padding-bottom: 0px;
+}
+
+.go-back-btn:hover {
+    color: #2563eb;
+}
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+
+    padding: 0px 2rem;
+}
+.tabs-header {
+    display: flex;
+    gap: 0px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    border-bottom: 0.4px solid #cbcbcb;
+    width: 100%;
+    padding: 0px 2rem;
+}
+
+.tab-button {
+    padding: 8px 14px;
+    border-radius: 0;
+    border: 0.4px solid #cbcbcb;
+    border-right: none;
+    background: #e2e8f0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    width: 256px;
+    text-align: left;
+    margin: 0;
+    border-bottom: none;
+}
+
+/* Primo bottone */
+.tab-button:first-child {
+    border-top-left-radius: 8px;
+}
+
+/* Ultimo bottone */
+.tab-button:last-child {
+    border-top-right-radius: 8px;
+    border-right: 0.4px solid #cbcbcb; /* ripristina il bordo destro */
+}
+
+/* Tutti i bottoni tranne l'ultimo: rimuove il bordo destro */
+.tab-button:not(:last-child) {
+    border-right: none;
+}
+
+.tab-button.active {
+    background: #fff;
+    color: rgb(15 23 42);
+}
+.tab-button.active:after {
+    content: none;
+}
+
+
+.grid-2-col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}

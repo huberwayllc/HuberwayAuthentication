@@ -8,11 +8,16 @@ const huberwayLinks = [
         url: "https://app.huberway.com",
         icon: "https://dev.huberway.com/icon/sales.svg",
     },
+    {
+        name: "Website's",
+        description: "Connect your website on Huberway",
+        url: "/account/websites",
+    },
    /* {
-        name: "MailMaster",
+        name: "CommerceHub",
         description: "Email Marketing & Automation",
-        url: "https://campaign.huberway.com",
-        icon: "https://dev.huberway.com/icon/marketing.svg",
+        url: "https://commerce.huberway.com",
+        icon: "https://dev.huberway.com/icon/content.svg",
     },
    /* {
         name: "SmartChat AI",
@@ -25,13 +30,13 @@ const huberwayLinks = [
         description: "CMS & E-Commerce",
         url: "#",
         icon: "https://dev.huberway.com/icon/content.svg",
-    },*/
+    },
     {
         name: "Web Analytics",
         description: "Traffic & conversions",
         url: "https://analytics.huberway.com",
         icon: null,
-    },
+    },*/
 ];
 
 const AppsMenu = ({ open, setOpen }) => {

@@ -29,6 +29,8 @@ import SettingsRoles from './pages/settings/SettingsRoles';
 import HuberwayAssistant from "./components/HuberwayAssistant";
 import ThankYou from "./pages/ThankYou";
 import CancelSubscription from "./pages/CancelSubscription";
+import WebsitesList from "./pages/websites/WebsitesList";
+import WebsiteDetail from "./pages/websites/WebsiteDetail";
 
 function App() {
 
@@ -46,6 +48,8 @@ function App() {
                 <Route path="/account/pricing/success" element={<ThankYou />} />
                 <Route path="/account/pricing/canceled" element={<CancelSubscription />} />
                 <Route path="/account/checkout" element={<Checkout />} />
+                <Route path="/account/websites" element={<WebsitesList />} />
+                <Route path="/account/websites/:id" element={<WebsiteDetail />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
                 <Route path="/account/settings" element={<SettingsLayout />}>
                     <Route path="user-preferences/profile" element={<SettingsProfile />} />

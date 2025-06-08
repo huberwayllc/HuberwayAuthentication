@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import {useLocation, Link, useNavigate} from "react-router-dom";
+import {getAuthData} from "../backend/AuthData";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -142,11 +143,10 @@ const Login = () => {
     if (parts.length === 2) return parts.pop().split(";").shift(); // Restituisce il valore del cookie
   };
 
-  // Controlla se esiste l'auth_token nei cookie
-   //const authToken = Cookies.get('auth_token');
-  const authToken = ['774766dc33eb73f3abcbb0b19a4f46f4'];
+  const { auth_token } = getAuthData();
+
   // Se esiste l'auth_token, reindirizza l'utente alla dashboard
-  if (authToken) {
+  if (auth_token) {
     window.location.href = "https://app.huberway.com/account/dashboard";
   }
 
