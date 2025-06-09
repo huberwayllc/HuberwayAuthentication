@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import {useLocation, Link, useNavigate} from "react-router-dom";
 import {getAuthData} from "../backend/AuthData";
+import {Helmet} from "react-helmet";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -152,6 +153,16 @@ const Login = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Login - Huberway</title>
+        <meta name="description" content="Login to Huberway and access your business management tools." />
+        <meta name="keywords" content="Login, Huberway, Business Tools, CRM Access" />
+        <meta property="og:title" content="Login - Huberway" />
+        <meta property="og:description" content="Login to Huberway and access your business management tools." />
+        <meta property="og:image" content="https://app.huberway.com/assets/images/pricing-image.png" />
+        <meta property="og:url" content="https://app.huberway.com/account/pricing" />
+        <link rel="canonical" href="https://app.huberway.com/account/pricing" />
+      </Helmet>
       <div className="register-container  sm-p-t-30">
         <div className="d-flex flex-column">
           <img

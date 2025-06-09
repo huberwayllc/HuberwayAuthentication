@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 const Recovery = () => {
   const [email, setEmail] = useState("");
@@ -122,126 +123,140 @@ const Recovery = () => {
   };
 
   return (
-    <div className="register-container sm-p-t-30">
-      <div className="d-flex flex-column">
-        <img
-          src="https://cdn.huberway.com/site/logo-dark.svg"
-          className="login-logo"
-          alt="Huberway Logo"
-        />
-        <h5 className="secondary-title">
-          Password Forgot? or <Link to="/account/login">Sign in</Link>
-        </h5>
+      <>
 
-        {!otpSent ? (
-          <>
-            <div className="row mb-20">
-              <div className="col-md-12">
-                <label>E-mail</label>
-                <input
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                {errorMessage && <p className="text-danger">{errorMessage}</p>}
-              </div>
-            </div>
-            <button
-              onClick={handleSendOtp}
-              className="btn btn-primary btn-cons m-t-10 btn-login"
-            >
-              Send OTP
-            </button>
-          </>
-        ) : (
-          <>
-            <div className="row mb-20">
-              <div className="col-md-12">
-                <label>OTP from your e-mail</label>
-                <input
-                  type="text"
-                  name="otp"
-                  className="form-control"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                  required
-                />
-                {errorMessage && <p className="text-danger">{errorMessage}</p>}
-                <button
-                  onClick={handleVerifyOtp}
-                  className="btn btn-primary btn-cons m-t-10 btn-login"
-                >
-                  Verify OTP
-                </button>
-              </div>
-            </div>
+        <Helmet>
+          <title>Recovery - Huberway</title>
+          <meta name="description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+          <meta name="keywords" content="Register, Huberway, Business Tools, CRM Access" />
+          <meta property="og:title" content="Register - Huberway" />
+          <meta property="og:description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+          <meta property="og:image" content="https://app.huberway.com/assets/images/pricing-image.png" />
+          <meta property="og:url" content="https://app.huberway.com/account/register-huberway" />
+          <link rel="canonical" href="https://app.huberway.com/account/register-huberway" />
+        </Helmet>
 
-            {otpVerified && (
-              <>
-                <div className="row mb-20">
-                  <div className="col-md-12">
-                    <label>New password</label>
-                    <input
-                      type="password"
-                      name="newPassword"
-                      className="form-control"
-                      value={newPassword}
-                      onChange={(e) => setNewPassword(e.target.value)}
-                      required
-                    />
+        <div className="register-container sm-p-t-30">
+          <div className="d-flex flex-column">
+            <img
+                src="https://cdn.huberway.com/site/logo-dark.svg"
+                className="login-logo"
+                alt="Huberway Logo"
+            />
+            <h5 className="secondary-title">
+              Password Forgot? or <Link to="/account/login">Sign in</Link>
+            </h5>
+
+            {!otpSent ? (
+                <>
+                  <div className="row mb-20">
+                    <div className="col-md-12">
+                      <label>E-mail</label>
+                      <input
+                          type="email"
+                          name="email"
+                          className="form-control"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                      />
+                      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                    </div>
                   </div>
-                </div>
-
-                <div className="row mb-20">
-                  <div className="col-md-12">
-                    <label>Confirm new password</label>
-                    <input
-                      type="password"
-                      name="confirmPassword"
-                      className="form-control"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      required
-                    />
-                    {!passwordMatch && confirmPassword && (
-                      <p className="text-danger">The password don't matched.</p>
-                    )}
+                  <button
+                      onClick={handleSendOtp}
+                      className="btn btn-primary btn-cons m-t-10 btn-login"
+                  >
+                    Send OTP
+                  </button>
+                </>
+            ) : (
+                <>
+                  <div className="row mb-20">
+                    <div className="col-md-12">
+                      <label>OTP from your e-mail</label>
+                      <input
+                          type="text"
+                          name="otp"
+                          className="form-control"
+                          value={otp}
+                          onChange={(e) => setOtp(e.target.value)}
+                          required
+                      />
+                      {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                      <button
+                          onClick={handleVerifyOtp}
+                          className="btn btn-primary btn-cons m-t-10 btn-login"
+                      >
+                        Verify OTP
+                      </button>
+                    </div>
                   </div>
-                </div>
 
-                <button
-                  onClick={handleResetPassword}
-                  className="btn btn-primary btn-cons m-t-10 btn-login"
-                  disabled={!passwordMatch || !otpVerified}
-                >
-                  Reset password
-                </button>
-              </>
+                  {otpVerified && (
+                      <>
+                        <div className="row mb-20">
+                          <div className="col-md-12">
+                            <label>New password</label>
+                            <input
+                                type="password"
+                                name="newPassword"
+                                className="form-control"
+                                value={newPassword}
+                                onChange={(e) => setNewPassword(e.target.value)}
+                                required
+                            />
+                          </div>
+                        </div>
+
+                        <div className="row mb-20">
+                          <div className="col-md-12">
+                            <label>Confirm new password</label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                className="form-control"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                            {!passwordMatch && confirmPassword && (
+                                <p className="text-danger">The password don't matched.</p>
+                            )}
+                          </div>
+                        </div>
+
+                        <button
+                            onClick={handleResetPassword}
+                            className="btn btn-primary btn-cons m-t-10 btn-login"
+                            disabled={!passwordMatch || !otpVerified}
+                        >
+                          Reset password
+                        </button>
+                      </>
+                  )}
+                </>
             )}
-          </>
-        )}
 
-        {successMessage && <p className="text-success">{successMessage}</p>}
-      </div>
-      <div className="m-b-30 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix copyright-login">
-        <div className="col-md-12 no-padding d-flex align-items-center text-center">
-          <p className="hinted-text small inline sm-p-t-10 m-auto">
-            &copy;{new Date().getFullYear()} Huberway LLC. All Rights Reserved.
-          </p>
+            {successMessage && <p className="text-success">{successMessage}</p>}
+          </div>
+          <div className="m-b-30 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix copyright-login">
+            <div className="col-md-12 no-padding d-flex align-items-center text-center">
+              <p className="hinted-text small inline sm-p-t-10 m-auto">
+                &copy;{new Date().getFullYear()} Huberway LLC. All Rights Reserved.
+              </p>
+            </div>
+            <div className="col-md-12 no-padding d-flex align-items-center text-center">
+              <a
+                  href="https://legal.huberway.com/privacy-policy"
+                  className="m-auto"
+              >
+                Privacy Policy
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="col-md-12 no-padding d-flex align-items-center text-center">
-          <a
-            href="https://legal.huberway.com/privacy-policy"
-            className="m-auto"
-          >
-            Privacy Policy
-          </a>
-        </div>
-      </div>
-    </div>
+      </>
   );
 };
 

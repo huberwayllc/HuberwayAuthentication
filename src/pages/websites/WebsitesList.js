@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import WebsiteCreateModal from "./WebsiteCreateModal"; // nuovo componente da creare
 import "../../styles/dashboard.css";
+import {Helmet} from "react-helmet";
 
 const WebsitesList = () => {
     const [websites, setWebsites] = useState([]);
@@ -50,6 +51,16 @@ const WebsitesList = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Websites - Huberway</title>
+                <meta name="description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+                <meta name="keywords" content="Register, Huberway, Business Tools, CRM Access" />
+                <meta property="og:title" content="Register - Huberway" />
+                <meta property="og:description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+                <meta property="og:image" content="https://app.huberway.com/assets/images/pricing-image.png" />
+                <meta property="og:url" content="https://app.huberway.com/account/register-huberway" />
+                <link rel="canonical" href="https://app.huberway.com/account/register-huberway" />
+            </Helmet>
             <Header onActionClick={() => setShowModal(true)} />
             <div className="crm-list-container">
                 <div className="crm-list-header">

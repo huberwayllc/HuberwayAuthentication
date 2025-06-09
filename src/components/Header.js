@@ -169,7 +169,6 @@ function Header({ onActionClick }) {
 
             {iaOpen && <VoiceAssistantModal onClose={() => setIaOpen(false)}/>}
             <div style={{ marginTop: "65px" }}></div>
-            <div className="hw-version">Huberway Alpha 0.024 - Powered by Huberway LLC</div>
         </>
     );
 }

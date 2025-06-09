@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getAccountDetails } from "../backend/api";
 import Header from "../components/Header";
 import PricingCard from "../components/PricingCard";
+import {Helmet} from "react-helmet";
 
 const Pricing = () => {
     const [user, setUser] = useState({ email: "", name: "" });
@@ -135,6 +136,16 @@ const Pricing = () => {
 
     return (
         <>
+            <Helmet>
+            <title>Pricing - Huberway</title>
+            <meta name="description" content="Choose the right plan for your business needs." />
+            <meta name="keywords" content="Pricing, Huberway, Business Plans" />
+            <meta property="og:title" content="Pricing - Huberway" />
+            <meta property="og:description" content="Choose the right plan for your business needs." />
+            <meta property="og:image" content="https://app.huberway.com/assets/images/pricing-image.png" />
+            <meta property="og:url" content="https://app.huberway.com/account/pricing" />
+            <link rel="canonical" href="https://app.huberway.com/account/pricing" />
+            </Helmet>
 
             <Header />
             <div className="topbar">

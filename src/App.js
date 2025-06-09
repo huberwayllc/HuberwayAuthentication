@@ -36,8 +36,9 @@ function App() {
 
     return (
         <>
-            <DynamicTitle />
+            {/* <DynamicTitle /> */}
             <Routes>
+                <Route path="/" element={<Dashboard />} />
                 <Route path="/account" element={<Login />} />
                 <Route path="/account/login" element={<Login />} />
                 <Route path="/account/aboutUs" element={<AboutUs />} />
@@ -70,6 +71,7 @@ function App() {
 
                 <Route path="*" element={<Error />} />
             </Routes>
+            <div className="hw-version">Huberway Alpha 0.024 - Powered by Huberway LLC</div>
         </>
     );
 }

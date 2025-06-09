@@ -8,6 +8,7 @@ import WebsiteApplication from "./WebsiteApplication";
 import WebsiteSettings from "./WebsiteSettings";
 import Header from "../../components/Header"
 import "./WebsiteDetail.css";
+import {Helmet} from "react-helmet";
 
 const WebsiteDetail = () => {
     const { id } = useParams();
@@ -64,6 +65,16 @@ const WebsiteDetail = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{website.name} - Huberway</title>
+                <meta name="description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+                <meta name="keywords" content="Register, Huberway, Business Tools, CRM Access" />
+                <meta property="og:title" content="Register - Huberway" />
+                <meta property="og:description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+                <meta property="og:image" content="https://app.huberway.com/assets/images/pricing-image.png" />
+                <meta property="og:url" content="https://app.huberway.com/account/register-huberway" />
+                <link rel="canonical" href="https://app.huberway.com/account/register-huberway" />
+            </Helmet>
             <Header />
                 <button className="go-back-btn" onClick={() => navigate(-1)}><i className="fal fa-arrow-left"></i> Come back</button>
                 <h2 className="page-title">{website.name}</h2>

@@ -1452,7 +1452,7 @@ section .grid-container {
   color: #64748b;
 }
 .hw-version {
-  position: absolute;
+  position: fixed;
   bottom: 17px;
   left: 17px;
   font-size: 14px;

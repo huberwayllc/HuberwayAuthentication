@@ -14,6 +14,7 @@ import Step11 from "./Step11";
 import Step12 from "./Step12";
 import Step13 from "./Step13";
 import ProgressBar from "./ProgressBar";
+import {Helmet} from "react-helmet";
 
 const RegisterForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -184,6 +185,16 @@ const RegisterForm = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Register - Huberway</title>
+        <meta name="description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+        <meta name="keywords" content="Register, Huberway, Business Tools, CRM Access" />
+        <meta property="og:title" content="Register - Huberway" />
+        <meta property="og:description" content="Create a new account to start using Huberway CRM and other tools for your business.Create a new account to start using Huberway CRM and other tools for your business." />
+        <meta property="og:image" content="https://app.huberway.com/assets/images/pricing-image.png" />
+        <meta property="og:url" content="https://app.huberway.com/account/register-huberway" />
+        <link rel="canonical" href="https://app.huberway.com/account/register-huberway" />
+      </Helmet>
       <ProgressBar progress={progress} />
 
       <div className="sm-p-t-30">
