@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import UserMenu from "./UserMenu";
 import VoiceAssistantModal from "./IA/VoiceAssistantModal";
 import AppsMenu from "./AppsMenu";
-import { SquaresPlusIcon, StarIcon } from "@heroicons/react/24/outline";
+import { SquaresPlusIcon, StarIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
 import "../styles/Header.css";
 import SearchModal from "./SearchModal";
 
@@ -133,7 +133,7 @@ function Header({ onActionClick }) {
                 <div className="hw-header-right" ref={menuRef}>
                     <span className="hw-separator"></span>
                     <button
-                        className="hw-icon-button"
+                        className="hw-icon-button-circle"
                         onClick={() => setAppsOpen(!appsOpen)}
                         title="App menu"
                     >
@@ -141,6 +141,11 @@ function Header({ onActionClick }) {
                     </button>
 
                     <AppsMenu open={appsOpen} setOpen={setAppsOpen}/>
+                    <a
+                    className="hw-icon-button"
+                    href="https://app.huberway.com/settings">
+                        <Cog6ToothIcon className="hw-icon"/>
+                    </a>
 
                     <Link to="/account/pricing" className="hw-button primary"><StarIcon /> Upgrade</Link>
 

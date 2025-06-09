@@ -7,7 +7,7 @@ const ReportsSection = ({ selectedApp }) => {
         <section className="report-grid">
             <h2>Reports</h2>
             <div className="report-card">
-                <h3>Orders</h3>
+                <h3>Deals</h3>
                 <p>0</p>
             </div>
             <div className="report-card">

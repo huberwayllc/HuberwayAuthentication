@@ -6,7 +6,7 @@
 .go-back-btn {
     background: none;
     border: none;
-    color: #3b82f6;
+    color: #6366f1;
     font-weight: 500;
     margin-bottom: 1rem;
     font-size: 0.95rem;
@@ -21,7 +21,7 @@
 }
 
 .go-back-btn:hover {
-    color: #2563eb;
+    color: #4f46e5;
 }
 .page-title {
     font-size: 1.5rem;

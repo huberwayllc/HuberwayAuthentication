@@ -304,15 +304,15 @@ input:focus, textarea:focus {
 }
 
 a {
-  
   font-weight: 600;
   -moz-osx-font-smoothing: grayscale;
-  color: #0091ae;
+  color: #6366f1;
+  text-decoration: none;
   cursor: pointer;
 }
 
 a:hover {
-  color: #007a8c;
+  color: #4f46e5;
 }
 
 .btn-login {

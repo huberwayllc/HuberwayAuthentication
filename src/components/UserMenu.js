@@ -55,15 +55,13 @@ function UserMenu({ user, onLogout }) {
                     <p style={{ margin: 0, color: "#64748B" }}>
                         {user.email || "g.ereditata@huberway.com"}
                     </p>
-                    <p
-                        onClick={() =>
-                            navigate("/profile")
-                        }
+                    <a
+                        href="https://app.huberway.com/profile"
                         style={{ color: "#0039A9", cursor: "pointer" }}
                         className="mb-0 hoverUnderline"
                     >
                         <b>Profile and preference</b>
-                    </p>
+                    </a>
                 </div>
             </div>
 
