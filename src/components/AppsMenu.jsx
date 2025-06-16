@@ -9,6 +9,12 @@ const huberwayLinks = [
         icon: "https://dev.huberway.com/icon/sales.svg",
     },
     {
+        name: "SmartChat AI",
+        description: "AI-powered chatbots",
+        url: "/account/smartchat",
+        icon: "https://dev.huberway.com/icon/smartchat.svg",
+    },
+    {
         name: "Website's",
         description: "Connect your website on Huberway",
         url: "/account/websites",
@@ -18,13 +24,8 @@ const huberwayLinks = [
         description: "Email Marketing & Automation",
         url: "https://commerce.huberway.com",
         icon: "https://dev.huberway.com/icon/content.svg",
-    },
-   /* {
-        name: "SmartChat AI",
-        description: "AI-powered chatbots",
-        url: "#",
-        icon: "https://dev.huberway.com/icon/smartchat.svg",
-    },
+    },*/
+    /*
     {
         name: "ContentFlow",
         description: "CMS & E-Commerce",

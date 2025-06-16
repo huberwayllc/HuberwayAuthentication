@@ -31,6 +31,7 @@ import ThankYou from "./pages/ThankYou";
 import CancelSubscription from "./pages/CancelSubscription";
 import WebsitesList from "./pages/websites/WebsitesList";
 import WebsiteDetail from "./pages/websites/WebsiteDetail";
+import SupportBoardEntry from "./pages/smartchat/SupportBoardEntry";
 
 function App() {
 
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/account/websites" element={<WebsitesList />} />
                 <Route path="/account/websites/:id" element={<WebsiteDetail />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
+                <Route path="/account/smartchat" element={<SupportBoardEntry />} />
                 <Route path="/account/settings" element={<SettingsLayout />}>
                     <Route path="user-preferences/profile" element={<SettingsProfile />} />
                     <Route path="user-preferences/email" element={<SettingsEmail />} />
@@ -71,7 +73,6 @@ function App() {
 
                 <Route path="*" element={<Error />} />
             </Routes>
-            <div className="hw-version">Huberway Alpha 0.024 - Powered by Huberway LLC</div>
         </>
     );
 }

@@ -139,3 +139,28 @@
     border-left: 4px solid #007bff;
     margin-bottom: 1rem;
 }
+
+.hw-loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.hw-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ccc;
+    border-top: 3px solid #2d89ef;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
