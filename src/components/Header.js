@@ -8,11 +8,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import UserMenu from "./UserMenu";
 import VoiceAssistantModal from "./IA/VoiceAssistantModal";
 import AppsMenu from "./AppsMenu";
-import { SquaresPlusIcon, StarIcon, Cog6ToothIcon } from "@heroicons/react/24/outline";
+import { SquaresPlusIcon, StarIcon, Cog6ToothIcon, ListBulletIcon } from "@heroicons/react/24/outline";
 import "../styles/Header.css";
 import SearchModal from "./SearchModal";
+import ElementListMenu from "./ElementListMenu";
 
-function Header({ onActionClick }) {
+
+function Header({ onActionClick, elementList, setSelectElement }) {
     const [user, setUser] = useState({ email: "", name: "", id: null });
     const [menuVisible, setMenuVisible] = useState(false);
     const navigate = useNavigate();
@@ -20,6 +22,7 @@ function Header({ onActionClick }) {
     const menuRef = useRef(null);
     const [iaOpen, setIaOpen] = useState(false);
     const [appsOpen, setAppsOpen] = useState(false);
+    const [elementsListShow, setElementsListOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [showSearch, setShowSearch] = useState(false);
     const searchInputRef = useRef(null);
@@ -67,7 +70,7 @@ function Header({ onActionClick }) {
         } else if (location.pathname.includes("dashboard")) {
             return { title: "Dashboard", };
         } else if (location.pathname.includes("smartchat")) {
-            return { title: "SmartChat List", button: "+ Add Board", buttonLink: "/smartchat/smartchat" };
+            return { title: "SmartChat List", button: "+ Add Board", buttonLink: "/smartchat/smartchat", elementList: elementList };
         }
         return { title: "Huberway", button: null };
     };
@@ -134,15 +137,18 @@ function Header({ onActionClick }) {
 
                 <div className="hw-header-right" ref={menuRef}>
                     <span className="hw-separator"></span>
-                    <button
+
+                    <div className="menu-with-sub">
+                        <button
                         className="hw-icon-button-circle"
                         onClick={() => setAppsOpen(!appsOpen)}
                         title="App menu"
                     >
                         <SquaresPlusIcon className="hw-icon"/>
                     </button>
+                        <AppsMenu open={appsOpen} setOpen={setAppsOpen}/>
+                    </div>
 
-                    <AppsMenu open={appsOpen} setOpen={setAppsOpen}/>
                     <a
                     className="hw-icon-button"
                     href="https://app.huberway.com/settings">
@@ -152,6 +158,16 @@ function Header({ onActionClick }) {
                     <Link to="/account/pricing" className="hw-button primary"><StarIcon /> Upgrade</Link>
 
                     <span className="hw-separator"></span>
+
+                    {pageData.elementList && (
+                        <div className="menu-with-sub">
+                            <button className="hw-icon-button" onClick={() => setElementsListOpen(!elementsListShow)}>
+                                <ListBulletIcon className="hw-icon" />
+                            </button>
+
+                            <ElementListMenu setSelectElement={setSelectElement} open={elementsListShow} setOpen={setElementsListOpen} elements={elementList} />
+                        </div>
+                    )}
 
                     {pageData.button && (
                         <button className="hw-button primary" onClick={handleActionClick}>

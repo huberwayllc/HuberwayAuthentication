@@ -98,9 +98,11 @@ const SupportBoardEntry = () => {
                 <link rel="canonical" href="https://app.huberway.com/smartchat/boards" />
             </Helmet>
 
-            <Header onActionClick={() => setShowModal(true)} />
+            <Header setSelectElement={setSelectedBoard} elementList={boards} onActionClick={() => setShowModal(true)} />
             <div className="supportboard-wrapper">
                 <div className="mb-6">
+
+                    {/*
                     <button
                         className="board-dropdown-toggle"
                         onClick={() => setShowBoards(prev => !prev)}
@@ -146,6 +148,7 @@ const SupportBoardEntry = () => {
                             ))}
                         </div>
                     )}
+                    */}
                 </div>
 
                 {selectedBoard && (
