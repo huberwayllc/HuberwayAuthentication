@@ -67,7 +67,7 @@ function Header({ onActionClick, elementList, setSelectElement }) {
     const getPageData = () => {
         if (location.pathname.includes("websites")) {
             return { title: "Websites", button: "+ Add Website", buttonLink: "/account/websites" };
-        } else if (location.pathname.includes("dashboard")) {
+        } else if (location.pathname.includes("dashboard") && location.pathname.includes("")) {
             return { title: "Dashboard", };
         } else if (location.pathname.includes("smartchat")) {
             return { title: "SmartChat List", button: "+ Add Board", buttonLink: "/smartchat/smartchat", elementList: elementList };
