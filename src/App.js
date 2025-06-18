@@ -32,7 +32,6 @@ import CancelSubscription from "./pages/CancelSubscription";
 import WebsitesList from "./pages/websites/WebsitesList";
 import WebsiteDetail from "./pages/websites/WebsiteDetail";
 import SupportBoardEntry from "./pages/smartchat/SupportBoardEntry";
-import AutomationEntry from "./pages/automation/AutomationEntry";
 
 function App() {
 
@@ -55,7 +54,6 @@ function App() {
                 <Route path="/account/websites/:id" element={<WebsiteDetail />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
                 <Route path="/account/smartchat" element={<SupportBoardEntry />} />
-                <Route path="/account/automation" element={<AutomationEntry />} />
                 <Route path="/account/settings" element={<SettingsLayout />}>
                     <Route path="user-preferences/profile" element={<SettingsProfile />} />
                     <Route path="user-preferences/email" element={<SettingsEmail />} />

@@ -68,7 +68,7 @@ const SupportBoardSingle = ({ selectedBoard }) => {
                         width: '100%',
                         height: '100%',
                         border: 'none',
-                        borderRadius: '12px',
+                        borderRadius: '0px',
                     }}
                 />
             </div>
