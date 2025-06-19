@@ -55,6 +55,12 @@ function App() {
                 <Route path="/account/websites/:id" element={<WebsiteDetail />} />
                 <Route path="/account/projects" element={<ProjectManagament />} />
                 <Route path="/account/marketing" element={<MarketingHub/>}></Route>
+                <Route path="/account/marketing/campaigns" element={<MarketingHub/>}></Route>
+                <Route path="/account/marketing/automations" element={<MarketingHub/>}></Route>
+                <Route path="/account/marketing/lists" element={<MarketingHub/>}></Route>
+                <Route path="/account/marketing/templates" element={<MarketingHub/>}></Route>
+                <Route path="/account/marketing/sending" element={<MarketingHub/>}></Route>
+                <Route path="/account/marketing/reports" element={<MarketingHub/>}></Route>
                 <Route path="/account/smartchat" element={<SupportBoardEntry />} />
                 <Route path="/account/settings" element={<SettingsLayout />}>
                     <Route path="user-preferences/profile" element={<SettingsProfile />} />

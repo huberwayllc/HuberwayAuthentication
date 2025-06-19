@@ -71,6 +71,8 @@ function Header({ onActionClick, elementList, setSelectElement }) {
             return { title: "Dashboard", };
         } else if (location.pathname.includes("smartchat")) {
             return { title: "SmartChat List", button: "+ Add Board", buttonLink: "/smartchat/smartchat", elementList: elementList };
+        } else if (location.pathname.includes("marketing")) {
+            return { title: "Marketing Hub", button: "+ Create Campaign", buttonLink: "/smartchat/smartchat", elementList: elementList };
         }
         return { title: "Huberway", button: null };
     };

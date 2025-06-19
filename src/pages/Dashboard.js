@@ -239,28 +239,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Bottom Section */}
-          <div className="bottom-section">
-            <div className="card promo-card">
-              <div className="promo-content">
-                <h3>Sblocca funzionalità avanzate</h3>
-                <p>Passa al piano Pro per accedere a automazioni illimitate, A/B testing e report avanzati</p>
-                <button className="hw-button">
-                  Upgrade ora
-                  <svg className="w-4 h-4 ml-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-              </div>
-              <div className="promo-visual">
-                <div className="promo-icon">
-                  <svg className="w-12 h-12" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </>
   );
