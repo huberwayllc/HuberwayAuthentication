@@ -1,23 +1,62 @@
-.email-campaigns-container
-{
+.email-campaigns-container {
     padding: 2rem;
     min-height: 100vh;
     max-width: 100%;
-    width: 80%;
+    width: 100%;
     margin: auto;
+    padding-left: 245px;
 }
+
+.email-campaigns-container.closed {
+    padding-left: 100px;
+}
+
+.hw-header.closed {
+    padding-left: 100px;
+}
+
 
 .marketing-hub-body {
     display: flex;
 }
+
 .marketing-sidebar {
     background: rgb(30, 41, 59);
-    width: 214px;
+    width: 64px; /* Larghezza da chiusa */
+    top: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 1000;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.marketing-sidebar.open {
+    width: 214px; /* Larghezza da aperta */
+}
+
+.logo-full {
+    display: block;
+    width: 180px;
+    margin: 20px auto;
+}
+
+.logo-icon {
+    display: block;
+    width: 40px;
+    margin: 20px auto;
+}
+
+.hw-header-open {
+    padding-left: 240px;
 }
 .sidebar-nav {
-    margin-top: 2rem;
-
+    margin-top: 20px;
     max-width: 206px;
+}
+
+.sidebar-nav.closed {
+    text-align: center;
 }
 
 
@@ -34,7 +73,7 @@
 .tab {
     background: none;
     border: none;
-    padding: 5px 7px;
+    padding: 8px 8px;
     font-size: 15px;
     font-weight: 500;
     color: rgb(203 213 225);
@@ -44,9 +83,15 @@
     width: 100%;
     margin: 4px;
     margin-bottom: 7px;
-    border-radius: 9px;
+    border-radius: 7px;
     text-align: left;
 }
+
+.tab.closed {
+    width: 40px;
+    padding-left: 9px;
+}
+
 .tab svg {
     height: 20px;
     margin-right: 10px;
@@ -280,7 +325,7 @@
 .stat-card.mini {
     background: white;
     border: 1px solid #e5e7eb;
-    border-radius: 0.75rem;
+    border-radius: 10px;
     padding: 1.25rem;
     text-align: center;
 }
