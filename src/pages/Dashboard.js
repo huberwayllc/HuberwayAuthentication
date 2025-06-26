@@ -1,19 +1,113 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import Header from "../components/Header";
+import {getAuthData} from "../backend/AuthData";
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
-  const [timeRange, setTimeRange] = useState("7d");
+    const [loading, setLoading] = useState(true);
+    const [timeRange, setTimeRange] = useState("7d");
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, []);
+    const [contacts, setContacts] = useState(0);
+    const [contactsChange, setContactsChange] = useState(0);
+    const [contactsTrend, setContactsTrend] = useState("neutral");
 
-  if (loading) {
+    const [emailsSent, setEmailsSent] = useState(0);
+    const [emailsChange, setEmailsChange] = useState(0);
+    const [emailsTrend, setEmailsTrend] = useState("neutral");
+
+    const [wonOpportunities, setWonOpportunities] = useState(0);
+    const [wonChange, setWonChange] = useState(0);
+    const [wonTrend, setWonTrend] = useState("neutral");
+
+    const [lostOpportunities, setLostOpportunities] = useState(0);
+    const [lostChange, setLostChange] = useState(0);
+    const [lostTrend, setLostTrend] = useState("neutral");
+
+    const [activities, setActivities] = useState([]);
+    const [deals, setDeals] = useState([]);
+    const [insights, setInsights] = useState([]);
+
+    function formatTimeAgo(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date;
+
+        const minutes = Math.floor(diffMs / 60000);
+        if (minutes < 1) return "ora";
+        if (minutes < 60) return `${minutes} min fa`;
+
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return `${hours} ore fa`;
+
+        const days = Math.floor(hours / 24);
+        return `${days} giorni fa`;
+    }
+
+
+    function detectActivityType(title = "") {
+        const lowered = title.toLowerCase();
+        if (lowered.includes("email") || lowered.includes("campagna")) return "email";
+        if (lowered.includes("obiettivo") || lowered.includes("goal")) return "goal";
+        if (lowered.includes("automazione")) return "automation";
+        if (lowered.includes("contatto")) return "contact";
+        return "activity";
+    }
+
+
+    useEffect(() => {
+        setLoading(true);
+        const { auth_token } = getAuthData();
+
+        const fetchWithAuth = (url) =>
+            fetch(url, {
+                headers: {
+                    Authorization: `Bearer ${auth_token}`,
+                },
+            }).then(async res => {
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "Errore nella richiesta API");
+                return data;
+            });
+
+        Promise.all([
+            fetchWithAuth(`https://api.huberway.com/api/crm/contacts/stats?range=${timeRange}`),
+            fetchWithAuth(`https://api.huberway.com/api/crm/emails/stats?range=${timeRange}`),
+            fetchWithAuth(`https://api.huberway.com/api/crm/deals/stats?range=${timeRange}`),
+            fetchWithAuth(`https://api.huberway.com/api/crm/deals/recent?range=${timeRange}`),
+            fetchWithAuth(`https://api.huberway.com/api/crm/activities/recent?range=${timeRange}`),
+            fetchWithAuth(`https://api.huberway.com/api/crm/insights?range=${timeRange}`)
+        ])
+            .then(([contactsData, emailsData, dealsData, dealsDataRecent, activitiesData, insightsData]) => {
+                setContacts(contactsData.total_contacts || 0);
+                setContactsTrend(contactsData.trend || "neutral");
+                setContactsChange(contactsData.change || 0)
+
+                setEmailsSent(emailsData.emails_sent || 0);
+                setEmailsChange(emailsData.change || 0);
+                setEmailsTrend(emailsData.trend || "neutral");
+
+                setWonOpportunities(dealsData.deals_won || 0);
+                setWonChange(dealsData.deals_won_change || 0);
+                setWonTrend(dealsData.deals_won_trend || "neutral");
+
+                setLostOpportunities(dealsData.deals_lost || 0);
+                setLostChange(dealsData.deals_lost_change || 0);
+                setLostTrend(dealsData.deals_lost_trend || "neutral");
+
+                setDeals(dealsDataRecent.deals || [])
+                setActivities(activitiesData.activities || []);
+                setInsights(insightsData.insights || []);
+            })
+            .catch(err => {
+                console.error("Errore nel caricamento dei dati CRM:", err.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [timeRange]);
+
+
+    if (loading) {
     return <DashboardSkeleton />;
   }
 
@@ -39,110 +133,97 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Quick Stats */}
-          <div className="stats-grid">
-            <StatCard
-                title="Contatti totali"
-                value="1,247"
-                change="+12.5%"
-                trend="up"
-                icon={
-                  <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                }
-                color="blue"
-            />
-            <StatCard
-                title="Email inviate"
-                value="3,842"
-                change="+8.1%"
-                trend="up"
-                icon={
-                  <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                  </svg>
-                }
-                color="green"
-            />
-            <StatCard
-                title="Tasso apertura"
-                value="24.3%"
-                change="-2.1%"
-                trend="down"
-                icon={
-                  <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M15 15l-2 5L9 9l11 4-5 2z"></path>
-                  </svg>
-                }
-                color="purple"
-            />
-            <StatCard
-                title="Conversioni"
-                value="142"
-                change="+18.7%"
-                trend="up"
-                icon={
-                  <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v8m0 0l-3-3m3 3l3-3"></path>
-                  </svg>
-                }
-                color="orange"
-            />
-          </div>
+            <div className="stats-grid">
+                <StatCard
+                    title="Contatti totali"
+                    value={contacts.toLocaleString()}
+                    change={`${contactsChange >= 0 ? "+" : ""}${contactsChange}%`}
+                    trend={contactsTrend}
+                    icon={
+                        <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    }
+                    color="blue"
+                />
 
-          {/* Main Content Grid */}
+                <StatCard
+                    title="Email inviate"
+                    value={emailsSent.toLocaleString()}
+                    change={`${emailsChange >= 0 ? "+" : ""}${emailsChange}%`}
+                    trend={emailsTrend}
+                    icon={
+                        <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    }
+                    color="green"
+                />
+
+                <StatCard
+                    title="Opportunità Vinte"
+                    value={`${wonOpportunities}`}
+                    change={`${wonChange >= 0 ? "+" : ""}${wonChange}%`}
+                    trend={wonTrend}
+                    icon={
+                        <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M15 15l-2 5L9 9l11 4-5 2z"></path>
+                        </svg>
+                    }
+                    color="purple"
+                />
+
+                <StatCard
+                    title="Opportunità Perdute"
+                    value={`${lostOpportunities}`}
+                    change={`${lostChange >= 0 ? "+" : ""}${lostChange}%`}
+                    trend={lostTrend}
+                    icon={
+                        <svg fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v8m0 0l-3-3m3 3l3-3"></path>
+                        </svg>
+                    }
+                    color="orange"
+                />
+            </div>
+
+
+            {/* Main Content Grid */}
           <div className="content-grid">
             {/* Left Column */}
             <div className="left-column">
-              {/* Performance Chart */}
+              {/* Recent Deals */}
               <div className="card">
                 <div className="card-header">
-                  <h3>Performance campagne</h3>
-                  <button className="text-button">Vedi dettagli</button>
-                </div>
-                <div className="chart-container">
-                  <PerformanceChart />
-                </div>
-              </div>
-
-              {/* Recent Campaigns */}
-              <div className="card">
-                <div className="card-header">
-                  <h3>Campagne recenti</h3>
+                  <h3>Opportunità Recenti</h3>
                   <button className="text-button">Vedi tutte</button>
                 </div>
-                <div className="campaigns-list">
-                  <CampaignItem
-                      name="Welcome Series"
-                      status="active"
-                      sent={1842}
-                      opened={447}
-                      clicked={89}
-                  />
-                  <CampaignItem
-                      name="Product Launch"
-                      status="scheduled"
-                      sent={0}
-                      scheduled="18/06/2025 14:00"
-                  />
-                  <CampaignItem
-                      name="Newsletter Maggio"
-                      status="completed"
-                      sent={2103}
-                      opened={512}
-                      clicked={124}
-                  />
-                </div>
+                  <div className="campaigns-list">
+                      {deals.length === 0 ? (
+                          <p className="text-sm text-gray-500 p-4">Nessuna opportunità recente.</p>
+                      ) : (
+                          deals.slice(0, 5).map((deal, index) => (
+                              <CampaignItem
+                                  key={index}
+                                  name={deal.name}
+                                  status={deal.status || "active"} // o closed/lost se disponibile
+                                  amount={deal.amount || 0}
+                                  opened={deal.stage || ""}
+                                  clicked={deal.owner_name || ""}
+                              />
+                          ))
+                      )}
+                  </div>
+
               </div>
             </div>
 
             {/* Right Column */}
             <div className="right-column">
-              {/* Quick Actions */}
+              {/* Quick Actions
               <div className="card quick-actions-card">
                 <h3>Azioni rapide</h3>
                 <div className="quick-actions-grid">
@@ -186,54 +267,42 @@ const Dashboard = () => {
               </div>
 
               {/* Activity Feed */}
-              <div className="card">
-                <div className="card-header">
-                  <h3>Attività recenti</h3>
+                <div className="card">
+                    <div className="card-header">
+                        <h3>Attività recenti</h3>
+                    </div>
+                    <div className="activity-feed">
+                        {activities.length === 0 ? (
+                            <p className="text-sm text-gray-500 p-4">Nessuna attività recente.</p>
+                        ) : (
+                            activities.slice(0, 5).map((activity, index) => (
+                                <ActivityItem
+                                    key={index}
+                                    type={detectActivityType(activity.title)} // funzione helper per decidere icona
+                                    message={activity.title}
+                                    detail={activity.description || "Nessun dettaglio"}
+                                    time={formatTimeAgo(activity.created_at || activity.due_date)}
+                                />
+                            ))
+                        )}
+                    </div>
                 </div>
-                <div className="activity-feed">
-                  <ActivityItem
-                      type="contact"
-                      message="Nuovo contatto aggiunto"
-                      detail="mario.rossi@example.com"
-                      time="2 min fa"
-                  />
-                  <ActivityItem
-                      type="email"
-                      message="Campagna inviata"
-                      detail="Newsletter Giugno - 1,842 destinatari"
-                      time="1 ora fa"
-                  />
-                  <ActivityItem
-                      type="automation"
-                      message="Automazione completata"
-                      detail="Welcome Series - 23 contatti"
-                      time="3 ore fa"
-                  />
-                  <ActivityItem
-                      type="goal"
-                      message="Obiettivo raggiunto"
-                      detail="1000 iscritti newsletter"
-                      time="5 ore fa"
-                  />
-                </div>
-              </div>
 
-              {/* Insights */}
+
+                {/* Insights */}
               <div className="card insights-card">
                 <div className="card-header">
                   <h3>Suggerimenti</h3>
                 </div>
                 <div className="insights-list">
-                  <InsightItem
-                      type="tip"
-                      message="Il tuo tasso di apertura è superiore alla media del settore"
-                      action="Scopri di più"
-                  />
-                  <InsightItem
-                      type="warning"
-                      message="3 contatti hanno segnalato le tue email come spam"
-                      action="Risolvi ora"
-                  />
+                    {insights.map((insight, index) => (
+                        <InsightItem
+                            key={index}
+                            type={insight.type}
+                            message={insight.message}
+                            action={insight.action}
+                        />
+                    ))}
                 </div>
               </div>
             </div>
@@ -257,44 +326,61 @@ const StatCard = ({ title, value, change, trend, icon, color }) => (
       </div>
     </div>
 );
+const CampaignItem = ({ name, status, amount, opened, clicked, scheduled }) => {
+    const renderStatus = () => {
+        switch (status) {
+            case 'active':
+                return 'Attiva';
+            case 'scheduled':
+                return 'Programmata';
+            case 'completed':
+                return 'Completata';
+            case 'won':
+                return 'Vinta';
+            case 'lost':
+                return 'Persa';
+            default:
+                return status;
+        }
+    };
 
-const CampaignItem = ({ name, status, sent, opened, clicked, scheduled }) => (
-    <div className="campaign-item">
-      <div className="campaign-header">
-        <h4>{name}</h4>
-        <span className={`status-badge status-${status}`}>
-        {status === 'active' ? 'Attiva' : status === 'scheduled' ? 'Programmata' : 'Completata'}
-      </span>
-      </div>
-      {status === 'scheduled' ? (
-          <div className="campaign-scheduled">
-            <svg className="w-4 h-4" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Invio programmato: {scheduled}</span>
-          </div>
-      ) : (
-          <div className="campaign-stats">
-            <div className="campaign-stat">
-              <span className="stat-label">Inviate</span>
-              <span className="stat-value">{sent}</span>
+    return (
+        <div className="campaign-item">
+            <div className="campaign-header">
+                <h4>{name}</h4>
+                <span className={`status-badge status-${status}`}>{renderStatus()}</span>
             </div>
-            {opened !== undefined && (
-                <>
-                  <div className="campaign-stat">
-                    <span className="stat-label">Aperte</span>
-                    <span className="stat-value">{opened}</span>
-                  </div>
-                  <div className="campaign-stat">
-                    <span className="stat-label">Click</span>
-                    <span className="stat-value">{clicked}</span>
-                  </div>
-                </>
+
+            {status === 'scheduled' && scheduled ? (
+                <div className="campaign-scheduled">
+                    <svg className="w-4 h-4" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Invio programmato: {scheduled}</span>
+                </div>
+            ) : (
+                <div className="campaign-stats">
+                    <div className="campaign-stat">
+                        <span className="stat-label">Valore</span>
+                        <span className="stat-value">{amount}</span>
+                    </div>
+                    {opened && (
+                        <div className="campaign-stat">
+                            <span className="stat-label">Fase</span>
+                            <span className="stat-value">{opened}</span>
+                        </div>
+                    )}
+                    {clicked && (
+                        <div className="campaign-stat">
+                            <span className="stat-label">Proprietario</span>
+                            <span className="stat-value">{clicked}</span>
+                        </div>
+                    )}
+                </div>
             )}
-          </div>
-      )}
-    </div>
-);
+        </div>
+    );
+};
 
 const QuickAction = ({ icon, label, onClick }) => (
     <button className="quick-action" onClick={onClick}>

@@ -10,6 +10,8 @@ function UserMenu({ user, onLogout }) {
     const navigate = useNavigate();
     const [showFeedback, setShowFeedback] = useState(false);
 
+    console.log(user);
+
     const totalAccounts = (user?.sub_accounts?.length || 0) + 1;
 
     const filledFields = [
@@ -23,9 +25,12 @@ function UserMenu({ user, onLogout }) {
         (filledFields.filter(Boolean).length / filledFields.length) * 100
     );
 
-    const subscriptionStatus = user?.subscription?.status || "Nessuna sottoscrizione";
-    const subscriptionAccounts = user?.subscription?.user_count;
-    const planId = user?.subscription?.plan_id || "-";
+    const confirmedSubscriptions = user?.subscription?.filter(s => s.status === "confirmed") || [];
+    const firstConfirmed = confirmedSubscriptions[0] || null;
+
+    const subscriptionStatus = firstConfirmed?.status || "Nessuna sottoscrizione";
+    const subscriptionAccounts = firstConfirmed?.user_count;
+    const planId = firstConfirmed?.plan_id || "-";
     const statusColor = subscriptionStatus === "confirmed" ? "#22c55e" : "#facc15";
 
     return (
@@ -137,26 +142,17 @@ function UserMenu({ user, onLogout }) {
                     </div>
 
                     <hr className="my-3" />
-
                     <div className="d-flex flex-column align-items-start w-100">
-                        <p style={{ fontWeight: "600" }} className="mb-1">
-                            Subscription
-                        </p>
+                        <p className="mb-1" style={{ fontWeight: "600" }}>Subscription</p>
                         <p className="mb-0">
-                            Status:{" "}
-                            <span
-                                style={{
-                                    color: statusColor,
-                                    fontWeight: "600",
-                                    textTransform: "capitalize",
-                                }}
-                            >
-                    {subscriptionStatus}
-                </span>
+                            Status: <span style={{ color: statusColor, fontWeight: "600", textTransform: "capitalize" }}>
+                                    {subscriptionStatus}
+                                </span>
                         </p>
                         <p className="mb-0">Active Plan: <strong>{planId}</strong></p>
+                        <p className="mb-0">Total Subscriptions: <strong>{user?.subscriptions?.length || 0}</strong></p>
+                        <p className="mb-0">Confirmed Subscriptions: <strong>{confirmedSubscriptions.length}</strong></p>
                     </div>
-
 
                     <hr className="my-3" />
 

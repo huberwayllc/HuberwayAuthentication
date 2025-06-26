@@ -17,12 +17,15 @@ import SupportBoardCreateModal from "./SupportBoardCreateModal";
 import { getAuthData } from "../../backend/AuthData";
 import SupportBoardSingle from "./SupportBoardSingle";
 import {Helmet} from "react-helmet";
+import {Link} from "react-router-dom";
+import {StarIcon} from "@heroicons/react/24/outline";
 
 const SupportBoardEntry = () => {
     const [boards, setBoards] = useState([]);
     const [selectedBoard, setSelectedBoard] = useState(null);
     const [showBoards, setShowBoards] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [isModuleActive, setIsModuleActive] = useState(null);
     const [editingBoardId, setEditingBoardId] = useState(null);
     const [editingName, setEditingName] = useState("");
 
@@ -56,9 +59,90 @@ const SupportBoardEntry = () => {
         }
     };
 
+    const checkModuleActivation = async () => {
+        try {
+            const res = await fetch("https://api.huberway.com/api/module/is-active", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ auth_token, module: "SmartChat" }),
+            });
+            const data = await res.json();
+            setIsModuleActive(data.is_active);
+        } catch (err) {
+            console.error("Errore nel controllo modulo SmartChat:", err);
+            setIsModuleActive(false);
+        }
+    };
+
+
     useEffect(() => {
+        checkModuleActivation();
         fetchBoards();
     }, []);
+
+    if (isModuleActive === false) {
+        return (
+            <>
+                <Helmet>
+                    <title>
+                        {selectedBoard
+                            ? `${selectedBoard.name} - SmartChat - Huberway`
+                            : "SmartChat List - Huberway"}
+                    </title>
+                    <meta
+                        name="description"
+                        content={
+                            selectedBoard
+                                ? `Visualizza la board "${selectedBoard.name}" su SmartChat.`
+                                : "Choose the right plan for your business needs."
+                        }
+                    />
+                    <meta name="keywords" content="SmartChat, Huberway, Support Board" />
+                    <meta
+                        property="og:title"
+                        content={
+                            selectedBoard
+                                ? `${selectedBoard.name} - SmartChat - Huberway`
+                                : "SmartChat List - Huberway"
+                        }
+                    />
+                    <meta
+                        property="og:description"
+                        content={
+                            selectedBoard
+                                ? `Gestisci le conversazioni per la board "${selectedBoard.name}".`
+                                : "Choose the right plan for your business needs."
+                        }
+                    />
+                    <meta property="og:image" content="https://app.huberway.com/assets/images/pricing-image.png" />
+                    <meta property="og:url" content="https://app.huberway.com/smartchat/boards" />
+                    <link rel="canonical" href="https://app.huberway.com/smartchat/boards" />
+                </Helmet>
+
+                <Header setSelectElement={setSelectedBoard} elementList={boards} onActionClick={() => setShowModal(true)} />
+
+                <div className="supportboard-wrapper">
+                <div className="supportboard-empty-message">
+                    <div className="empty-state-card">
+                        <div className="empty-icon-wrapper">
+                            <SparklesIcon className="empty-icon text-yellow-500" />
+                        </div>
+                        <h3 className="empty-title">Modulo SmartChat non attivo</h3>
+                        <p className="empty-subtext">
+                            Attiva SmartChat dal tuo piano per iniziare a usare la board di supporto.
+                        </p>
+                        <Link to="/account/pricing" className="hw-button primary"><StarIcon /> Upgrade</Link>
+                    </div>
+                </div>
+            </div>
+                </>
+        );
+    }
+
+    if (isModuleActive === null) {
+        return <div className="supportboard-wrapper">Caricamento...</div>;
+    }
+
 
     return (
         <>

@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-const DEV_MODE = true; // ✅ Imposta `true` per la modalità sviluppo
+const DEV_MODE = false; // ✅ Imposta `true` per la modalità sviluppo
 
 const DEV_AUTH = {
     auth_token: '774766dc33eb73f3abcbb0b19a4f46f4',
